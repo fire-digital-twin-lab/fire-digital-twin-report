@@ -102,8 +102,8 @@
 \xpg@aux {}{vietnamese}
 \contentsline {chapter}{\numberline {3}PHƯƠNG PHÁP NGHIÊN CỨU}{15}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Pipeline tổng thể}{15}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Module BIM/IFC-to-Graph}{16}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Quy trình xử lý}{16}{subsection.3.2.1}%
+\contentsline {section}{\numberline {3.2}Module BIM/IFC-to-Graph}{15}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Quy trình xử lý}{15}{subsection.3.2.1}%
 \contentsline {subsection}{\numberline {3.2.2}Output}{16}{subsection.3.2.2}%
 \contentsline {subsection}{\numberline {3.2.3}Fallback}{16}{subsection.3.2.3}%
 \contentsline {section}{\numberline {3.3}Thiết kế kịch bản cháy}{16}{section.3.3}%

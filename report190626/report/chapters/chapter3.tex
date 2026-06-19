@@ -54,29 +54,29 @@ Pipeline nghiên cứu bao gồm các bước chính được minh họa trong H
   }
 ]
   % === HÀNG 1: BIM & Graph ===
-  \node[block] (revit) at (0, 3.8) {Revit / BIM};
-  \node[block] (ifc) at (3.2, 3.8) {Export IFC};
-  \node[block] (parse) at (6.4, 3.8) {IFC Parser\\(IfcOpenShell)};
-  \node[block] (graph) at (9.6, 3.8) {Building Graph\\(NetworkX)};
+  \node[block] (revit) at (0, 5.0) {Revit / BIM};
+  \node[block] (ifc) at (3.2, 5.0) {Export IFC};
+  \node[block] (parse) at (6.4, 5.0) {IFC Parser\\(IfcOpenShell)};
+  \node[block] (graph) at (9.6, 5.0) {Building Graph\\(NetworkX)};
 
   % === HÀNG 2: Simulation & Data ===
-  \node[block] (scenario) at (0, 1.8) {Scenario Generator};
+  \node[block] (scenario) at (0, 2.5) {Scenario Generator};
   
-  \node[block] (cfast) at (3.2, 2.4) {CFAST Batch Sim};
-  \node[fdsblock] (fds) at (3.2, 1.2) {FDS Reference Cases};
+  \node[block] (cfast) at (3.2, 3.2) {CFAST Batch Sim};
+  \node[fdsblock] (fds) at (3.2, 1.8) {FDS Reference Cases};
   
-  \node[block] (post) at (6.4, 2.4) {Post-processing};
-  \node[fdsblock] (compare) at (6.4, 1.2) {FDS Post-processing\\Aligned Sensors + Labels};
-  \node[fdsblock] (fdsref) at (9.6, 0.7) {FDS Reference Set};
+  \node[block] (post) at (6.4, 3.2) {Post-processing};
+  \node[fdsblock] (compare) at (6.4, 1.8) {FDS Post-processing\\Aligned Sensors + Labels};
+  \node[fdsblock] (fdsref) at (9.6, 1.1) {FDS Reference Set};
   
-  \node[block] (iot) at (9.6, 1.8) {Virtual IoT\\Simulation};
-  \node[block] (dataset) at (12.8, 1.8) {Graph-Time-Series\\Dataset};
+  \node[block] (iot) at (9.6, 2.5) {Virtual IoT\\Simulation};
+  \node[block] (dataset) at (12.8, 2.5) {Graph-Time-Series\\Dataset};
 
   % === HÀNG 3: AI & Dashboard ===
-  \node[block] (ai) at (0, -0.2) {AI Models:\\Baseline $\rightarrow$ GNN};
-  \node[block] (eval) at (3.2, -0.2) {Evaluation:\\AI vs CFAST/FDS};
-  \node[block] (api) at (6.4, -0.2) {Inference API};
-  \node[block] (dash) at (9.6, -0.2) {Dashboard\\Prototype};
+  \node[block] (ai) at (0, -0.5) {AI Models:\\Baseline $\rightarrow$ GNN};
+  \node[block] (eval) at (3.2, -0.5) {Evaluation:\\AI vs CFAST/FDS};
+  \node[block] (api) at (6.4, -0.5) {Inference API};
+  \node[block] (dash) at (9.6, -0.5) {Dashboard\\Prototype};
 
   % --- Đường nối Hàng 1 ---
   \draw[arrow] (revit) -- (ifc);
@@ -84,7 +84,7 @@ Pipeline nghiên cứu bao gồm các bước chính được minh họa trong H
   \draw[arrow] (parse) -- (graph);
 
   % --- Đường nối Hàng 1 -> Hàng 2 (Vòng ngoài qua rìa biên) ---
-  \draw[arrow] (graph.east) -- +(0.4, 0) |- (14.6, 3.1) -- (-1.8, 3.1) |- (scenario.west);
+  \draw[arrow] (graph.east) -- +(0.4, 0) |- (11.3, 4.1) -- (-1.8, 4.1) |- (scenario.west);
 
   % --- Đường nối Hàng 2 ---
   \draw[arrow] (scenario.east) -- (cfast.west);
@@ -97,11 +97,11 @@ Pipeline nghiên cứu bao gồm các bước chính được minh họa trong H
   \draw[redarrow] (compare) -- (fdsref);
 
   % --- Đường nối Hàng 2 -> Hàng 3 (Vòng ngoài qua rìa biên) ---
-  \draw[arrow] (dataset.east) -- +(0.5, 0) |- (14.6, 0.5) -- (-1.8, 0.5) |- (ai.west);
+  \draw[arrow] (dataset.east) -- +(0.5, 0) |- (14.6, 0.4) -- (-1.8, 0.4) |- (ai.west);
 
   % --- Đường nối Hàng 3 ---
   \draw[arrow] (ai) -- (eval);
-  \draw[redarrow, dashed] (fdsref.south) |- (eval.north);
+  \draw[redarrow, dashed] (fdsref.south) -- (9.6, 0.1) -- (3.2, 0.1) -- (eval.north);
   \draw[arrow] (eval) -- (api);
   \draw[arrow] (api) -- (dash);
 
