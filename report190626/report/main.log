@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.5.5)  19 JUN 2026 21:46
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.5.5)  19 JUN 2026 21:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1634,20 +1634,19 @@ Chương 2.
 ] [8] [9] [10]) (chapters/chapter3.tex [11]
 Chương 3.
 
-Overfull \hbox (26.4075pt too wide) in paragraph at lines 106--107
+Overfull \hbox (26.4075pt too wide) in paragraph at lines 108--109
  [][] 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 131--131
-[]|\TU/CourierNew(0)/m/n/10 building_graph.json\TU/TimesNewRoman(0)/m/n/10 , \T
-U/CourierNew(0)/m/n/10 node_map.csv\TU/TimesNewRoman(0)/m/n/10 ,
+Underfull \hbox (badness 10000) in paragraph at lines 136--136
+[]|\TU/CourierNew(0)/m/n/10 building_graph.json\TU/TimesNewRoman(0)/m/n/10 ,
  []
 
 [12
 
 ]
-Overfull \hbox (8.02786pt too wide) in paragraph at lines 145--146
+Overfull \hbox (8.02786pt too wide) in paragraph at lines 150--151
 []\TU/TimesNewRoman(0)/b/n/10 Parse IFC: \TU/TimesNewRoman(0)/m/n/10 Sử dụng th
 ư viện \TU/CourierNew(0)/m/n/10 IfcOpenShell \TU/TimesNewRoman(0)/m/n/10 để trí
 ch xuất các entity: \TU/CourierNew(0)/m/n/10 IfcSpace\TU/TimesNewRoman(0)/m/n/1
@@ -1656,25 +1655,25 @@ w(0)/m/n/10 IfcWindow\TU/TimesNewRoman(0)/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 195--195
+Underfull \hbox (badness 10000) in paragraph at lines 200--200
 []|\TU/CourierNew(0)/m/n/10 room_area\TU/TimesNewRoman(0)/m/n/10 , \TU/CourierN
 ew(0)/m/n/10 room_volume\TU/TimesNewRoman(0)/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 195--195
+Underfull \hbox (badness 10000) in paragraph at lines 200--200
 []|\TU/CourierNew(0)/m/n/10 sensor_sampling_rate\TU/TimesNewRoman(0)/m/n/10 , \
 TU/CourierNew(0)/m/n/10 sensor_delay\TU/TimesNewRoman(0)/m/n/10 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 195--195
+Underfull \hbox (badness 10000) in paragraph at lines 200--200
 []|\TU/CourierNew(0)/m/n/10 smoke_label\TU/TimesNewRoman(0)/m/n/10 , \TU/Courie
 rNew(0)/m/n/10 arrival_time\TU/TimesNewRoman(0)/m/n/10 ,
  []
 
-
-Overfull \hbox (4.22165pt too wide) in paragraph at lines 200--201
+[13]
+Overfull \hbox (4.22165pt too wide) in paragraph at lines 205--206
 \TU/CourierNew(0)/m/n/10 fire_floor\TU/TimesNewRoman(0)/m/n/10 , \TU/CourierNew
 (0)/m/n/10 HRR_config\TU/TimesNewRoman(0)/m/n/10 , \TU/CourierNew(0)/m/n/10 doo
 r_state_config\TU/TimesNewRoman(0)/m/n/10 , \TU/CourierNew(0)/m/n/10 system_sta
@@ -1682,22 +1681,20 @@ te_config\TU/TimesNewRoman(0)/m/n/10 , \TU/CourierNew(0)/m/n/10 boundary_config
 \TU/TimesNewRoman(0)/m/n/10 . 
  []
 
-[13] [14] [15]
-Overfull \hbox (48.27043pt too wide) in paragraph at lines 349--350
-[]\TU/TimesNewRoman(0)/b/n/10 Decoders: \TU/TimesNewRoman(0)/m/n/10 Nhiều đầu r
-a (multi-task): \TU/CourierNew(0)/m/n/10 smoke_label\TU/TimesNewRoman(0)/m/n/10
- , \TU/CourierNew(0)/m/n/10 hazard_label\TU/TimesNewRoman(0)/m/n/10 , \TU/Couri
-erNew(0)/m/n/10 arrival_time\TU/TimesNewRoman(0)/m/n/10 , \TU/CourierNew(0)/m/n
-/10 next_affected_node\TU/TimesNewRoman(0)/m/n/10 . 
+[14] [15] [16]
+Overfull \hbox (1.7306pt too wide) in paragraph at lines 381--382
+[]\TU/TimesNewRoman(0)/b/n/10 Mức P1/P2 (Mở rộng): \TU/CourierNew(0)/m/n/10 nex
+t_affected_node \TU/TimesNewRoman(0)/m/n/10 (node tiếp theo bị ảnh hưởng) và \T
+U/CourierNew(0)/m/n/10 smoke_path \TU/TimesNewRoman(0)/m/n/10 (đường
  []
 
-[16] [17]) (chapters/chapter4.tex [18]
+[17] [18]) (chapters/chapter4.tex [19]
 Chương 4.
-[19
+[20
 
 ]
 Missing character: There is no , in font nullfont!
-[20] [21]
+[21] [22]
 Underfull \hbox (badness 2735) in paragraph at lines 236--236
 \TU/TimesNewRoman(0)/m/n/10 các thư viện uy tín (IEEE,
  []
@@ -1737,9 +1734,9 @@ Underfull \hbox (badness 10000) in paragraph at lines 236--236
 \TU/CourierNew(0)/m/n/10 iot_noisy_stream
  []
 
-) [22
+) [23
 
-] (chapters/assumptions_limitations.tex [23]
+] (chapters/assumptions_limitations.tex [24]
 Chương 5.
 
 Overfull \hbox (9.43246pt too wide) in paragraph at lines 16--17
@@ -1748,11 +1745,11 @@ Overfull \hbox (9.43246pt too wide) in paragraph at lines 16--17
 m/n/10 virtual_sensor_clean
  []
 
-) (chapters/conclusion.tex [24
+) (chapters/conclusion.tex [25
 
-] [25
+]) [26
 
-]) [26]
+]
 Overfull \hbox (16.27202pt too wide) in paragraph at lines 66--66
 []\TU/TimesNewRoman(0)/m/n/10 J. C. P. Cheng, Y. Tan, and Y. Song, “Integrating
  BIM and fire simulation for building emergency management,”
@@ -1789,10 +1786,10 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 43772 strings out of 402987
- 904986 string characters out of 5453079
- 1860521 words of memory out of 5000000
- 71837 multiletter control sequences out of 15000+600000
+ 43782 strings out of 402987
+ 905139 string characters out of 5453079
+ 1860656 words of memory out of 5000000
+ 71847 multiletter control sequences out of 15000+600000
  630180 words of font info for 99 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  89i,12n,97p,1199b,4973s stack positions out of 10000i,1000n,20000p,200000b,200000s

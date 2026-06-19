@@ -220,7 +220,7 @@ Mô hình chính của đề tài sử dụng multi-task learning với nhiều 
 \begin{itemize}
   \item \texttt{smoke\_label}: Phân loại có/không có khói tại mỗi node.
   \item \texttt{arrival\_time}: Hồi quy thời điểm khói đến mỗi node.
-  \item \texttt{hazard\_label}: Phân loại vùng nguy hiểm (P1).
+  \item \texttt{hazard\_label}: Phân loại vùng nguy hiểm (P1). Trong phạm vi đề cương, \texttt{hazard\_label} được xem là đầu ra P1. Nếu chưa xác minh được ngưỡng theo tiêu chuẩn như ISO 13571, NFPA, SFPE hoặc QCVN/TCVN liên quan, nhãn này chỉ được sử dụng như một proxy nghiên cứu và phải được ghi rõ trong báo cáo kết quả.
   \item \texttt{next\_affected\_node}: Dự đoán node bị ảnh hưởng tiếp theo.
 \end{itemize}
 

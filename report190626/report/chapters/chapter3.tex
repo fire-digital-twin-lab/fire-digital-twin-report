@@ -65,15 +65,16 @@ Pipeline nghiên cứu bao gồm các bước chính được minh họa trong H
   \node[fdsblock] (fds) at (3.2, 1.2) {FDS Validation};
   
   \node[block] (post) at (6.4, 2.4) {Post-processing};
-  \node[fdsblock] (compare) at (6.4, 1.2) {CFAST vs FDS vs AI};
+  \node[fdsblock] (compare) at (6.4, 1.2) {CFAST--FDS Validation\\Node-level Aggregation};
   
   \node[block] (iot) at (9.6, 1.8) {Virtual IoT\\Simulation};
   \node[block] (dataset) at (12.8, 1.8) {Graph-Time-Series\\Dataset};
 
   % === HÀNG 3: AI & Dashboard ===
   \node[block] (ai) at (0, -0.2) {AI Models:\\Baseline $\rightarrow$ GNN};
-  \node[block] (api) at (3.2, -0.2) {Inference API};
-  \node[block] (dash) at (6.4, -0.2) {Dashboard\\Prototype};
+  \node[block] (eval) at (3.2, -0.2) {Evaluation:\\AI vs CFAST/FDS};
+  \node[block] (api) at (6.4, -0.2) {Inference API};
+  \node[block] (dash) at (9.6, -0.2) {Dashboard\\Prototype};
 
   % --- Đường nối Hàng 1 ---
   \draw[arrow] (revit) -- (ifc);
@@ -100,7 +101,8 @@ Pipeline nghiên cứu bao gồm các bước chính được minh họa trong H
   \draw[arrow] (dataset.east) -- +(0.5, 0) |- (14.6, 0.5) -- (-1.8, 0.5) |- (ai.west);
 
   % --- Đường nối Hàng 3 ---
-  \draw[arrow] (ai) -- (api);
+  \draw[arrow] (ai) -- (eval);
+  \draw[arrow] (eval) -- (api);
   \draw[arrow] (api) -- (dash);
 
 \end{tikzpicture}
@@ -123,9 +125,12 @@ Graph Builder     & Bảng BIM                  & \texttt{building\_graph.json},
 Scenario Generator & Graph + factor configs   & Scenario configs \\
 CFAST Runner      & Scenario configs           & Raw CFAST outputs \\
 Post-processing   & Raw outputs                & Node time-series + labels \\
+FDS Aggregation   & Raw FDS outputs            & Node-level FDS time-series \\
+CFAST--FDS Validation & CFAST/FDS node-level outputs & Validation metrics \\
 IoT Simulator     & Node time-series           & Clean/noisy/faulty sensor streams \\
 Dataset Builder   & Graph + sensors + labels   & Model-ready dataset (PyG) \\
-AI Trainer        & Dataset                    & Trained model + metrics \\
+AI Trainer        & Dataset                    & Trained model \\
+AI Evaluation     & AI predictions + labels    & Metrics + ablation results \\
 Dashboard API     & Graph + sensors + predictions & REST/WS endpoints \\
 \bottomrule
 \end{tabularx}
@@ -263,6 +268,29 @@ Kết quả FDS 3D được aggregate ở cấp node (trung bình theo không gi
   \item AI prediction vs CFAST vs FDS (kiểm tra chất lượng surrogate model).
 \end{itemize}
 
+\subsection{Cơ chế so sánh và Metrics kiểm chứng}
+
+Mô phỏng FDS giải quyết bài toán động lực học chất lưu dạng 3D lưới mịn, trong khi CFAST sử dụng mô hình 2 vùng (upper/lower layer) cho mỗi phòng. Để so sánh trực tiếp kết quả giữa hai mô hình trên cùng một cấu trúc đồ thị, dữ liệu FDS 3D được tích hợp (aggregate) về cấp phòng (node-level). Cụ thể, các thông số nhiệt độ và nồng độ khói được tính trung bình theo thể tích của khoang phòng tương ứng tại từng bước thời gian. Đối với CFAST, thông số lớp trên (upper layer) được sử dụng để so sánh khi lớp khói hạ xuống dưới tầm đầu người ($y < 1.5$ m) hoặc tính trung bình trọng số theo độ dày lớp.
+
+Sau khi đồng bộ hóa dữ liệu về cùng định dạng chuỗi thời gian cấp node, các metric trong Bảng~\ref{tab:cfast_fds_metrics} được sử dụng để đánh giá sai lệch giữa CFAST và FDS.
+
+\begin{table}[H]
+\centering
+\caption{Các chỉ số (metric) kiểm chứng CFAST--FDS ở cấp node}
+\label{tab:cfast_fds_metrics}
+\begin{tabularx}{\textwidth}{l l X}
+\toprule
+\textbf{Metric} & \textbf{Tham số so sánh} & \textbf{Ý nghĩa học thuật} \\
+\midrule
+MAE / RMSE & Thời điểm khói đến ($t_{arrival}$) & Đánh giá sai số dự đoán thời gian khói bắt đầu ảnh hưởng đến node. \\
+F1-score / Recall / Precision & Nhãn khói ($smoke\_label$) & Đánh giá độ chính xác của phân loại vùng nhiễm khói nhị phân. \\
+Pearson Correlation Coefficient & Xu hướng nhiệt độ ($T(t)$) & Đo lường mức độ tương quan tuyến tính của chuỗi nhiệt độ theo thời gian. \\
+Path Overlap Ratio & Đường lan truyền khói ($smoke\_path$) & Tỷ lệ trùng khớp của các chuỗi phòng bị nhiễm khói đầu tiên. \\
+Activation Time Error & Thời gian kích hoạt cảm biến ($t_{act}$) & Sai số tuyệt đối thời điểm kích hoạt của sprinkler/detector. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
 % ---------------------------------------------------------------
 \section{Mô phỏng IoT giả lập}
 \label{sec:iotmethod}
@@ -346,24 +374,29 @@ Mô hình chính — Boundary-Aware Temporal GNN — bao gồm:
     \item System Encoder: Encode trạng thái hệ thống PCCC.
   \end{itemize}
   \item \textbf{Fusion:} Kết hợp các biểu diễn bằng concatenation hoặc attention.
-  \item \textbf{Decoders:} Nhiều đầu ra (multi-task): \texttt{smoke\_label}, \texttt{hazard\_label}, \texttt{arrival\_time}, \texttt{next\_affected\_node}.
+  \item \textbf{Decoders:} Các đầu ra (multi-task) được phân tầng mức độ ưu tiên triển khai:
+  \begin{itemize}
+    \item \textbf{Mức P0 (Bắt buộc):} \texttt{smoke\_label} (nhãn khói tại node) và \texttt{arrival\_time} (thời điểm khói đến). Đây là các đầu ra cơ bản phục vụ đánh giá tính lan truyền.
+    \item \textbf{Mức P1 (Khuyến nghị/Tiêu chuẩn):} \texttt{hazard\_label} (nhãn nguy hiểm dựa trên nhiệt độ và nồng độ khí độc) và \texttt{unsafe\_time} (thời điểm bắt đầu không an toàn).
+    \item \textbf{Mức P1/P2 (Mở rộng):} \texttt{next\_affected\_node} (node tiếp theo bị ảnh hưởng) và \texttt{smoke\_path} (đường lan truyền khói dự kiến).
+  \end{itemize}
 \end{itemize}
 
 \subsection{Loss functions}
 
 \begin{table}[H]
 \centering
-\caption{Loss function cho từng task}
+\caption{Loss function và mức độ ưu tiên cho từng task}
 \label{tab:loss}
-\begin{tabular}{l l}
+\begin{tabular}{l c l}
 \toprule
-\textbf{Output} & \textbf{Loss} \\
+\textbf{Output} & \textbf{Mức} & \textbf{Loss Function} \\
 \midrule
-\texttt{smoke\_label}        & BCE hoặc Focal Loss \\
-\texttt{hazard\_label}       & BCE hoặc Focal Loss \\
-\texttt{arrival\_time}       & MAE / MSE / Huber \\
-\texttt{next\_affected\_node} & Cross Entropy \\
-Multi-task tổng hợp          & Weighted sum \\
+\texttt{smoke\_label}        & P0 & BCE hoặc Focal Loss \\
+\texttt{arrival\_time}       & P0 & MAE / MSE / Huber \\
+\texttt{hazard\_label}       & P1 & BCE hoặc Focal Loss \\
+\texttt{next\_affected\_node} & P1/P2 & Cross Entropy \\
+Multi-task tổng hợp          & -- & Weighted sum \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -377,19 +410,19 @@ Multi-task tổng hợp          & Weighted sum \\
 
 \begin{table}[H]
 \centering
-\caption{Metrics đánh giá theo task}
+\caption{Metrics đánh giá và mức độ ưu tiên theo task}
 \label{tab:metrics}
-\begin{tabularx}{\textwidth}{l X}
+\begin{tabularx}{\textwidth}{l c X}
 \toprule
-\textbf{Task} & \textbf{Metrics} \\
+\textbf{Task} & \textbf{Mức} & \textbf{Metrics} \\
 \midrule
-Phân loại khói     & F1, Recall, Precision, AUC \\
-Phân loại nguy hiểm & Recall, F1, AUC \\
-Thời gian đến       & MAE, RMSE \\
-Đường lan truyền    & Path accuracy, next-node accuracy \\
-Calibration         & Brier score \\
-Tốc độ              & Inference time \\
-Robustness          & Metric drop dưới IoT nhiễu/lỗi \\
+Phân loại khói (nhãn khói)     & P0 & F1, Recall, Precision, AUC \\
+Thời gian khói đến             & P0 & MAE, RMSE \\
+Phân loại nguy hiểm            & P1 & Recall, F1, AUC \\
+Đường lan truyền khói          & P1/P2 & Path accuracy, next-node accuracy \\
+Độ tin cậy dự báo (Calibration)& P0/P1 & Brier score \\
+Tốc độ dự đoán                 & P0 & Inference time \\
+Độ bền vững (Robustness)       & P0 & Metric drop dưới điều kiện IoT bị nhiễu/lỗi \\
 \bottomrule
 \end{tabularx}
 \end{table}

@@ -6,19 +6,20 @@
 \contentsline {table}{\numberline {2.4}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Các quy chuẩn, tiêu chuẩn tham chiếu}}{11}{table.caption.6}%
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {3.1}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Data flow giữa các module}}{12}{table.caption.8}%
-\contentsline {table}{\numberline {3.2}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Factor matrix P0 (bắt buộc)}}{13}{table.caption.9}%
-\contentsline {table}{\numberline {3.3}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Các case kiểm chứng FDS}}{14}{table.caption.10}%
-\contentsline {table}{\numberline {3.4}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Lộ trình phát triển mô hình AI}}{15}{table.caption.11}%
-\contentsline {table}{\numberline {3.5}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Loss function cho từng task}}{16}{table.caption.12}%
-\contentsline {table}{\numberline {3.6}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Metrics đánh giá theo task}}{16}{table.caption.13}%
-\contentsline {table}{\numberline {3.7}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Các chế độ phân chia dữ liệu}}{17}{table.caption.14}%
-\contentsline {table}{\numberline {3.8}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Thiết kế ablation study}}{17}{table.caption.15}%
-\contentsline {table}{\numberline {3.9}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Tech stack dashboard}}{18}{table.caption.16}%
+\contentsline {table}{\numberline {3.2}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Factor matrix P0 (bắt buộc)}}{14}{table.caption.9}%
+\contentsline {table}{\numberline {3.3}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Các case kiểm chứng FDS}}{15}{table.caption.10}%
+\contentsline {table}{\numberline {3.4}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Các chỉ số (metric) kiểm chứng CFAST--FDS ở cấp node}}{16}{table.caption.11}%
+\contentsline {table}{\numberline {3.5}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Lộ trình phát triển mô hình AI}}{17}{table.caption.12}%
+\contentsline {table}{\numberline {3.6}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Loss function và mức độ ưu tiên cho từng task}}{18}{table.caption.13}%
+\contentsline {table}{\numberline {3.7}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Metrics đánh giá và mức độ ưu tiên theo task}}{18}{table.caption.14}%
+\contentsline {table}{\numberline {3.8}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Các chế độ phân chia dữ liệu}}{18}{table.caption.15}%
+\contentsline {table}{\numberline {3.9}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Thiết kế ablation study}}{19}{table.caption.16}%
+\contentsline {table}{\numberline {3.10}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Tech stack dashboard}}{19}{table.caption.17}%
 \addvspace {10\p@ }
-\contentsline {table}{\numberline {4.1}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Danh sách sản phẩm dự kiến và tiêu chí nghiệm thu}}{19}{table.caption.17}%
-\contentsline {table}{\numberline {4.2}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Lộ trình thực hiện 20 tuần}}{20}{table.caption.18}%
-\contentsline {table}{\numberline {4.3}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Phân công nhiệm vụ}}{21}{table.caption.20}%
-\contentsline {table}{\numberline {4.4}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Bảng phân tích rủi ro và phương án giảm thiểu}}{23}{table.caption.21}%
+\contentsline {table}{\numberline {4.1}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Danh sách sản phẩm dự kiến và tiêu chí nghiệm thu}}{20}{table.caption.18}%
+\contentsline {table}{\numberline {4.2}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Lộ trình thực hiện 20 tuần}}{21}{table.caption.19}%
+\contentsline {table}{\numberline {4.3}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Phân công nhiệm vụ}}{22}{table.caption.21}%
+\contentsline {table}{\numberline {4.4}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Bảng phân tích rủi ro và phương án giảm thiểu}}{24}{table.caption.22}%
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {table}{\numberline {A.1}{\ignorespaces \xpg@aux {}{vietnamese}\ignorespaces Factor matrix P1}}{28}{table.caption.25}%
