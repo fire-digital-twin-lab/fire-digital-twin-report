@@ -1,0 +1,100 @@
+% ============================================================
+% appendix.tex — Phụ lục
+% ============================================================
+
+\begin{appendices}
+
+\chapter{Ma trận yếu tố kịch bản chi tiết}
+\label{app:factormatrix}
+
+\section{Factor P1 (nên làm)}
+
+\begin{table}[H]
+\centering
+\caption{Factor matrix P1}
+\label{tab:factorP1}
+\begin{tabularx}{\textwidth}{l l X}
+\toprule
+\textbf{Nhóm} & \textbf{Yếu tố} & \textbf{Biến} \\
+\midrule
+Gió     & Tốc độ, hướng gió        & \texttt{wind\_speed}, \texttt{wind\_dir\_sin}, \texttt{wind\_dir\_cos} \\
+Cửa sổ  & Trạng thái cửa sổ       & \texttt{window\_state} \\
+Cháy    & CO yield                  & \texttt{CO\_yield} \\
+Cảm biến & Cảm biến CO              & \texttt{co\_sensor(t)} \\
+Hệ thống & Lưu lượng hút khói      & \texttt{exhaust\_flow} \\
+Hệ thống & Chênh áp cầu thang      & \texttt{stair\_delta\_p} \\
+Label    & Nguy hiểm                & \texttt{hazard\_label}, \texttt{unsafe\_time} \\
+Edge     & Chịu lửa                 & \texttt{fire\_rating} \\
+Biên     & Ảnh hưởng gió lên facade & \texttt{wind\_effect} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\section{Factor P2 (để sau)}
+
+\begin{table}[H]
+\centering
+\caption{Factor matrix P2}
+\label{tab:factorP2}
+\begin{tabularx}{\textwidth}{l l X}
+\toprule
+\textbf{Nhóm} & \textbf{Yếu tố} & \textbf{Lý do} \\
+\midrule
+HVAC      & Duct path, damper, supply/return & Quá phức tạp \\
+Atrium    & CFD không gian lớn              & Cần FDS chuyên sâu \\
+Rò rỉ     & Rò rỉ khói chính xác            & Cần dữ liệu/thí nghiệm \\
+IoT thật  & Cảm biến phần cứng              & Chưa có thiết bị \\
+Thoát nạn & Di chuyển cư dân chi tiết       & Bài toán riêng \\
+ASET/RSET & Thoát nạn + tenability đầy đủ  & Hướng phát triển \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ---------------------------------------------------------------
+
+\chapter{Chi tiết IoT Presets}
+\label{app:iotpresets}
+
+\begin{table}[H]
+\centering
+\caption{Mô tả chi tiết các IoT preset}
+\label{tab:iotpresets_detail}
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+\textbf{Preset} & \textbf{Mô tả} \\
+\midrule
+\texttt{clean}        & Không nhiễu, không trễ, không mất dữ liệu \\
+\texttt{low\_noise}    & Nhiễu Gauss nhẹ, trễ nhỏ \\
+\texttt{medium\_noise} & Nhiễu Gauss trung bình, trễ, mất dữ liệu \\
+\texttt{faulty}        & Stuck sensor, offline, drift, false alarm \\
+\texttt{no\_iot}       & Không có dữ liệu IoT (dùng cho ablation) \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ---------------------------------------------------------------
+
+\chapter{API Endpoints Dashboard}
+\label{app:api}
+
+\begin{table}[H]
+\centering
+\caption{Danh sách API endpoints}
+\label{tab:api_detail}
+\begin{tabularx}{\textwidth}{l l X}
+\toprule
+\textbf{Method} & \textbf{Endpoint} & \textbf{Mục đích} \\
+\midrule
+GET  & \texttt{/scenarios}                & Danh sách kịch bản \\
+GET  & \texttt{/scenarios/\{id\}}         & Metadata kịch bản \\
+GET  & \texttt{/graph/\{scenario\_id\}}   & Đồ thị tòa nhà \\
+GET  & \texttt{/timeseries/\{scenario\_id\}} & Chuỗi thời gian cảm biến \\
+GET  & \texttt{/labels/\{scenario\_id\}}  & Labels \\
+POST & \texttt{/inference}                & Chạy AI inference \\
+GET  & \texttt{/comparison/\{scenario\_id\}} & So sánh CFAST/FDS/AI \\
+WS   & \texttt{/stream/\{scenario\_id\}}  & Virtual IoT stream \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\end{appendices}

@@ -1,0 +1,50 @@
+% ============================================================
+% commands.tex — Custom commands và environments
+% ============================================================
+
+% --- Viết tắt thường dùng ---
+\newcommand{\detai}{Mô hình hóa và dự đoán đường lan truyền khói khi xảy ra cháy trong công trình dựa trên BIM và học sâu}
+\newcommand{\truong}{Trường Đại học Xây dựng Hà Nội}
+\newcommand{\khoa}{Khoa Công nghệ Thông tin}
+\newcommand{\gvhd}{TS. Phạm Hữu Tùng}
+
+% Thành viên nhóm
+\newcommand{\svA}{Trần Phùng Đức Anh}
+\newcommand{\svB}{Nguyễn Thu Hương}
+\newcommand{\svC}{Nguyễn Thùy Dương}
+\newcommand{\svD}{Võ Nguyễn Anh Kiệt}
+\newcommand{\svE}{Đào Ngọc Long}
+
+% --- Thuật ngữ kỹ thuật ---
+\newcommand{\bim}{\textsc{bim}}
+\newcommand{\ifc}{\textsc{ifc}}
+\newcommand{\cfast}{\textsc{cfast}}
+\newcommand{\fds}{\textsc{fds}}
+\newcommand{\gnn}{\textsc{gnn}}
+\newcommand{\batgnn}{\textsc{bat-gnn}}
+\newcommand{\iot}{\textsc{iot}}
+
+% --- Environment cho ghi chú ---
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable}
+
+\newtcolorbox{notebox}[1][]{
+  colback=blue!5,
+  colframe=NavyBlue,
+  fonttitle=\bfseries,
+  title={Ghi chú},
+  breakable,
+  #1
+}
+
+\newtcolorbox{warningbox}[1][]{
+  colback=red!5,
+  colframe=red!70!black,
+  fonttitle=\bfseries,
+  title={Lưu ý},
+  breakable,
+  #1
+}
+
+% --- Đường kẻ ngang ---
+\newcommand{\hr}{\vspace{6pt}\noindent\rule{\textwidth}{0.4pt}\vspace{6pt}}

@@ -1,0 +1,134 @@
+% ============================================================
+% packages.tex — Khai báo packages
+% Compile: XeLaTeX + Biber
+% ============================================================
+
+% --- Font & Ngôn ngữ ---
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\setdefaultlanguage{vietnamese}
+\setotherlanguage{english}
+
+% Font chính: Times New Roman (hoặc TeX Gyre Termes nếu không có TNR)
+\setmainfont{Times New Roman}[
+  BoldFont       = Times New Roman Bold,
+  ItalicFont     = Times New Roman Italic,
+  BoldItalicFont = Times New Roman Bold Italic,
+]
+% Nếu máy không có Times New Roman, uncomment dòng dưới:
+% \setmainfont{TeX Gyre Termes}
+
+\setsansfont{Arial}
+\setmonofont{Courier New}
+
+% --- Layout & Spacing ---
+\usepackage[
+  top=2.5cm,
+  bottom=2.5cm,
+  left=3.5cm,
+  right=2.0cm,
+  headheight=14pt
+]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+
+% --- Đoạn văn ---
+\usepackage{indentfirst}     % Thụt đầu dòng đoạn đầu tiên
+\setlength{\parindent}{1.27cm}
+\setlength{\parskip}{6pt}
+
+% --- Tiêu đề chương/mục ---
+\usepackage{titlesec}
+
+% --- Header / Footer ---
+\usepackage{fancyhdr}
+
+% --- Mục lục ---
+\usepackage{tocloft}
+
+% --- Bảng ---
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{array}
+
+% --- Hình ảnh ---
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{subcaption}
+
+% --- Caption ---
+\usepackage[
+  font=small,
+  labelfont=bf,
+  justification=centering
+]{caption}
+
+% --- Màu sắc ---
+\usepackage[dvipsnames,svgnames,x11names]{xcolor}
+
+% --- TikZ & Sơ đồ ---
+\usepackage{tikz}
+\usetikzlibrary{
+  arrows.meta,
+  positioning,
+  shapes.geometric,
+  calc,
+  fit,
+  backgrounds
+}
+\usepackage{pgfgantt}
+
+% --- Toán ---
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% --- Code listing ---
+\usepackage{listings}
+\lstset{
+  basicstyle=\small\ttfamily,
+  breaklines=true,
+  frame=single,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{OliveGreen},
+  stringstyle=\color{red},
+  tabsize=2,
+  showstringspaces=false,
+}
+
+% --- Tài liệu tham khảo ---
+\usepackage[
+  backend=biber,
+  style=ieee,
+  sorting=nyt,
+  maxbibnames=99,
+]{biblatex}
+\addbibresource{references.bib}
+
+% --- Hyperlink ---
+\usepackage[
+  colorlinks=true,
+  linkcolor=NavyBlue,
+  citecolor=OliveGreen,
+  urlcolor=RoyalBlue,
+  bookmarks=true,
+  bookmarksnumbered=true,
+  pdfencoding=auto,
+]{hyperref}
+\usepackage{bookmark}
+
+% --- Viết tắt ---
+% Nếu cần danh mục viết tắt, uncomment khối dưới:
+% \usepackage[acronym, toc, nonumberlist]{glossaries}
+% \makeglossaries
+
+% --- Enum / List ---
+\usepackage{enumitem}
+\setlist{nosep, leftmargin=*}
+
+% --- Misc ---
+\usepackage{pdfpages}        % Chèn PDF
+\usepackage{appendix}        % Phụ lục

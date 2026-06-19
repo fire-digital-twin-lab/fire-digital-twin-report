@@ -1,0 +1,254 @@
+% ============================================================
+% chapter2.tex — Chương 2: Cơ sở lý thuyết
+% ============================================================
+
+\chapter{CƠ SỞ LÝ THUYẾT}
+\label{chap:cosoly}
+
+% ---------------------------------------------------------------
+\section{BIM và chuẩn IFC}
+\label{sec:bimifc}
+% ---------------------------------------------------------------
+
+\subsection{Khái niệm BIM}
+
+BIM (Building Information Modeling) là phương pháp tạo và quản lý thông tin công trình một cách số hóa trong suốt vòng đời dự án. Mô hình BIM không chỉ là bản vẽ 3D, mà chứa đựng toàn bộ thông tin về kiến trúc, kết cấu, hệ thống kỹ thuật, vật liệu và các thuộc tính liên quan.
+
+Trong bối cảnh nghiên cứu này, BIM được sử dụng như nguồn dữ liệu đầu vào chính để trích xuất tự động cấu trúc tòa nhà — bao gồm phòng, cửa, cầu thang, shaft, và các mối quan hệ không gian giữa chúng.
+
+\subsection{Chuẩn dữ liệu IFC}
+
+IFC (Industry Foundation Classes) là chuẩn dữ liệu mở do buildingSMART phát triển, cho phép trao đổi thông tin BIM giữa các phần mềm khác nhau. Trong đề tài, nhóm sử dụng các IFC entity chính được trình bày trong Bảng~\ref{tab:ifc_entities}.
+
+\begin{table}[H]
+\centering
+\caption{Các IFC entity chính được sử dụng trong đề tài}
+\label{tab:ifc_entities}
+\begin{tabularx}{\textwidth}{l l X}
+\toprule
+\textbf{Dữ liệu} & \textbf{IFC Entity} & \textbf{Vai trò trong graph} \\
+\midrule
+Tầng / cao độ     & \texttt{IfcBuildingStorey}     & Xác định tầng, cao độ \\
+Phòng / khu vực   & \texttt{IfcSpace}              & Node trong đồ thị \\
+Diện tích / thể tích & \texttt{Qto\_SpaceBaseQuantities} & Feature của node \\
+Quan hệ kề        & \texttt{IfcRelSpaceBoundary}   & Quan hệ kề giữa các node \\
+Cửa đi            & \texttt{IfcDoor}               & Edge loại door \\
+Cửa sổ            & \texttt{IfcWindow}             & Edge loại window \\
+Cầu thang         & \texttt{IfcStair}              & Node/edge chiều đứng \\
+Tường / sàn       & \texttt{IfcWall}, \texttt{IfcSlab} & Vật liệu, phân khoang \\
+ID gốc            & \texttt{GlobalId}              & Truy vết BIM--graph \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+Phiên bản IFC ưu tiên sử dụng là IFC4; nếu xảy ra lỗi khi parse, sẽ chuyển sang IFC2x3. Thư viện Python \texttt{IfcOpenShell} được sử dụng để đọc và xử lý file IFC.
+
+% ---------------------------------------------------------------
+\section{Mô hình đồ thị tòa nhà (Building Graph)}
+\label{sec:buildinggraph}
+% ---------------------------------------------------------------
+
+\subsection{Định nghĩa đồ thị}
+
+Đồ thị tòa nhà $G = (V, E)$ được xây dựng từ mô hình BIM, trong đó:
+\begin{itemize}
+  \item $V$ là tập các node, mỗi node đại diện cho một không gian trong tòa nhà.
+  \item $E$ là tập các edge, mỗi edge thể hiện kết nối vật lý giữa hai không gian.
+\end{itemize}
+
+\subsection{Phân loại node}
+
+Các loại node trong đồ thị tòa nhà được trình bày trong Bảng~\ref{tab:node_types}.
+
+\begin{table}[H]
+\centering
+\caption{Phân loại node trong đồ thị tòa nhà}
+\label{tab:node_types}
+\begin{tabular}{l l}
+\toprule
+\textbf{Loại node} & \textbf{Mô tả} \\
+\midrule
+\texttt{room}     & Phòng (phòng ngủ, phòng khách, phòng làm việc...) \\
+\texttt{corridor} & Hành lang \\
+\texttt{stair}    & Cầu thang \\
+\texttt{shaft}    & Trục kỹ thuật (thang máy, ống kỹ thuật) \\
+\texttt{lobby}    & Sảnh thang / sảnh đón \\
+\texttt{outside}  & Node ngoài trời (liên quan cửa sổ/lỗ mở) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Phân loại edge}
+
+Các loại edge trong đồ thị tòa nhà được trình bày trong Bảng~\ref{tab:edge_types}.
+
+\begin{table}[H]
+\centering
+\caption{Phân loại edge trong đồ thị tòa nhà}
+\label{tab:edge_types}
+\begin{tabular}{l l}
+\toprule
+\textbf{Loại edge} & \textbf{Mô tả} \\
+\midrule
+\texttt{door}               & Kết nối qua cửa đi \\
+\texttt{window}             & Kết nối qua cửa sổ \\
+\texttt{opening}            & Kết nối qua lỗ mở \\
+\texttt{corridor\_link}     & Kết nối trong hành lang \\
+\texttt{stair\_vertical}    & Kết nối đứng qua cầu thang \\
+\texttt{shaft\_vertical}    & Kết nối đứng qua shaft \\
+\texttt{outside\_connection} & Kết nối ra ngoài \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Mỗi node và edge mang thêm các thuộc tính tĩnh (diện tích, thể tích, chiều cao, loại vật liệu) được trích xuất từ IFC.
+
+% ---------------------------------------------------------------
+\section{Mô phỏng cháy zone-model — CFAST}
+\label{sec:cfast}
+% ---------------------------------------------------------------
+
+\subsection{Nguyên lý mô hình hai vùng (Two-Zone Model)}
+
+CFAST (Consolidated Fire and Smoke Transport) là phần mềm mô phỏng cháy do NIST (National Institute of Standards and Technology) phát triển, sử dụng mô hình hai vùng. Mỗi khoang được chia thành:
+\begin{itemize}
+  \item \textbf{Upper layer (lớp trên):} Chứa khói nóng, khí cháy — nhiệt độ cao hơn.
+  \item \textbf{Lower layer (lớp dưới):} Không khí tương đối sạch — nhiệt độ thấp hơn.
+\end{itemize}
+
+Ranh giới giữa hai lớp được gọi là \textit{smoke layer height}, di chuyển xuống dưới khi khói tích tụ.
+
+\subsection{Đầu vào CFAST}
+
+Các thông số đầu vào chính của CFAST bao gồm:
+\begin{itemize}
+  \item Kích thước khoang (từ BIM/IFC).
+  \item Lỗ thông gió ngang (cửa, cửa sổ) và đứng (cầu thang, shaft).
+  \item Đường cong HRR (Heat Release Rate) và thông số nhiên liệu.
+  \item Soot yield, CO yield.
+  \item Điều kiện ban đầu và điều kiện biên.
+  \item Thời gian mô phỏng và bước thời gian output.
+\end{itemize}
+
+\subsection{Đầu ra CFAST}
+
+Các đại lượng đầu ra được sử dụng trong đề tài:
+\begin{itemize}
+  \item Nhiệt độ lớp trên/lớp dưới.
+  \item Chiều cao lớp khói (smoke layer height).
+  \item Nồng độ bồ hóng (soot concentration).
+  \item Nồng độ CO.
+  \item Lưu lượng qua các lỗ thông gió.
+  \item Thời điểm kích hoạt detector/sprinkler.
+  \item Áp suất khoang.
+\end{itemize}
+
+% ---------------------------------------------------------------
+\section{Mô phỏng cháy field-model — FDS}
+\label{sec:fds}
+% ---------------------------------------------------------------
+
+FDS (Fire Dynamics Simulator) là phần mềm mô phỏng CFD do NIST phát triển, giải trực tiếp phương trình Navier-Stokes bằng phương pháp LES (Large Eddy Simulation). FDS cung cấp kết quả chi tiết ở mức 3D nhưng đòi hỏi tài nguyên tính toán lớn.
+
+Trong đề tài, FDS được sử dụng ở vai trò \textbf{kiểm chứng chọn lọc}:
+\begin{itemize}
+  \item P0: Tối thiểu 3 case validation.
+  \item P1: Mục tiêu 6 case.
+  \item P2: 8–12 case nếu đủ thời gian và phần cứng.
+\end{itemize}
+
+Kết quả FDS được aggregate ở cấp node (trung bình theo không gian phòng) để so sánh trực tiếp với output CFAST và dự đoán AI.
+
+% ---------------------------------------------------------------
+\section{Cảm biến ảo và IoT giả lập}
+\label{sec:virtualiot}
+% ---------------------------------------------------------------
+
+\subsection{Mô hình 3 lớp dữ liệu}
+
+Hệ thống IoT giả lập sử dụng mô hình 3 lớp dữ liệu:
+
+\begin{enumerate}
+  \item \textbf{\texttt{physics\_truth}:} Output mô phỏng gốc từ CFAST/FDS — dùng làm ground truth và label, không đưa trực tiếp toàn bộ vào AI.
+  \item \textbf{\texttt{virtual\_sensor\_clean}:} Dữ liệu cảm biến ảo sạch — lấy mẫu từ physics truth tại vị trí cảm biến, không nhiễu — dùng cho clean baseline.
+  \item \textbf{\texttt{iot\_noisy\_stream}:} Dữ liệu cảm biến ảo có thêm nhiễu Gauss, trễ (delay), mất dữ liệu (missing), và lỗi cảm biến (stuck/drift/false alarm) — đây là input chính cho mô hình AI.
+\end{enumerate}
+
+\subsection{Các loại cảm biến}
+
+Các cảm biến ảo được mô phỏng bao gồm:
+\begin{itemize}
+  \item Cảm biến khói (\texttt{smoke\_sensor}).
+  \item Cảm biến nhiệt độ (\texttt{temp\_sensor}).
+  \item Cảm biến trạng thái cửa (\texttt{door\_sensor}).
+  \item Trạng thái báo cháy (\texttt{alarm\_state}).
+  \item Cảm biến CO (\texttt{co\_sensor}) — P1.
+\end{itemize}
+
+\subsection{Các preset nhiễu}
+
+Để đánh giá tính bền vững (robustness) của mô hình AI, hệ thống IoT giả lập cung cấp các preset nhiễu: \texttt{clean}, \texttt{low\_noise}, \texttt{medium\_noise}, \texttt{faulty}, và \texttt{no\_iot} (dùng cho ablation).
+
+% ---------------------------------------------------------------
+\section{Mạng nơ-ron đồ thị (Graph Neural Networks)}
+\label{sec:gnn}
+% ---------------------------------------------------------------
+
+\subsection{Tổng quan GNN}
+
+Graph Neural Networks (GNN) là lớp mô hình học sâu được thiết kế để làm việc trực tiếp trên dữ liệu có cấu trúc đồ thị. Nguyên lý cốt lõi của GNN là \textit{message passing}: mỗi node cập nhật biểu diễn (representation) của mình bằng cách tổng hợp thông tin từ các node lân cận.
+
+Các kiến trúc GNN phổ biến:
+\begin{itemize}
+  \item \textbf{GCN (Graph Convolutional Network):} Tích chập trên đồ thị dựa trên phổ Laplacian.
+  \item \textbf{GraphSAGE:} Lấy mẫu và tổng hợp từ lân cận.
+  \item \textbf{GAT (Graph Attention Network):} Sử dụng cơ chế attention để trọng số hóa thông tin từ lân cận.
+\end{itemize}
+
+\subsection{Temporal GNN}
+
+Để xử lý dữ liệu biến đổi theo thời gian trên đồ thị, Temporal GNN kết hợp GNN với các mô hình chuỗi thời gian:
+\begin{itemize}
+  \item \textbf{GNN + LSTM/GRU:} GNN encode cấu trúc không gian, LSTM/GRU encode chuỗi thời gian.
+  \item \textbf{GNN + TCN:} Kết hợp với Temporal Convolutional Network.
+  \item \textbf{Spatial-Temporal GNN:} Các kiến trúc xử lý đồng thời cả không gian và thời gian.
+\end{itemize}
+
+\subsection{Multi-task learning}
+
+Mô hình chính của đề tài sử dụng multi-task learning với nhiều đầu ra:
+\begin{itemize}
+  \item \texttt{smoke\_label}: Phân loại có/không có khói tại mỗi node.
+  \item \texttt{arrival\_time}: Hồi quy thời điểm khói đến mỗi node.
+  \item \texttt{hazard\_label}: Phân loại vùng nguy hiểm (P1).
+  \item \texttt{next\_affected\_node}: Dự đoán node bị ảnh hưởng tiếp theo.
+\end{itemize}
+
+% ---------------------------------------------------------------
+\section{Quy chuẩn và tiêu chuẩn tham chiếu}
+\label{sec:quychuan}
+% ---------------------------------------------------------------
+
+Đề tài tham chiếu các quy chuẩn và tiêu chuẩn để đảm bảo cơ sở kỹ thuật, \textbf{không} nhằm tuyên bố prototype đạt yêu cầu thẩm duyệt PCCC. Các tài liệu chính:
+
+\begin{table}[H]
+\centering
+\caption{Các quy chuẩn, tiêu chuẩn tham chiếu}
+\label{tab:standards}
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+\textbf{Tài liệu} & \textbf{Vai trò} \\
+\midrule
+QCVN 06:2022/BXD      & Quy chuẩn an toàn cháy cho nhà và công trình tại Việt Nam \\
+Tiêu chuẩn báo cháy VN & Tham chiếu hệ báo cháy, detector \\
+NFPA 92                & Kiểm soát khói, hút khói, tăng áp cầu thang \\
+ISO 13571              & Ngưỡng tenability (FED/FEC) \\
+SFPE Handbook          & Động lực học cháy, HRR, soot/CO yield \\
+NIST CFAST/FDS docs    & Cơ sở mô hình CFAST và FDS \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{warningbox}
+Prototype nghiên cứu này \textbf{không thay thế} CFD chuyên sâu, không thay thế thiết kế hoặc thẩm duyệt PCCC, không điều khiển hệ thống thật, và không đưa ra kết luận pháp lý. Các ngưỡng hazard sử dụng trong đề tài là proxy nghiên cứu, cần được ghi rõ trong báo cáo kết quả.
+\end{warningbox}

@@ -1,0 +1,22 @@
+% ============================================================
+% abstract.tex — Tóm tắt đề tài
+% ============================================================
+
+\chapter*{TÓM TẮT ĐỀ TÀI}
+\addcontentsline{toc}{chapter}{TÓM TẮT ĐỀ TÀI}
+
+Cháy nổ trong các công trình cao tầng là một trong những thảm họa gây thiệt hại nghiêm trọng về người và tài sản tại Việt Nam. Trong đó, khói độc là nguyên nhân chính gây tử vong, chiếm tỷ lệ lớn hơn cả tác động trực tiếp của lửa. Việc dự đoán nhanh và chính xác đường lan truyền khói trong tòa nhà có ý nghĩa quan trọng trong công tác phòng cháy chữa cháy (PCCC), hỗ trợ cảnh báo sớm và lập kế hoạch thoát nạn.
+
+Đề tài này đề xuất xây dựng một pipeline nghiên cứu tích hợp end-to-end cho bài toán dự đoán lan truyền khói cấp phòng/khu vực trong tòa nhà cao tầng. Pipeline bao gồm các module chính:
+\begin{enumerate}
+  \item \textbf{BIM/IFC-to-Graph:} Chuyển đổi mô hình BIM (Building Information Modeling) từ file Revit/IFC thành đồ thị tòa nhà (building graph), trong đó mỗi node đại diện cho một phòng/khu vực và mỗi edge thể hiện kết nối vật lý (cửa, cầu thang, trục kỹ thuật).
+  \item \textbf{Mô phỏng cháy:} Sử dụng CFAST (zone-model) làm nguồn sinh dataset chính cho hàng trăm kịch bản cháy, kết hợp FDS (field-model) để kiểm chứng chọn lọc.
+  \item \textbf{IoT giả lập 3 lớp:} Mô phỏng hệ thống cảm biến ảo với ba mức dữ liệu — physics truth, virtual sensor clean, và IoT noisy stream — nhằm tạo dữ liệu đầu vào thực tế cho mô hình AI.
+  \item \textbf{Mô hình AI surrogate:} Phát triển mô hình học sâu dạng graph-time-series (từ baseline đến Boundary-Aware Temporal GNN) để dự đoán nhanh trạng thái khói, thời điểm khói đến, và vùng nguy hiểm tại mỗi node.
+  \item \textbf{Dashboard prototype:} Xây dựng giao diện trực quan hóa cho phép replay kịch bản, hiển thị kết quả dự đoán AI và so sánh với mô phỏng.
+\end{enumerate}
+
+Tính mới của đề tài không nằm ở việc phát minh từng công nghệ riêng lẻ (BIM, CFAST, GNN), mà ở việc \textbf{tích hợp toàn bộ pipeline} từ mô hình BIM đến dự đoán AI trong một hệ thống thống nhất, có khả năng dự đoán nhanh hơn mô phỏng truyền thống nhiều bậc.
+
+\vspace{12pt}
+\noindent\textbf{Từ khóa:} BIM, IFC, CFAST, FDS, mạng nơ-ron đồ thị (GNN), lan truyền khói, học sâu, IoT giả lập, surrogate model, phòng cháy chữa cháy.

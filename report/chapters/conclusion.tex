@@ -1,0 +1,76 @@
+% ============================================================
+% conclusion.tex — Kết luận
+% ============================================================
+
+\chapter*{KẾT LUẬN}
+\addcontentsline{toc}{chapter}{KẾT LUẬN}
+
+% ---------------------------------------------------------------
+\section*{1. Tóm tắt}
+\addcontentsline{toc}{section}{1. Tóm tắt}
+% ---------------------------------------------------------------
+
+Đề cương nghiên cứu đã trình bày bài toán, phương pháp và kế hoạch thực hiện cho đề tài \textit{``\detai''}. Đề tài hướng đến xây dựng một prototype nghiên cứu end-to-end cho bài toán dự đoán lan truyền khói cấp phòng/khu vực trong tòa nhà cao tầng, tích hợp các thành phần:
+
+\begin{itemize}
+  \item Module BIM/IFC-to-Graph chuyển đổi tự động mô hình tòa nhà thành đồ thị.
+  \item Mô phỏng batch bằng CFAST kết hợp kiểm chứng FDS.
+  \item Hệ thống IoT giả lập 3 lớp tạo dữ liệu cảm biến thực tế.
+  \item Mô hình AI surrogate dạng Temporal GNN kết hợp thông tin đồ thị, chuỗi thời gian và điều kiện biên.
+  \item Dashboard trực quan hóa và replay kết quả.
+\end{itemize}
+
+% ---------------------------------------------------------------
+\section*{2. Tính mới và đóng góp dự kiến}
+\addcontentsline{toc}{section}{2. Tính mới và đóng góp dự kiến}
+% ---------------------------------------------------------------
+
+Tính mới của đề tài nằm ở \textbf{pipeline tích hợp}, không phải ở việc phát minh riêng lẻ từng thành phần. Cụ thể:
+
+\begin{enumerate}
+  \item \textbf{Pipeline BIM → Simulation → AI:} Kết nối liền mạch từ mô hình BIM đến dự đoán AI, cho phép tự động hóa toàn bộ quy trình.
+  \item \textbf{Building graph từ BIM/IFC:} Tận dụng thông tin kiến trúc có sẵn thay vì xây dựng mô hình thủ công.
+  \item \textbf{Virtual IoT 3 lớp:} Tạo dữ liệu huấn luyện AI phản ánh tính bất hoàn hảo của cảm biến thực tế.
+  \item \textbf{Boundary-Aware Temporal GNN:} Mô hình AI tích hợp đồng thời cấu trúc đồ thị, chuỗi thời gian, điều kiện biên và trạng thái hệ thống PCCC.
+  \item \textbf{Đánh giá đa chiều:} So sánh 7 mức mô hình, nhiều chế độ chia dữ liệu, ablation study, và kiểm tra robustness.
+\end{enumerate}
+
+% ---------------------------------------------------------------
+\section*{3. Giới hạn nghiên cứu}
+\addcontentsline{toc}{section}{3. Giới hạn nghiên cứu}
+% ---------------------------------------------------------------
+
+Nghiên cứu thừa nhận các giới hạn sau:
+
+\begin{table}[H]
+\centering
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+\textbf{Giới hạn} & \textbf{Ý nghĩa} \\
+\midrule
+Không có dữ liệu cháy thật      & Đánh giá dựa trên output mô phỏng \\
+Không có IoT phần cứng           & IoT là mô phỏng hoàn toàn \\
+CFAST là zone-level              & Không dự đoán trường 3D \\
+FDS chỉ kiểm chứng chọn lọc     & Không phải nguồn dataset chính \\
+Nhãn hazard có thể là proxy      & Trừ khi có ngưỡng chuẩn \\
+AI là surrogate                  & Không thay thế CFD \\
+Dashboard là demo nghiên cứu     & Không phải hệ thống điều khiển PCCC \\
+Không có kết luận pháp lý        & Không tuyên bố đạt thẩm duyệt \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ---------------------------------------------------------------
+\section*{4. Hướng phát triển tương lai}
+\addcontentsline{toc}{section}{4. Hướng phát triển tương lai}
+% ---------------------------------------------------------------
+
+\begin{itemize}
+  \item Mở rộng FDS validation (8--12 case hoặc toàn tòa nếu đủ phần cứng).
+  \item Tích hợp IoT phần cứng thật (cảm biến khói, nhiệt, CO).
+  \item Mô hình hóa chi tiết hệ thống HVAC (duct, damper).
+  \item Tích hợp mô hình thoát nạn (evacuation) để tính ASET/RSET.
+  \item Mô phỏng CFD chi tiết cho atrium và không gian lớn.
+  \item Phát triển hệ thống điều khiển PCCC thông minh dựa trên dự đoán AI.
+  \item Kiểm chứng trên nhiều tòa nhà thực tế để đánh giá tính tổng quát.
+\end{itemize}

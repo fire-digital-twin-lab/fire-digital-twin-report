@@ -1,0 +1,211 @@
+% ============================================================
+% chapter4.tex — Chương 4: Kết quả dự kiến và Kế hoạch thực hiện
+% ============================================================
+
+\chapter{KẾT QUẢ DỰ KIẾN VÀ KẾ HOẠCH THỰC HIỆN}
+\label{chap:kehoach}
+
+% ---------------------------------------------------------------
+\section{Sản phẩm dự kiến}
+\label{sec:sanpham}
+% ---------------------------------------------------------------
+
+Bảng~\ref{tab:deliverables} liệt kê các sản phẩm dự kiến của đề tài.
+
+\begin{table}[H]
+\centering
+\caption{Danh sách sản phẩm dự kiến}
+\label{tab:deliverables}
+\begin{tabularx}{\textwidth}{X c}
+\toprule
+\textbf{Sản phẩm} & \textbf{Bắt buộc} \\
+\midrule
+Báo cáo nghiên cứu                                     & Có \\
+Module BIM/IFC-to-Graph                                 & Có \\
+Building graph của tòa thực tế hoặc cụm tầng           & Có \\
+Layout thấp tầng debug                                  & Có \\
+Bộ kịch bản cháy P0/P1                                 & Có \\
+Dataset từ CFAST                                        & Có \\
+FDS validation P0/P1                                    & Có (tối thiểu P0) \\
+Virtual IoT dataset (clean/noisy/faulty)                & Có \\
+AI dataset graph + time-series                          & Có \\
+Baseline models (rule-based, ML/MLP)                    & Có \\
+Temporal GNN / BAT-GNN prototype                       & Có \\
+Dashboard prototype (replay + inference)                & Có \\
+Evaluation report (metrics, ablation, comparison)       & Có \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ---------------------------------------------------------------
+\section{Kế hoạch thực hiện}
+\label{sec:kehoachthuchien}
+% ---------------------------------------------------------------
+
+Đề tài được thực hiện trong 20 tuần, bắt đầu từ ngày 19/06/2026. Kế hoạch chi tiết được trình bày trong Bảng~\ref{tab:roadmap} và biểu đồ Gantt (Hình~\ref{fig:gantt}).
+
+\begin{table}[H]
+\centering
+\caption{Lộ trình thực hiện 20 tuần}
+\label{tab:roadmap}
+\begin{tabularx}{\textwidth}{c X X}
+\toprule
+\textbf{Tuần} & \textbf{Công việc chính} & \textbf{Sản phẩm} \\
+\midrule
+1  & Chốt phạm vi, tạo repo, ghi chú giả thiết         & Tài liệu scope \\
+2  & Export IFC, kiểm tra mô hình BIM                    & File IFC + ghi chú \\
+3  & Parse room/door/window/floor/stair                  & Bảng dữ liệu thô \\
+4  & Xây dựng và trực quan hóa graph                    & Graph files \\
+5  & Tạo case CFAST debug (layout thấp tầng)             & Case CFAST đầu tiên \\
+6  & Schema kịch bản + batch runner                      & Scenario generator \\
+7  & Parse output CFAST                                  & Parsed outputs \\
+8  & Tạo \texttt{smoke\_label}, \texttt{arrival\_time}   & Labels \\
+9  & Tạo virtual sensor clean                            & Clean stream \\
+10 & Tạo noisy/faulty IoT presets                        & IoT streams \\
+11 & Rule + ML baselines                                 & Baseline metrics \\
+12 & MLP / LSTM / GCN baselines                          & Bảng so sánh \\
+13 & Temporal GNN / BAT-GNN v1                           & Trained model \\
+14 & Chuẩn bị FDS validation cases                       & FDS input \\
+15 & Chạy FDS P0/P1                                      & FDS raw output \\
+16 & Aggregate FDS node-level                            & So sánh CFAST vs FDS \\
+17 & Ablation + robustness study                         & Figures đánh giá \\
+18 & Dashboard replay + inference API                    & Demo \\
+19 & Viết báo cáo draft                                  & Bản thảo báo cáo \\
+20 & Hoàn thiện slides, demo, nộp                        & Bài nộp cuối \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\resizebox{0.95\textwidth}{!}{%
+\begin{ganttchart}[
+  x unit=0.45cm,
+  y unit title=0.45cm,
+  y unit chart=0.35cm,
+  hgrid,
+  vgrid={*{4}{draw=none}, dotted},
+  title height=1,
+  bar height=0.5,
+  bar/.append style={fill=NavyBlue!60},
+  bar label font=\tiny,
+  title label font=\tiny\bfseries,
+  milestone label font=\tiny,
+  group label font=\tiny\bfseries,
+  group/.append style={fill=NavyBlue!30, draw=NavyBlue},
+]{1}{20}
+  \gantttitle{Tuần}{20} \\
+  \gantttitlelist{1,...,20}{1} \\
+
+  % BIM/Graph
+  \ganttgroup{BIM \& Graph}{1}{4} \\
+  \ganttbar{Scope \& repo}{1}{1} \\
+  \ganttbar{Export IFC}{2}{2} \\
+  \ganttbar{Parse IFC}{3}{3} \\
+  \ganttbar{Build graph}{4}{4} \\
+
+  % Simulation
+  \ganttgroup{Mô phỏng}{5}{8} \\
+  \ganttbar{CFAST debug}{5}{5} \\
+  \ganttbar{Scenario batch}{6}{6} \\
+  \ganttbar{Parse output}{7}{7} \\
+  \ganttbar{Labels}{8}{8} \\
+
+  % IoT
+  \ganttgroup{IoT}{9}{10} \\
+  \ganttbar{Clean sensors}{9}{9} \\
+  \ganttbar{Noisy/faulty}{10}{10} \\
+
+  % AI
+  \ganttgroup{AI Models}{11}{13} \\
+  \ganttbar{Baselines}{11}{12} \\
+  \ganttbar{Temporal GNN}{13}{13} \\
+
+  % FDS
+  \ganttgroup{FDS Validation}{14}{16} \\
+  \ganttbar{Prep + Run FDS}{14}{15} \\
+  \ganttbar{Aggregate}{16}{16} \\
+
+  % Evaluation
+  \ganttgroup{Đánh giá \& Demo}{17}{18} \\
+  \ganttbar{Ablation}{17}{17} \\
+  \ganttbar{Dashboard}{18}{18} \\
+
+  % Report
+  \ganttgroup{Báo cáo}{19}{20} \\
+  \ganttbar{Draft}{19}{19} \\
+  \ganttbar{Submit}{20}{20} \\
+
+  % Dependencies
+  \ganttlink{elem3}{elem4}
+  \ganttlink{elem5}{elem6}
+  \ganttlink{elem8}{elem9}
+  \ganttlink{elem10}{elem11}
+  \ganttlink{elem12}{elem13}
+
+\end{ganttchart}
+}%
+\caption{Biểu đồ Gantt kế hoạch thực hiện 20 tuần}
+\label{fig:gantt}
+\end{figure}
+
+% ---------------------------------------------------------------
+\section{Phân công nhiệm vụ}
+\label{sec:phancong}
+% ---------------------------------------------------------------
+
+\begin{table}[H]
+\centering
+\caption{Phân công nhiệm vụ}
+\label{tab:phancong}
+\begin{tabularx}{\textwidth}{l X l}
+\toprule
+\textbf{Thành viên} & \textbf{Nhiệm vụ chính} & \textbf{Tuần} \\
+\midrule
+\svA & Quản lý chung, BIM/IFC-to-Graph, báo cáo        & 1--4, 19--20 \\
+\svD & Mô phỏng CFAST, post-processing, labels          & 5--8 \\
+\svB & Virtual IoT, dataset builder                      & 9--10 \\
+\svC & AI models (baselines + Temporal GNN + BAT-GNN)    & 11--13, 17 \\
+\svE & FDS validation, dashboard prototype               & 14--16, 18 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{notebox}
+Tất cả thành viên đều tham gia viết báo cáo ở tuần 19--20. Phân công có thể được điều chỉnh trong quá trình thực hiện.
+\end{notebox}
+
+\clearpage
+
+% ---------------------------------------------------------------
+\section{Điều kiện thực hiện}
+\label{sec:dieuken}
+% ---------------------------------------------------------------
+
+\subsection{Phần mềm}
+
+\begin{itemize}
+  \item \textbf{BIM:} Autodesk Revit (export IFC).
+  \item \textbf{Mô phỏng:} CFAST (NIST), FDS (NIST), Smokeview.
+  \item \textbf{Lập trình:} Python 3.10+, PyTorch, PyTorch Geometric, IfcOpenShell, NetworkX, Pandas.
+  \item \textbf{Dashboard:} FastAPI, React, TypeScript, Cytoscape.js.
+  \item \textbf{Quản lý:} Git, Docker Compose.
+  \item \textbf{Báo cáo:} \LaTeX\ (XeLaTeX).
+\end{itemize}
+
+\subsection{Phần cứng}
+
+\begin{itemize}
+  \item Máy tính cá nhân với GPU hỗ trợ CUDA (cho huấn luyện AI).
+  \item Có thể sử dụng Google Colab hoặc cloud GPU nếu cần.
+  \item FDS yêu cầu CPU đa nhân; thời gian chạy phụ thuộc quy mô mesh.
+\end{itemize}
+
+\subsection{Tài liệu và dữ liệu}
+
+\begin{itemize}
+  \item File Revit tòa nhà thực tế (do nhóm chuẩn bị hoặc thu thập).
+  \item Tài liệu kỹ thuật CFAST, FDS, IFC từ NIST và buildingSMART.
+  \item Quy chuẩn QCVN 06:2022/BXD và các tiêu chuẩn liên quan.
+  \item Các bài báo khoa học liên quan về GNN, fire prediction, BIM-to-simulation.
+\end{itemize}

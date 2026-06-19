@@ -1,0 +1,73 @@
+% ============================================================
+% formatting.tex — Định dạng trang, heading, header/footer
+% ============================================================
+
+% --- Đánh số trang ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[R]{\thepage}
+\fancyhead[L]{\nouppercase{\leftmark}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Plain style cho trang đầu chương
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyhead[R]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+}
+
+% --- Định dạng Chương ---
+\titleformat{\chapter}[display]
+  {\normalfont\Large\bfseries\centering}
+  {\MakeUppercase{\chaptertitlename}\ \thechapter}
+  {12pt}
+  {\Large\MakeUppercase}
+\titlespacing*{\chapter}{0pt}{-20pt}{20pt}
+
+% --- Định dạng Section ---
+\titleformat{\section}
+  {\normalfont\large\bfseries}
+  {\thesection}
+  {1em}
+  {}
+\titlespacing*{\section}{0pt}{12pt}{6pt}
+
+% --- Định dạng Subsection ---
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries}
+  {\thesubsection}
+  {1em}
+  {}
+\titlespacing*{\subsection}{0pt}{10pt}{4pt}
+
+% --- Định dạng Subsubsection ---
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\itshape}
+  {\thesubsubsection}
+  {1em}
+  {}
+\titlespacing*{\subsubsection}{0pt}{8pt}{4pt}
+
+% --- Mục lục ---
+\renewcommand{\contentsname}{MỤC LỤC}
+\renewcommand{\listfigurename}{DANH MỤC HÌNH VẼ}
+\renewcommand{\listtablename}{DANH MỤC BẢNG BIỂU}
+\renewcommand{\bibname}{TÀI LIỆU THAM KHẢO}
+\renewcommand{\appendixname}{PHỤ LỤC}
+\renewcommand{\chaptername}{Chương}
+
+% Mục lục: chấm dẫn cho chapter
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+
+% --- Đánh số hình/bảng theo chương ---
+\counterwithin{figure}{chapter}
+\counterwithin{table}{chapter}
+
+% --- Caption tiếng Việt ---
+\captionsetup[figure]{name={Hình}, labelsep=period}
+\captionsetup[table]{name={Bảng}, labelsep=period}
+
+% --- Depth mục lục ---
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}

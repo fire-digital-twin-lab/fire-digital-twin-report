@@ -1,0 +1,99 @@
+% ============================================================
+% introduction.tex — Phần mở đầu
+% ============================================================
+
+\chapter*{MỞ ĐẦU}
+\addcontentsline{toc}{chapter}{MỞ ĐẦU}
+
+% ---------------------------------------------------------------
+\section*{1. Lý do chọn đề tài}
+\addcontentsline{toc}{section}{1. Lý do chọn đề tài}
+% ---------------------------------------------------------------
+
+Trong những năm gần đây, các vụ cháy nổ tại các công trình cao tầng, chung cư và khu đô thị tại Việt Nam liên tục xảy ra với mức độ nghiêm trọng ngày càng tăng. Theo thống kê của Cục Cảnh sát Phòng cháy chữa cháy và Cứu nạn cứu hộ (C07), trung bình mỗi năm cả nước ghi nhận hàng nghìn vụ cháy, gây thiệt hại lớn về người và tài sản. Đặc biệt, trong các vụ cháy tại nhà cao tầng, \textbf{khói độc} — chứ không phải ngọn lửa trực tiếp — là nguyên nhân chính gây tử vong, khi nạn nhân bị ngạt khói trước khi lửa lan đến.
+
+Quá trình lan truyền khói trong tòa nhà cao tầng phụ thuộc vào nhiều yếu tố phức tạp: cấu trúc kiến trúc, trạng thái cửa, hệ thống thông gió, cầu thang, trục kỹ thuật (shaft), và các hệ thống phòng cháy chữa cháy (PCCC) tự động. Hiện nay, việc dự đoán đường lan truyền khói chủ yếu dựa vào mô phỏng CFD (Computational Fluid Dynamics) với các phần mềm như FDS (Fire Dynamics Simulator), nhưng phương pháp này đòi hỏi thời gian tính toán lớn (hàng giờ đến hàng ngày cho một kịch bản), không phù hợp cho ứng dụng cảnh báo nhanh.
+
+Sự phát triển của \textbf{BIM (Building Information Modeling)} mở ra khả năng trích xuất tự động thông tin kiến trúc của tòa nhà — bao gồm phòng, cửa, cầu thang, shaft — dưới dạng cấu trúc dữ liệu có tổ chức. Đồng thời, sự tiến bộ của \textbf{học sâu (deep learning)}, đặc biệt là các mô hình \textbf{mạng nơ-ron đồ thị (Graph Neural Networks — GNN)}, cho phép khai thác cấu trúc đồ thị của tòa nhà để dự đoán nhanh hành vi lan truyền khói.
+
+Từ thực tiễn và xu hướng nghiên cứu trên, nhóm đề xuất đề tài \textit{``\detai''} nhằm xây dựng một pipeline nghiên cứu tích hợp, kết nối từ mô hình BIM đến dự đoán AI, phục vụ bài toán dự đoán lan truyền khói cấp phòng/khu vực trong tòa nhà.
+
+% ---------------------------------------------------------------
+\section*{2. Mục tiêu nghiên cứu}
+\addcontentsline{toc}{section}{2. Mục tiêu nghiên cứu}
+% ---------------------------------------------------------------
+
+\subsection*{2.1. Mục tiêu tổng quát}
+
+Xây dựng một prototype nghiên cứu end-to-end cho bài toán dự đoán lan truyền khói cấp phòng/khu vực trong tòa nhà cao tầng, tích hợp BIM/IFC, mô phỏng CFAST/FDS, IoT giả lập, và mô hình học sâu dạng graph-time-series.
+
+\subsection*{2.2. Mục tiêu cụ thể}
+
+\begin{enumerate}
+  \item Xây dựng module chuyển đổi tự động từ mô hình BIM/IFC sang đồ thị tòa nhà (building graph).
+  \item Thiết kế và thực hiện mô phỏng batch nhiều kịch bản cháy bằng CFAST, kiểm chứng chọn lọc bằng FDS.
+  \item Xây dựng hệ thống IoT giả lập 3 lớp tạo dữ liệu cảm biến thực tế cho mô hình AI.
+  \item Phát triển và đánh giá mô hình AI surrogate dạng Temporal GNN/Boundary-Aware Temporal GNN.
+  \item Xây dựng dashboard prototype cho phép trực quan hóa kết quả dự đoán và replay kịch bản.
+\end{enumerate}
+
+% ---------------------------------------------------------------
+\section*{3. Đối tượng và phạm vi nghiên cứu}
+\addcontentsline{toc}{section}{3. Đối tượng và phạm vi nghiên cứu}
+% ---------------------------------------------------------------
+
+\subsection*{3.1. Đối tượng nghiên cứu}
+
+\begin{itemize}
+  \item Quá trình lan truyền khói cấp phòng/khu vực (zone-level) trong tòa nhà cao tầng.
+  \item Cấu trúc đồ thị của tòa nhà trích xuất từ mô hình BIM/IFC.
+  \item Dữ liệu mô phỏng cháy từ CFAST và FDS.
+  \item Mô hình học sâu dạng graph-time-series cho bài toán dự đoán.
+\end{itemize}
+
+\subsection*{3.2. Phạm vi nghiên cứu}
+
+\begin{itemize}
+  \item \textbf{Tòa nhà:} Sử dụng 1 file Revit thật của tòa nhà cao tầng/chung cư làm case study chính, kết hợp 1 layout thấp tầng đơn giản để debug và kiểm tra tính tổng quát.
+  \item \textbf{Quy mô mô phỏng:} Mô phỏng cụm 3–5 tầng xung quanh tầng xảy ra cháy (tầng cháy, 1–2 tầng trên, 1–2 tầng dưới, cầu thang/shaft nối).
+  \item \textbf{Mô phỏng:} CFAST là nguồn sinh dataset chính; FDS kiểm chứng chọn lọc (tối thiểu 3 case, mục tiêu 6 case).
+  \item \textbf{IoT:} Hoàn toàn giả lập, không sử dụng phần cứng cảm biến thật.
+  \item \textbf{AI:} Surrogate model — không thay thế CFD, không đưa ra kết luận pháp lý.
+  \item \textbf{Dashboard:} Chỉ phục vụ replay, inference, trực quan hóa; không điều khiển hệ thống PCCC thật.
+\end{itemize}
+
+% ---------------------------------------------------------------
+\section*{4. Phương pháp nghiên cứu}
+\addcontentsline{toc}{section}{4. Phương pháp nghiên cứu}
+% ---------------------------------------------------------------
+
+\begin{enumerate}
+  \item \textbf{Phương pháp mô hình hóa thông tin công trình (BIM):} Sử dụng chuẩn IFC để trích xuất tự động thông tin kiến trúc, chuyển đổi thành đồ thị tòa nhà phục vụ phân tích và mô phỏng.
+  \item \textbf{Phương pháp mô phỏng số:} Sử dụng mô hình zone (CFAST) để sinh dataset quy mô lớn, kết hợp mô hình field (FDS) để kiểm chứng tính tin cậy trên các kịch bản chọn lọc.
+  \item \textbf{Phương pháp mô phỏng IoT:} Xây dựng hệ thống cảm biến ảo 3 lớp, mô phỏng dữ liệu cảm biến trong điều kiện nhiễu, trễ, mất dữ liệu và lỗi.
+  \item \textbf{Phương pháp học sâu:} Áp dụng mạng nơ-ron đồ thị kết hợp mô hình chuỗi thời gian (Temporal GNN) và các encoder cho điều kiện biên để xây dựng surrogate model.
+  \item \textbf{Phương pháp đánh giá:} So sánh nhiều mức mô hình (rule-based → ML → GNN → Temporal GNN), đánh giá trên nhiều chế độ chia dữ liệu và điều kiện IoT, ablation study.
+\end{enumerate}
+
+% ---------------------------------------------------------------
+\section*{5. Ý nghĩa khoa học và thực tiễn}
+\addcontentsline{toc}{section}{5. Ý nghĩa khoa học và thực tiễn}
+% ---------------------------------------------------------------
+
+\subsection*{5.1. Ý nghĩa khoa học}
+
+\begin{itemize}
+  \item Đề xuất pipeline tích hợp BIM → mô phỏng → IoT ảo → AI cho bài toán dự đoán lan truyền khói — đây là hướng nghiên cứu còn ít được khai thác.
+  \item Xây dựng và đánh giá hệ thống mô hình AI từ baseline đến Temporal GNN có tích hợp thông tin đồ thị tòa nhà, điều kiện biên và trạng thái hệ thống PCCC.
+  \item Đề xuất phương pháp tạo dataset huấn luyện AI từ mô phỏng cháy kết hợp IoT giả lập 3 lớp.
+\end{itemize}
+
+\subsection*{5.2. Ý nghĩa thực tiễn}
+
+\begin{itemize}
+  \item Kết quả nghiên cứu có thể phục vụ phát triển công cụ hỗ trợ cảnh báo sớm lan truyền khói.
+  \item Pipeline có thể mở rộng và tùy biến cho các tòa nhà khác nhau thông qua mô hình BIM.
+  \item Đóng góp cơ sở khoa học cho các nghiên cứu tiếp theo về ứng dụng AI trong lĩnh vực PCCC tại Việt Nam.
+\end{itemize}
+
+

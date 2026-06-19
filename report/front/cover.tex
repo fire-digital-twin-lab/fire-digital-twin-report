@@ -1,0 +1,67 @@
+% ============================================================
+% cover.tex — Trang bìa đề cương NCKH
+% ============================================================
+
+\newgeometry{top=2.0cm, bottom=2.0cm, left=3.0cm, right=2.5cm}
+\begin{titlepage}
+
+% --- Khung viền trang bìa ---
+\begin{tikzpicture}[remember picture, overlay]
+  % Khung ngoài
+  \draw[line width=2.5pt, NavyBlue]
+    ([xshift=2.0cm, yshift=-1.5cm]current page.north west)
+    rectangle
+    ([xshift=-1.5cm, yshift=1.5cm]current page.south east);
+  % Khung trong
+  \draw[line width=0.8pt, NavyBlue]
+    ([xshift=2.2cm, yshift=-1.7cm]current page.north west)
+    rectangle
+    ([xshift=-1.7cm, yshift=1.7cm]current page.south east);
+\end{tikzpicture}
+
+\begin{center}
+
+% --- Logo và tên trường ---
+\includegraphics[height=2.5cm]{figures/logo_huce.jpg}\\[8pt]
+{\large\bfseries BỘ GIÁO DỤC VÀ ĐÀO TẠO}\\[4pt]
+{\Large\bfseries \MakeUppercase{\truong}}\\[4pt]
+{\large\bfseries \MakeUppercase{\khoa}}\\[4pt]
+
+\vspace{4pt}
+\rule{0.6\textwidth}{1pt}
+
+% --- Loại tài liệu ---
+\vspace{25pt}
+{\LARGE\bfseries ĐỀ CƯƠNG}\\[8pt]
+{\LARGE\bfseries NGHIÊN CỨU KHOA HỌC}\\[25pt]
+
+% --- Tên đề tài ---
+\begin{minipage}{0.80\textwidth}
+  \centering
+  {\huge\bfseries \detai}
+\end{minipage}
+
+\vspace{35pt}
+
+% --- Thông tin nhóm ---
+\begin{minipage}{0.75\textwidth}
+  \begin{flushleft}
+    \renewcommand{\arraystretch}{1.4}
+    \begin{tabular}{@{}l l}
+      \textbf{Giảng viên hướng dẫn:} & \gvhd \\[6pt]
+      \textbf{Nhóm thực hiện:}       & \svA \\
+                                      & \svB \\
+                                      & \svC \\
+                                      & \svD \\
+                                      & \svE \\
+    \end{tabular}
+  \end{flushleft}
+\end{minipage}
+
+% --- Thời gian ---
+\vfill
+{\large Hà Nội, tháng 6 năm 2026}
+
+\end{center}
+\end{titlepage}
+\restoregeometry

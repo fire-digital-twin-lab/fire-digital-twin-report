@@ -1,0 +1,477 @@
+% ============================================================
+% chapter3.tex — Chương 3: Phương pháp nghiên cứu
+% ============================================================
+
+\chapter{PHƯƠNG PHÁP NGHIÊN CỨU}
+\label{chap:phuongphap}
+
+Chương này mô tả chi tiết phương pháp nghiên cứu thông qua pipeline end-to-end, từ mô hình BIM đến dashboard trực quan hóa. Mỗi module trong pipeline được trình bày về đầu vào, quy trình xử lý và đầu ra.
+
+% ---------------------------------------------------------------
+\section{Pipeline tổng thể}
+\label{sec:pipeline}
+% ---------------------------------------------------------------
+
+Pipeline nghiên cứu bao gồm các bước chính được minh họa trong Hình~\ref{fig:pipeline}.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  block/.style={
+    rectangle,
+    draw=NavyBlue,
+    fill=NavyBlue!8,
+    rounded corners=3pt,
+    minimum width=2.6cm,
+    minimum height=0.7cm,
+    text centered,
+    align=center,
+    font=\scriptsize\bfseries,
+    inner sep=3pt
+  },
+  fdsblock/.style={
+    rectangle,
+    draw=red!60!black,
+    fill=red!8,
+    rounded corners=3pt,
+    minimum width=2.6cm,
+    minimum height=0.7cm,
+    text centered,
+    align=center,
+    font=\scriptsize\bfseries,
+    inner sep=3pt
+  },
+  arrow/.style={
+    -Stealth,
+    semithick,
+    NavyBlue,
+  },
+  redarrow/.style={
+    -Stealth,
+    semithick,
+    red!60!black,
+  }
+]
+  % === HÀNG 1: BIM & Graph ===
+  \node[block] (revit) at (0, 3.8) {Revit / BIM};
+  \node[block] (ifc) at (3.2, 3.8) {Export IFC};
+  \node[block] (parse) at (6.4, 3.8) {IFC Parser\\(IfcOpenShell)};
+  \node[block] (graph) at (9.6, 3.8) {Building Graph\\(NetworkX)};
+
+  % === HÀNG 2: Simulation & Data ===
+  \node[block] (scenario) at (0, 1.8) {Scenario Generator};
+  
+  \node[block] (cfast) at (3.2, 2.4) {CFAST Batch Sim};
+  \node[fdsblock] (fds) at (3.2, 1.2) {FDS Validation};
+  
+  \node[block] (post) at (6.4, 2.4) {Post-processing};
+  \node[fdsblock] (compare) at (6.4, 1.2) {CFAST vs FDS vs AI};
+  
+  \node[block] (iot) at (9.6, 1.8) {Virtual IoT\\Simulation};
+  \node[block] (dataset) at (12.8, 1.8) {Graph-Time-Series\\Dataset};
+
+  % === HÀNG 3: AI & Dashboard ===
+  \node[block] (ai) at (0, -0.2) {AI Models (GNN)};
+  \node[block] (api) at (3.2, -0.2) {Inference API};
+  \node[block] (dash) at (6.4, -0.2) {Dashboard\\Prototype};
+
+  % --- Đường nối Hàng 1 ---
+  \draw[arrow] (revit) -- (ifc);
+  \draw[arrow] (ifc) -- (parse);
+  \draw[arrow] (parse) -- (graph);
+
+  % --- Đường nối Hàng 1 -> Hàng 2 (Vòng ngoài qua rìa biên) ---
+  \draw[arrow] (graph.east) -- +(0.4, 0) |- (14.6, 3.1) -- (-1.8, 3.1) |- (scenario.west);
+
+  % --- Đường nối Hàng 2 ---
+  \draw[arrow] (scenario.east) -- (cfast.west);
+  \draw[redarrow] (scenario.east) -- (fds.west);
+  
+  \draw[arrow] (cfast) -- (post);
+  \draw[redarrow] (fds) -- (compare);
+  \draw[redarrow, dashed] (post.south) -- (compare.north);
+
+  \draw[arrow] (post.east) -- (iot.west);
+  \draw[redarrow, dashed] (compare.east) -- (iot.west);
+  
+  \draw[arrow] (iot) -- (dataset);
+
+  % --- Đường nối Hàng 2 -> Hàng 3 (Vòng ngoài qua rìa biên) ---
+  \draw[arrow] (dataset.east) -- +(0.5, 0) |- (14.6, 0.5) -- (-1.8, 0.5) |- (ai.west);
+
+  % --- Đường nối Hàng 3 ---
+  \draw[arrow] (ai) -- (api);
+  \draw[arrow] (api) -- (dash);
+
+\end{tikzpicture}
+\caption{Pipeline tổng thể của đề tài}
+\label{fig:pipeline}
+\end{figure}
+
+Bảng~\ref{tab:dataflow} trình bày data flow giữa các module.
+
+\begin{table}[H]
+\centering
+\caption{Data flow giữa các module}
+\label{tab:dataflow}
+\begin{tabularx}{\textwidth}{l l X}
+\toprule
+\textbf{Module} & \textbf{Input} & \textbf{Output} \\
+\midrule
+IFC Parser        & File \texttt{.ifc}       & Bảng dữ liệu BIM thô \\
+Graph Builder     & Bảng BIM                  & \texttt{building\_graph.json}, \texttt{node\_map.csv}, \texttt{edge\_map.csv} \\
+Scenario Generator & Graph + factor configs   & Scenario configs \\
+CFAST Runner      & Scenario configs           & Raw CFAST outputs \\
+Post-processing   & Raw outputs                & Node time-series + labels \\
+IoT Simulator     & Node time-series           & Clean/noisy/faulty sensor streams \\
+Dataset Builder   & Graph + sensors + labels   & Model-ready dataset (PyG) \\
+AI Trainer        & Dataset                    & Trained model + metrics \\
+Dashboard API     & Graph + sensors + predictions & REST/WS endpoints \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ---------------------------------------------------------------
+\section{Module BIM/IFC-to-Graph}
+\label{sec:bimtograph}
+% ---------------------------------------------------------------
+
+\subsection{Quy trình xử lý}
+
+Module BIM/IFC-to-Graph thực hiện chuyển đổi file IFC thành đồ thị tòa nhà theo quy trình:
+
+\begin{enumerate}
+  \item \textbf{Chuẩn bị trong Revit:} Kiểm tra và bổ sung Room/Space cho tất cả không gian (phòng, hành lang, cầu thang, sảnh). Export IFC với cài đặt bật room/space export.
+  \item \textbf{Parse IFC:} Sử dụng thư viện \texttt{IfcOpenShell} để trích xuất các entity: \texttt{IfcSpace}, \texttt{IfcDoor}, \texttt{IfcWindow}, \texttt{IfcStair}, \texttt{IfcBuildingStorey}, \texttt{IfcRelSpaceBoundary}.
+  \item \textbf{Xây dựng graph:} Sử dụng \texttt{NetworkX} để tạo đồ thị: mỗi \texttt{IfcSpace} thành node, mỗi cửa/lỗ mở nối hai space thành edge.
+  \item \textbf{Gán thuộc tính:} Gán diện tích, thể tích, chiều cao, tầng, loại node cho mỗi node; gán loại edge, kích thước cửa cho mỗi edge.
+  \item \textbf{Kiểm tra topology:} Kiểm tra graph có connected, có isolated nodes, có thiếu edge không.
+\end{enumerate}
+
+\subsection{Output}
+
+\begin{itemize}
+  \item \texttt{node\_map.csv}: Bảng ánh xạ \texttt{node\_id} $\leftrightarrow$ IFC \texttt{GlobalId}.
+  \item \texttt{edge\_map.csv}: Bảng ánh xạ edge $\leftrightarrow$ IFC \texttt{GlobalId}.
+  \item \texttt{building\_graph.json}: Topology + static features.
+  \item \texttt{building\_graph.graphml}: File đồ thị cho visualization/debug.
+  \item \texttt{graph\_check\_report.md}: Báo cáo lỗi topology và chỉnh sửa thủ công.
+\end{itemize}
+
+\subsection{Fallback}
+
+Nếu IFC không đủ sạch, graph được xây dựng bán thủ công từ mặt bằng kiến trúc, room list, và vị trí cửa. Mọi chỉnh sửa phải được ghi rõ trong \texttt{graph\_check\_report.md}.
+
+% ---------------------------------------------------------------
+\section{Thiết kế kịch bản cháy}
+\label{sec:kichban}
+% ---------------------------------------------------------------
+
+\subsection{Factor matrix}
+
+Các yếu tố (factor) ảnh hưởng đến kịch bản cháy được phân chia theo mức ưu tiên:
+
+\begin{table}[H]
+\centering
+\caption{Factor matrix P0 (bắt buộc)}
+\label{tab:factorP0}
+\begin{tabularx}{\textwidth}{l l X}
+\toprule
+\textbf{Nhóm} & \textbf{Yếu tố} & \textbf{Biến} \\
+\midrule
+Hình học  & Diện tích, thể tích, chiều cao phòng & \texttt{room\_area}, \texttt{room\_volume}, \texttt{ceiling\_height} \\
+Hình học  & Kết nối corridor/stair/shaft          & \texttt{adjacency}, \texttt{is\_vertical} \\
+Lỗ mở    & Diện tích, chiều cao cửa              & \texttt{opening\_area}, \texttt{opening\_height} \\
+Lỗ mở    & Trạng thái cửa                        & \texttt{door\_state} \\
+Cháy      & Vị trí cháy                           & \texttt{fire\_node}, \texttt{fire\_floor} \\
+Cháy      & HRR, nhiên liệu, soot                 & \texttt{HRR(t)}, \texttt{growth\_class}, \texttt{soot\_yield} \\
+Biên      & Nhiệt độ ban đầu / ngoài trời         & \texttt{T\_initial}, \texttt{T\_out} \\
+Hệ thống & Sprinkler/hút khói/tăng áp             & \texttt{sprinkler\_state}, \texttt{exhaust\_state} \\
+Label     & Nhãn khói và thời gian đến             & \texttt{smoke\_label}, \texttt{arrival\_time} \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Lấy mẫu kịch bản}
+
+Để tránh bùng nổ tổ hợp, nhóm sử dụng \textbf{scenario sampling có kiểm soát} thay vì full Cartesian product. Mỗi kịch bản được gán mã \texttt{scenario\_id} duy nhất kèm metadata đầy đủ: \texttt{building\_id}, \texttt{fire\_node}, \texttt{fire\_floor}, \texttt{HRR\_config}, \texttt{door\_state\_config}, \texttt{system\_state\_config}, \texttt{boundary\_config}.
+
+% ---------------------------------------------------------------
+\section{Mô phỏng CFAST}
+\label{sec:cfastmethod}
+% ---------------------------------------------------------------
+
+\subsection{Thiết lập mô phỏng}
+
+Mỗi kịch bản cháy được chuyển đổi tự động thành file input CFAST dựa trên:
+\begin{itemize}
+  \item Thông tin khoang từ building graph (kích thước, cao độ).
+  \item Thông tin lỗ thông gió từ edge (cửa, cửa sổ, trạng thái đóng/mở).
+  \item Đường cong HRR và thông số nhiên liệu từ scenario config.
+  \item Điều kiện biên từ boundary config.
+\end{itemize}
+
+\subsection{Batch simulation}
+
+CFAST được chạy tự động cho tất cả kịch bản trong bộ scenario catalog. Script batch runner quản lý việc tạo input, chạy mô phỏng, thu thập output và log.
+
+\subsection{Post-processing}
+
+Output CFAST thô được xử lý thành:
+\begin{itemize}
+  \item \textbf{Node time-series:} Chuỗi thời gian cho mỗi node (nhiệt độ, smoke layer height, nồng độ bồ hóng...).
+  \item \textbf{Labels:}
+  \begin{itemize}
+    \item \texttt{smoke\_label}: Nhãn nhị phân có/không có khói tại mỗi node theo thời gian.
+    \item \texttt{arrival\_time}: Thời điểm khói đến mỗi node lần đầu tiên.
+  \end{itemize}
+\end{itemize}
+
+% ---------------------------------------------------------------
+\section{Kiểm chứng FDS}
+\label{sec:fdsvalidation}
+% ---------------------------------------------------------------
+
+FDS được sử dụng để kiểm chứng kết quả CFAST trên một số kịch bản đại diện:
+
+\begin{table}[H]
+\centering
+\caption{Các case kiểm chứng FDS}
+\label{tab:fdscases}
+\begin{tabular}{l l}
+\toprule
+\textbf{Case} & \textbf{Mục đích} \\
+\midrule
+FDS-01 & Phòng → hành lang \\
+FDS-02 & Hành lang dài \\
+FDS-03 & Phòng → hành lang → cầu thang \\
+FDS-04 & Cửa mở vs cửa đóng \\
+FDS-05 & Cửa sổ + gió \\
+FDS-06 & Hút khói tắt/bật \\
+FDS-07 & Tăng áp cầu thang tắt/bật \\
+FDS-08 & Có/không sprinkler \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Kết quả FDS 3D được aggregate ở cấp node (trung bình theo không gian phòng) để so sánh trực tiếp:
+\begin{itemize}
+  \item CFAST vs FDS (kiểm tra tính tin cậy của dataset).
+  \item AI prediction vs CFAST vs FDS (kiểm tra chất lượng surrogate model).
+\end{itemize}
+
+% ---------------------------------------------------------------
+\section{Mô phỏng IoT giả lập}
+\label{sec:iotmethod}
+% ---------------------------------------------------------------
+
+\subsection{Quy trình tạo dữ liệu IoT}
+
+Từ output CFAST (physics truth), hệ thống IoT giả lập tạo dữ liệu theo 3 lớp:
+
+\begin{enumerate}
+  \item Lấy mẫu giá trị vật lý tại vị trí cảm biến → \texttt{virtual\_sensor\_clean}.
+  \item Thêm nhiễu Gauss, trễ, mất dữ liệu, lỗi cảm biến → \texttt{iot\_noisy\_stream}.
+\end{enumerate}
+
+\subsection{Quy tắc chống label leakage}
+
+Để đảm bảo tính công bằng của đánh giá AI:
+\begin{itemize}
+  \item Tại thời điểm $t$, AI chỉ được sử dụng dữ liệu từ $[t-k, t]$.
+  \item Cấm sử dụng output CFAST/FDS tương lai làm input.
+  \item Cấm sử dụng \texttt{smoke\_label}, \texttt{arrival\_time}, \texttt{smoke\_path} làm input.
+  \item Không để cùng base scenario với noise seed khác nhau xuất hiện đồng thời trong tập train và test.
+\end{itemize}
+
+% ---------------------------------------------------------------
+\section{Xây dựng dataset}
+\label{sec:dataset}
+% ---------------------------------------------------------------
+
+Dataset cuối cùng cho huấn luyện AI được tổ chức dưới dạng graph-time-series, bao gồm:
+\begin{itemize}
+  \item \texttt{building\_graph.json}: Topology đồ thị.
+  \item \texttt{node\_features.parquet}: Features tĩnh của node.
+  \item \texttt{edge\_features.parquet}: Features tĩnh của edge.
+  \item \texttt{iot\_noisy\_stream.parquet}: Dữ liệu cảm biến IoT (input chính).
+  \item \texttt{labels.parquet}: Ground truth labels.
+  \item \texttt{splits/}: Phân chia train/val/test theo scenario.
+  \item \texttt{pyg/*.pt}: Data objects cho PyTorch Geometric.
+\end{itemize}
+
+% ---------------------------------------------------------------
+\section{Mô hình AI}
+\label{sec:aimodel}
+% ---------------------------------------------------------------
+
+\subsection{Lộ trình phát triển mô hình}
+
+Mô hình AI được phát triển theo lộ trình từ đơn giản đến phức tạp:
+
+\begin{table}[H]
+\centering
+\caption{Lộ trình phát triển mô hình AI}
+\label{tab:modelroadmap}
+\begin{tabularx}{\textwidth}{c l X}
+\toprule
+\textbf{Mức} & \textbf{Mô hình} & \textbf{Mục đích} \\
+\midrule
+0 & Rule-based graph spread          & Baseline tối thiểu \\
+1 & Logistic Regression / RF / XGBoost & Baseline dạng bảng \\
+2 & MLP                              & Baseline features, không graph \\
+3 & LSTM / GRU / TCN                 & Baseline chuỗi thời gian \\
+4 & GCN / GraphSAGE / GAT           & Baseline graph \\
+5 & Temporal GNN                     & Kết hợp graph + time \\
+6 & Boundary-Aware Temporal GNN (BAT-GNN) & Mô hình chính \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Kiến trúc mô hình chính (BAT-GNN)}
+
+Mô hình chính — Boundary-Aware Temporal GNN — bao gồm:
+
+\begin{itemize}
+  \item \textbf{Input:} Đồ thị $G(V,E)$ với node/edge features tĩnh và động, global boundary features, fire features, system state features.
+  \item \textbf{Encoders:}
+  \begin{itemize}
+    \item Graph Encoder: Encode cấu trúc không gian đồ thị.
+    \item Temporal Encoder: Encode chuỗi thời gian IoT.
+    \item Boundary Encoder: Encode điều kiện biên (nhiệt độ, gió).
+    \item Fire Encoder: Encode thông tin nguồn cháy.
+    \item System Encoder: Encode trạng thái hệ thống PCCC.
+  \end{itemize}
+  \item \textbf{Fusion:} Kết hợp các biểu diễn bằng concatenation hoặc attention.
+  \item \textbf{Decoders:} Nhiều đầu ra (multi-task): \texttt{smoke\_label}, \texttt{hazard\_label}, \texttt{arrival\_time}, \texttt{next\_affected\_node}.
+\end{itemize}
+
+\subsection{Loss functions}
+
+\begin{table}[H]
+\centering
+\caption{Loss function cho từng task}
+\label{tab:loss}
+\begin{tabular}{l l}
+\toprule
+\textbf{Output} & \textbf{Loss} \\
+\midrule
+\texttt{smoke\_label}        & BCE hoặc Focal Loss \\
+\texttt{hazard\_label}       & BCE hoặc Focal Loss \\
+\texttt{arrival\_time}       & MAE / MSE / Huber \\
+\texttt{next\_affected\_node} & Cross Entropy \\
+Multi-task tổng hợp          & Weighted sum \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ---------------------------------------------------------------
+\section{Đánh giá mô hình}
+\label{sec:evaluation}
+% ---------------------------------------------------------------
+
+\subsection{Metrics}
+
+\begin{table}[H]
+\centering
+\caption{Metrics đánh giá theo task}
+\label{tab:metrics}
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+\textbf{Task} & \textbf{Metrics} \\
+\midrule
+Phân loại khói     & F1, Recall, Precision, AUC \\
+Phân loại nguy hiểm & Recall, F1, AUC \\
+Thời gian đến       & MAE, RMSE \\
+Đường lan truyền    & Path accuracy, next-node accuracy \\
+Calibration         & Brier score \\
+Tốc độ              & Inference time \\
+Robustness          & Metric drop dưới IoT nhiễu/lỗi \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{notebox}
+Trong bài toán an toàn cháy, \textbf{Recall quan trọng hơn Accuracy} vì việc bỏ sót vùng nguy hiểm (false negative) nghiêm trọng hơn cảnh báo thừa (false positive).
+\end{notebox}
+
+\subsection{Phân chia dữ liệu}
+
+\begin{table}[H]
+\centering
+\caption{Các chế độ phân chia dữ liệu}
+\label{tab:splits}
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+\textbf{Split} & \textbf{Mục đích} \\
+\midrule
+Scenario split        & Đánh giá cơ bản \\
+Hold-out fire node    & Kiểm tra tổng quát hóa với vị trí cháy mới \\
+Hold-out fire floor   & Kiểm tra tổng quát hóa với tầng cháy mới \\
+Hold-out layout       & Kiểm tra tổng quát hóa với layout/tòa nhà mới \\
+Noise robustness      & Đánh giá dưới điều kiện IoT suy giảm \\
+FDS validation set    & So sánh với mô phỏng CFD chi tiết \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Ablation study}
+
+\begin{table}[H]
+\centering
+\caption{Thiết kế ablation study}
+\label{tab:ablation}
+\begin{tabularx}{\textwidth}{l X}
+\toprule
+\textbf{Thí nghiệm} & \textbf{Ý nghĩa} \\
+\midrule
+Graph only               & Đóng góp của topology \\
+Graph + Fire             & Đóng góp của nguồn cháy \\
+Graph + IoT              & Đóng góp của cảm biến \\
+Graph + Boundary         & Đóng góp của điều kiện biên \\
+Graph + System           & Đóng góp của hệ thống PCCC \\
+Full model               & Tất cả features \\
+Full without IoT         & Kiểm tra mức cần thiết của IoT \\
+Full without Boundary    & Kiểm tra mức cần thiết của điều kiện biên \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ---------------------------------------------------------------
+\section{Dashboard prototype}
+\label{sec:dashboard}
+% ---------------------------------------------------------------
+
+\subsection{Chức năng}
+
+Dashboard prototype cung cấp:
+\begin{itemize}
+  \item Hiển thị đồ thị tòa nhà với filter theo tầng.
+  \item Hiển thị trạng thái cảm biến ảo (khói, nhiệt, cửa, báo cháy).
+  \item Hiển thị xác suất khói và thời gian đến tại mỗi node (AI prediction).
+  \item Replay kịch bản cháy theo timeline.
+  \item API inference AI cho kịch bản mới.
+  \item So sánh CFAST vs AI prediction.
+\end{itemize}
+
+\subsection{Công nghệ}
+
+\begin{table}[H]
+\centering
+\caption{Tech stack dashboard}
+\label{tab:techstack}
+\begin{tabular}{l l}
+\toprule
+\textbf{Layer} & \textbf{Công nghệ} \\
+\midrule
+Backend          & FastAPI \\
+AI inference     & PyTorch + FastAPI \\
+Frontend         & React + TypeScript \\
+Graph visualization & Cytoscape.js hoặc React Flow \\
+Charts           & ECharts hoặc Recharts \\
+Realtime         & WebSocket / SSE \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Dashboard \textbf{không} điều khiển hệ thống PCCC thật, không claim real-time CFD, và không hiển thị output không trace được về pipeline.

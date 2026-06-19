@@ -1,0 +1,122 @@
+% ============================================================
+% chapter1.tex — Chương 1: Tổng quan nghiên cứu
+% ============================================================
+
+\chapter{TỔNG QUAN NGHIÊN CỨU}
+\label{chap:tongquan}
+
+% ---------------------------------------------------------------
+\section{Tình hình cháy nổ tại các công trình cao tầng ở Việt Nam}
+\label{sec:tinhhinhchay}
+% ---------------------------------------------------------------
+
+Việt Nam đang trong giai đoạn đô thị hóa nhanh chóng với số lượng các tòa nhà cao tầng, chung cư và khu phức hợp thương mại–dân cư tăng mạnh. Theo số liệu thống kê của Bộ Công an, trong giai đoạn 2020–2025, cả nước ghi nhận hàng nghìn vụ cháy mỗi năm, trong đó các vụ cháy tại nhà cao tầng và chung cư chiếm tỷ lệ đáng kể và thường gây hậu quả nghiêm trọng.
+
+Đặc điểm của cháy trong công trình cao tầng khác biệt so với các công trình thấp tầng ở một số yếu tố quan trọng:
+
+\begin{itemize}
+  \item \textbf{Hiệu ứng ống khói (stack effect):} Trong các tòa nhà cao tầng, sự chênh lệch nhiệt độ giữa bên trong và bên ngoài tạo ra dòng khí tự nhiên qua cầu thang, trục thang máy và shaft kỹ thuật. Khi xảy ra cháy, hiệu ứng này đẩy khói lan nhanh theo chiều đứng, có thể ảnh hưởng đến nhiều tầng trong thời gian ngắn.
+  \item \textbf{Thời gian thoát nạn kéo dài:} Cư dân ở các tầng cao cần nhiều thời gian hơn để di chuyển đến lối thoát an toàn, đặc biệt khi cầu thang bị nhiễm khói.
+  \item \textbf{Khói là nguyên nhân tử vong chính:} Theo các nghiên cứu quốc tế và trong nước, phần lớn nạn nhân trong các vụ cháy tử vong do ngạt khói (chứa CO, HCN và các khí độc khác) trước khi bị tác động trực tiếp của lửa.
+\end{itemize}
+
+Thực trạng này cho thấy nhu cầu cấp thiết về các công cụ có khả năng dự đoán đường lan truyền khói trong tòa nhà, hỗ trợ công tác cảnh báo sớm và lập kế hoạch thoát nạn.
+
+% ---------------------------------------------------------------
+\section{Tổng quan về BIM trong phòng cháy chữa cháy}
+\label{sec:bimpccc}
+% ---------------------------------------------------------------
+
+BIM (Building Information Modeling) là phương pháp quản lý thông tin công trình trong suốt vòng đời, từ thiết kế, thi công đến vận hành. Mô hình BIM chứa đựng thông tin chi tiết về kiến trúc, kết cấu, hệ thống kỹ thuật của tòa nhà dưới dạng dữ liệu có cấu trúc.
+
+Trong lĩnh vực PCCC, BIM đã được nghiên cứu và ứng dụng theo một số hướng:
+
+\begin{itemize}
+  \item \textbf{BIM-to-Simulation:} Chuyển đổi tự động mô hình BIM thành đầu vào cho phần mềm mô phỏng cháy (FDS, Pathfinder, CFAST). Các nghiên cứu của \textcite{} % TODO: Thêm trích dẫn
+  đã cho thấy khả năng rút ngắn thời gian chuẩn bị mô hình mô phỏng.
+  \item \textbf{BIM cho quản lý an toàn cháy:} Lưu trữ và truy xuất thông tin về hệ thống PCCC, lối thoát nạn, phân vùng chống cháy trực tiếp từ mô hình BIM.
+  \item \textbf{BIM kết hợp IoT:} Tích hợp dữ liệu cảm biến thực tế với mô hình BIM để giám sát trạng thái cháy theo thời gian thực.
+\end{itemize}
+
+Tuy nhiên, việc sử dụng BIM để \textbf{tự động tạo đồ thị tòa nhà (building graph)} phục vụ huấn luyện mô hình AI dự đoán lan truyền khói vẫn là hướng nghiên cứu còn ít được khai thác.
+
+% ---------------------------------------------------------------
+\section{Mô phỏng lan truyền khói}
+\label{sec:mophong}
+% ---------------------------------------------------------------
+
+Mô phỏng lan truyền khói trong công trình có hai phương pháp chính:
+
+\subsection{Zone model (mô hình vùng)}
+
+Mô hình vùng chia mỗi khoang/phòng thành hai lớp: lớp khí nóng phía trên (upper layer) và lớp khí mát phía dưới (lower layer). Đại diện tiêu biểu là \textbf{CFAST} (Consolidated Fire and Smoke Transport) do NIST phát triển.
+
+Ưu điểm:
+\begin{itemize}
+  \item Tốc độ tính toán nhanh (giây đến phút cho một kịch bản).
+  \item Phù hợp cho chạy batch nhiều kịch bản.
+  \item Output cấp phòng/khu vực phù hợp với bài toán dự đoán node-level.
+\end{itemize}
+
+Nhược điểm:
+\begin{itemize}
+  \item Không mô tả chi tiết trường 3D bên trong phòng.
+  \item Giả thiết đồng nhất trong mỗi lớp.
+  \item Độ chính xác thấp hơn ở các không gian lớn hoặc phức tạp.
+\end{itemize}
+
+\subsection{Field model (mô hình trường)}
+
+Mô hình trường giải trực tiếp phương trình Navier-Stokes bằng phương pháp LES (Large Eddy Simulation) hoặc DNS. Đại diện tiêu biểu là \textbf{FDS} (Fire Dynamics Simulator) do NIST phát triển.
+
+Ưu điểm:
+\begin{itemize}
+  \item Kết quả chi tiết ở mức 3D.
+  \item Mô tả chính xác các hiện tượng phức tạp (turbulence, plume, ceiling jet).
+\end{itemize}
+
+Nhược điểm:
+\begin{itemize}
+  \item Thời gian tính toán lớn (giờ đến ngày cho một kịch bản).
+  \item Yêu cầu phần cứng mạnh.
+  \item Không khả thi khi chạy hàng trăm kịch bản.
+\end{itemize}
+
+Trong đề tài này, CFAST được chọn làm nguồn sinh dataset chính do phù hợp với bài toán dự đoán cấp node và khả năng chạy batch. FDS được sử dụng kiểm chứng chọn lọc trên một số kịch bản đại diện.
+
+% ---------------------------------------------------------------
+\section{Ứng dụng AI và học sâu trong dự đoán cháy}
+\label{sec:aidlfire}
+% ---------------------------------------------------------------
+
+Trong những năm gần đây, nhiều nghiên cứu đã áp dụng các phương pháp AI/ML và deep learning vào lĩnh vực an toàn cháy nổ:
+
+\begin{itemize}
+  \item \textbf{Dự đoán phát triển đám cháy:} Sử dụng mạng nơ-ron, LSTM, CNN để dự đoán HRR, nhiệt độ, và các thông số cháy từ dữ liệu cảm biến hoặc mô phỏng.
+  \item \textbf{Surrogate model:} Xây dựng mô hình AI thay thế mô phỏng CFD để dự đoán nhanh, giảm thời gian tính toán từ giờ xuống giây. Các nghiên cứu đã chứng minh tính khả thi của phương pháp này cho các bài toán cháy đơn giản.
+  \item \textbf{Graph Neural Networks (GNN):} GNN là lớp mô hình phù hợp tự nhiên cho bài toán trên đồ thị. Trong bối cảnh tòa nhà, mỗi phòng/khu vực là một node, mỗi kết nối vật lý là một edge, và GNN có khả năng học được mẫu hình lan truyền dọc theo cấu trúc đồ thị.
+  \item \textbf{Temporal GNN:} Kết hợp GNN với mô hình chuỗi thời gian (LSTM, GRU, TCN) để xử lý dữ liệu biến đổi theo thời gian — phù hợp với bản chất động của quá trình lan truyền khói.
+\end{itemize}
+
+% ---------------------------------------------------------------
+\section{IoT trong giám sát cháy}
+\label{sec:iotfire}
+% ---------------------------------------------------------------
+
+Các hệ thống IoT (Internet of Things) trong giám sát cháy thường bao gồm các cảm biến khói, nhiệt độ, CO, trạng thái cửa, và được kết nối qua mạng không dây để cung cấp dữ liệu thời gian thực. Tuy nhiên, trong nghiên cứu này, do không có phần cứng IoT thật, nhóm sử dụng phương pháp \textbf{Virtual IoT Simulation} — mô phỏng dữ liệu cảm biến ảo từ kết quả mô phỏng CFAST, có thêm nhiễu, trễ, mất dữ liệu và lỗi cảm biến để tạo dữ liệu đầu vào thực tế hơn cho mô hình AI.
+
+% ---------------------------------------------------------------
+\section{Khoảng trống nghiên cứu}
+\label{sec:khoangtrong}
+% ---------------------------------------------------------------
+
+Qua khảo sát tài liệu, nhóm nhận thấy các khoảng trống nghiên cứu chính:
+
+\begin{enumerate}
+  \item \textbf{Thiếu pipeline tích hợp:} Các nghiên cứu hiện tại thường tách biệt giữa BIM, mô phỏng cháy, và AI. Rất ít nghiên cứu xây dựng pipeline end-to-end từ BIM đến dự đoán AI.
+  \item \textbf{Thiếu ứng dụng GNN cho smoke prediction:} Mặc dù GNN đã được ứng dụng trong nhiều lĩnh vực, việc sử dụng GNN kết hợp building graph cho bài toán dự đoán lan truyền khói vẫn rất hạn chế.
+  \item \textbf{Thiếu virtual IoT cho huấn luyện AI:} Hầu hết nghiên cứu sử dụng trực tiếp output mô phỏng làm input AI, không mô phỏng tính bất hoàn hảo của dữ liệu cảm biến thực tế.
+  \item \textbf{Thiếu nghiên cứu ở Việt Nam:} Các nghiên cứu ứng dụng AI cho PCCC tại Việt Nam còn rất ít, đặc biệt trong bối cảnh công trình cao tầng đang phát triển mạnh.
+\end{enumerate}
+
+Đề tài này nhằm đóng góp vào việc lấp đầy các khoảng trống trên thông qua một prototype nghiên cứu tích hợp.

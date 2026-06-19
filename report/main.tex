@@ -1,0 +1,68 @@
+% ============================================================
+% main.tex — File chính
+% Compile: latexmk -xelatex main.tex
+% Hoặc:   xelatex main.tex → biber main → xelatex main.tex × 2
+% ============================================================
+
+\documentclass[13pt, a4paper, openany]{extreport}
+
+% --- Settings ---
+\input{settings/packages}
+\input{settings/formatting}
+\input{settings/commands}
+
+% ============================================================
+\begin{document}
+
+% --- Trang bìa ---
+\input{front/cover}
+
+% --- Đánh số trang La Mã cho phần đầu ---
+\pagenumbering{roman}
+
+% --- Tóm tắt ---
+\input{front/abstract}
+\newpage
+
+% --- Mục lục ---
+\tableofcontents
+\newpage
+
+% --- Danh mục hình vẽ ---
+\listoffigures
+\addcontentsline{toc}{chapter}{DANH MỤC HÌNH VẼ}
+\vspace{20pt}
+
+% --- Danh mục bảng biểu ---
+\listoftables
+\addcontentsline{toc}{chapter}{DANH MỤC BẢNG BIỂU}
+\newpage
+
+% --- Đánh số trang Ả Rập từ đây ---
+\pagenumbering{arabic}
+
+% --- Phần mở đầu ---
+\input{chapters/introduction}
+
+% --- Chương 1: Tổng quan ---
+\input{chapters/chapter1}
+
+% --- Chương 2: Cơ sở lý thuyết ---
+\input{chapters/chapter2}
+
+% --- Chương 3: Phương pháp nghiên cứu ---
+\input{chapters/chapter3}
+
+% --- Chương 4: Kết quả dự kiến & Kế hoạch ---
+\input{chapters/chapter4}
+
+% --- Kết luận ---
+\input{chapters/conclusion}
+
+% --- Tài liệu tham khảo ---
+\printbibliography[heading=bibintoc, title={TÀI LIỆU THAM KHẢO}]
+
+% --- Phụ lục ---
+\input{back/appendix}
+
+\end{document}
