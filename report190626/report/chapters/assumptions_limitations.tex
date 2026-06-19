@@ -14,6 +14,7 @@
   \item \textbf{Tính chính xác của mô hình hình học BIM:} Giả định mô hình BIM trích xuất từ Revit qua tệp IFC phản ánh đúng các kích thước thực tế của tòa nhà mà không bị sai sót về mặt dựng hình kiến trúc.
   \item \textbf{Cơ chế động lực học khói trong CFAST:} Giả định mô hình 2 vùng (zone model) của CFAST đủ tin cậy để mô tả phân lớp nhiệt độ và chiều cao khói ở quy mô phòng đơn thông thường, làm cơ sở dữ liệu huấn luyện sơ bộ cho AI.
   \item \textbf{Hệ thống cảm biến ảo đại diện:} Giả định dữ liệu thu thập từ các cảm biến ảo ở lớp \texttt{virtual\_sensor\_clean} tương đồng về mặt nguyên lý vật lý đối với việc ghi nhận trạng thái khói và nhiệt độ của cảm biến phần cứng thật.
+  \item \textbf{Thông tin kịch bản đã biết:} Khi suy luận, mô hình được cung cấp building graph, vị trí/đặc trưng nguồn cháy và các cấu hình kịch bản đã biết; dữ liệu IoT chỉ được sử dụng đến thời điểm hiện tại $t$.
 \end{itemize}
 
 \section{Giới hạn nghiên cứu}
@@ -25,9 +26,11 @@ Nghiên cứu này là một prototype thử nghiệm học thuật và có các
   \item \textbf{Chưa có dữ liệu cháy thực tế:} Do điều kiện phòng thí nghiệm và chi phí, đề tài hoàn toàn dựa vào dữ liệu sinh ra từ mô phỏng số (CFAST/FDS), không có dữ liệu thực nghiệm từ các đám cháy thật.
   \item \textbf{Chưa có thiết bị cảm biến IoT thật:} Hệ thống cảm biến hoàn toàn là giả lập phần mềm (Virtual IoT), chưa tích hợp phần cứng cảm biến và đường truyền vật lý thực tế.
   \item \textbf{Độ chính xác mô phỏng:} CFAST sử dụng mô hình vùng đơn giản nên kết quả có sai số ở các hành lang dài hoặc không gian mở lớn (atrium) so với mô phỏng CFD 3D.
-  \item \textbf{Kiểm chứng chọn lọc với FDS:} FDS đòi hỏi thời gian tính toán quá lớn nên nhóm chỉ sử dụng để kiểm chứng chọn lọc cho tối thiểu 3 kịch bản P0, không thể chạy kiểm chứng cho toàn bộ tập dữ liệu cháy.
+  \item \textbf{Đối sánh chọn lọc với FDS:} FDS đòi hỏi thời gian tính toán lớn nên nhóm chỉ cam kết tối thiểu 3 kịch bản P0. Đây là so sánh giữa hai mô hình số, không phải kiểm chứng bằng thí nghiệm cháy thật.
+  \item \textbf{Quy ước nhãn khói P0:} Ngưỡng độ che khuất $23.93$~\%/m là setpoint mặc định theo CFAST dùng để tạo nhãn vận hành dữ liệu. Ngưỡng này không phải kết luận về mức nguy hiểm hoặc điều kiện sống được.
   \item \textbf{Ngưỡng nguy hiểm (Hazard labels):} Trong phạm vi đề cương, \texttt{hazard\_label} được xem là đầu ra P1. Nếu chưa xác minh được ngưỡng theo tiêu chuẩn như ISO 13571, NFPA, SFPE hoặc QCVN/TCVN liên quan, nhãn này chỉ được sử dụng như một proxy nghiên cứu (chưa được thẩm định pháp lý bởi cơ quan PCCC có thẩm quyền) và phải được ghi rõ trong báo cáo kết quả.
   \item \textbf{Bản chất mô hình AI:} Mô hình deep learning đóng vai trò là một surrogate model (mô hình thay thế tính toán nhanh), không thay thế cho các phần mềm mô phỏng CFD chuyên sâu trong khâu thiết kế chi tiết.
+  \item \textbf{Khả năng tổng quát hóa:} Với một case study tòa nhà chính và một layout thấp tầng dùng để debug, đề tài chỉ đánh giá khả năng tổng quát hóa theo vị trí/tầng cháy trong case study, không tuyên bố tổng quát hóa sang tòa nhà mới.
   \item \textbf{Dashboard giám sát:} Giao diện dashboard chỉ phục vụ mục đích trình diễn khả năng replay kịch bản và suy luận dự đoán của AI, hoàn toàn không kết nối điều khiển hay can thiệp vào hệ thống PCCC thực tế của tòa nhà.
   \item \textbf{Giá trị pháp lý:} Đề tài này không đưa ra kết luận pháp lý, không phục vụ trực tiếp cho công tác thẩm duyệt phòng cháy chữa cháy của các công trình thực tế.
 \end{enumerate}

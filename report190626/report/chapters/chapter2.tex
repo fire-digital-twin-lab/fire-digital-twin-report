@@ -12,13 +12,13 @@
 
 \subsection{Khái niệm BIM}
 
-BIM (Building Information Modeling) là phương pháp tạo và quản lý thông tin công trình một cách số hóa trong suốt vòng đời dự án. Mô hình BIM không chỉ là bản vẽ 3D, mà chứa đựng toàn bộ thông tin về kiến trúc, kết cấu, hệ thống kỹ thuật, vật liệu và các thuộc tính liên quan.
+BIM (Building Information Modeling) là phương pháp tạo và quản lý thông tin công trình một cách số hóa trong suốt vòng đời dự án \cite{eastman2011bim}. Mô hình BIM không chỉ là bản vẽ 3D, mà còn chứa thông tin về kiến trúc, kết cấu, hệ thống kỹ thuật, vật liệu và các thuộc tính liên quan.
 
 Trong bối cảnh nghiên cứu này, BIM được sử dụng như nguồn dữ liệu đầu vào chính để trích xuất tự động cấu trúc tòa nhà — bao gồm phòng, cửa, cầu thang, shaft, và các mối quan hệ không gian giữa chúng.
 
 \subsection{Chuẩn dữ liệu IFC}
 
-IFC (Industry Foundation Classes) là chuẩn dữ liệu mở do buildingSMART phát triển, cho phép trao đổi thông tin BIM giữa các phần mềm khác nhau. Trong đề tài, nhóm sử dụng các IFC entity chính được trình bày trong Bảng~\ref{tab:ifc_entities}.
+IFC (Industry Foundation Classes) là chuẩn dữ liệu mở do buildingSMART phát triển, cho phép trao đổi thông tin BIM giữa các phần mềm khác nhau \cite{ifc4_schema}. Trong đề tài, nhóm sử dụng các IFC entity chính được trình bày trong Bảng~\ref{tab:ifc_entities}.
 
 \begin{table}[H]
 \centering
@@ -41,7 +41,7 @@ ID gốc            & \texttt{GlobalId}              & Truy vết BIM--graph \\
 \end{tabularx}
 \end{table}
 
-Phiên bản IFC ưu tiên sử dụng là IFC4; nếu xảy ra lỗi khi parse, sẽ chuyển sang IFC2x3. Thư viện Python \texttt{IfcOpenShell} được sử dụng để đọc và xử lý file IFC.
+Phiên bản IFC ưu tiên sử dụng là IFC4; nếu xảy ra lỗi khi parse, sẽ chuyển sang IFC2x3. Thư viện Python \texttt{IfcOpenShell} được sử dụng để đọc và xử lý file IFC \cite{ifcopenshell}.
 
 % ---------------------------------------------------------------
 \section{Mô hình đồ thị tòa nhà (Building Graph)}
@@ -110,7 +110,7 @@ Mỗi node và edge mang thêm các thuộc tính tĩnh (diện tích, thể tí
 
 \subsection{Nguyên lý mô hình hai vùng (Two-Zone Model)}
 
-CFAST (Consolidated Fire and Smoke Transport) là phần mềm mô phỏng cháy do NIST (National Institute of Standards and Technology) phát triển, sử dụng mô hình hai vùng. Mỗi khoang được chia thành:
+CFAST (Consolidated Fire and Smoke Transport) là phần mềm mô phỏng cháy do NIST phát triển, sử dụng mô hình hai vùng \cite{cfast_guide,cfast_tech}. Mỗi khoang được chia thành:
 \begin{itemize}
   \item \textbf{Upper layer (lớp trên):} Chứa khói nóng, khí cháy — nhiệt độ cao hơn.
   \item \textbf{Lower layer (lớp dưới):} Không khí tương đối sạch — nhiệt độ thấp hơn.
@@ -148,16 +148,16 @@ Các đại lượng đầu ra được sử dụng trong đề tài:
 \label{sec:fds}
 % ---------------------------------------------------------------
 
-FDS (Fire Dynamics Simulator) là phần mềm mô phỏng CFD do NIST phát triển, giải trực tiếp phương trình Navier-Stokes bằng phương pháp LES (Large Eddy Simulation). FDS cung cấp kết quả chi tiết ở mức 3D nhưng đòi hỏi tài nguyên tính toán lớn.
+FDS (Fire Dynamics Simulator) là phần mềm mô phỏng CFD do NIST phát triển và sử dụng LES cho dòng chảy do cháy \cite{fds_guide,fds_tech}. FDS cung cấp kết quả chi tiết ở mức 3D nhưng đòi hỏi tài nguyên tính toán lớn.
 
-Trong đề tài, FDS được sử dụng ở vai trò \textbf{kiểm chứng chọn lọc}:
+Trong đề tài, FDS được sử dụng ở vai trò \textbf{đối sánh chọn lọc}, không phải ground truth thực nghiệm:
 \begin{itemize}
-  \item P0: Tối thiểu 3 case validation.
-  \item P1: Mục tiêu 6 case.
-  \item P2: 8–12 case nếu đủ thời gian và phần cứng.
+  \item P0: Tối thiểu 3 case đối sánh.
+  \item P1: Mục tiêu tổng cộng 6 case.
+  \item P2: 8--12 case nếu đủ thời gian và phần cứng.
 \end{itemize}
 
-Kết quả FDS được aggregate ở cấp node (trung bình theo không gian phòng) để so sánh trực tiếp với output CFAST và dự đoán AI.
+Kết quả FDS được quy đổi về cấp node tại cùng vùng cao độ với đại lượng CFAST tương ứng, sau đó dùng làm tập tham chiếu độc lập để đối sánh với CFAST và dự đoán AI.
 
 % ---------------------------------------------------------------
 \section{Cảm biến ảo và IoT giả lập}
@@ -169,7 +169,7 @@ Kết quả FDS được aggregate ở cấp node (trung bình theo không gian 
 Hệ thống IoT giả lập sử dụng mô hình 3 lớp dữ liệu:
 
 \begin{enumerate}
-  \item \textbf{\texttt{physics\_truth}:} Output mô phỏng gốc từ CFAST/FDS — dùng làm ground truth và label, không đưa trực tiếp toàn bộ vào AI.
+  \item \textbf{\texttt{physics\_truth}:} Output mô phỏng gốc. CFAST là nguồn tạo tập huấn luyện chính; FDS chỉ tạo tập đối sánh chọn lọc. Dữ liệu tương lai không được đưa vào input AI.
   \item \textbf{\texttt{virtual\_sensor\_clean}:} Dữ liệu cảm biến ảo sạch — lấy mẫu từ physics truth tại vị trí cảm biến, không nhiễu — dùng cho clean baseline.
   \item \textbf{\texttt{iot\_noisy\_stream}:} Dữ liệu cảm biến ảo có thêm nhiễu Gauss, trễ (delay), mất dữ liệu (missing), và lỗi cảm biến (stuck/drift/false alarm) — đây là input chính cho mô hình AI.
 \end{enumerate}
@@ -196,7 +196,7 @@ Các cảm biến ảo được mô phỏng bao gồm:
 
 \subsection{Tổng quan GNN}
 
-Graph Neural Networks (GNN) là lớp mô hình học sâu được thiết kế để làm việc trực tiếp trên dữ liệu có cấu trúc đồ thị. Nguyên lý cốt lõi của GNN là \textit{message passing}: mỗi node cập nhật biểu diễn (representation) của mình bằng cách tổng hợp thông tin từ các node lân cận.
+Graph Neural Networks (GNN) là lớp mô hình học sâu được thiết kế để làm việc trực tiếp trên dữ liệu có cấu trúc đồ thị. Nguyên lý cốt lõi là \textit{message passing}: mỗi node cập nhật biểu diễn bằng cách tổng hợp thông tin từ các node lân cận \cite{kipf2017gcn,hamilton2017graphsage,velickovic2018gat}.
 
 Các kiến trúc GNN phổ biến:
 \begin{itemize}
@@ -207,7 +207,7 @@ Các kiến trúc GNN phổ biến:
 
 \subsection{Temporal GNN}
 
-Để xử lý dữ liệu biến đổi theo thời gian trên đồ thị, Temporal GNN kết hợp GNN với các mô hình chuỗi thời gian:
+Để xử lý dữ liệu biến đổi theo thời gian trên đồ thị, Temporal GNN kết hợp GNN với các mô hình chuỗi thời gian; STGCN là một ví dụ nền tảng về kết hợp cấu trúc không gian và thời gian \cite{yu2018stgcn}.
 \begin{itemize}
   \item \textbf{GNN + LSTM/GRU:} GNN encode cấu trúc không gian, LSTM/GRU encode chuỗi thời gian.
   \item \textbf{GNN + TCN:} Kết hợp với Temporal Convolutional Network.
@@ -218,10 +218,10 @@ Các kiến trúc GNN phổ biến:
 
 Mô hình chính của đề tài sử dụng multi-task learning với nhiều đầu ra:
 \begin{itemize}
-  \item \texttt{smoke\_label}: Phân loại có/không có khói tại mỗi node.
-  \item \texttt{arrival\_time}: Hồi quy thời điểm khói đến mỗi node.
-  \item \texttt{hazard\_label}: Phân loại vùng nguy hiểm (P1). Trong phạm vi đề cương, \texttt{hazard\_label} được xem là đầu ra P1. Nếu chưa xác minh được ngưỡng theo tiêu chuẩn như ISO 13571, NFPA, SFPE hoặc QCVN/TCVN liên quan, nhãn này chỉ được sử dụng như một proxy nghiên cứu và phải được ghi rõ trong báo cáo kết quả.
-  \item \texttt{next\_affected\_node}: Dự đoán node bị ảnh hưởng tiếp theo.
+  \item \texttt{smoke\_label}$(n,t+\Delta)$: Phân loại có/không có khói tại node $n$ ở bước dự báo.
+  \item \texttt{time\_to\_arrival}$(n,t)$: Hồi quy thời gian còn lại từ $t$ đến thời điểm khói đến node. Dataset đồng thời lưu \texttt{arrival\_time\_abs} và mask cho node không có khói trong thời gian mô phỏng.
+  \item \texttt{hazard\_label} (P1): Phân loại vùng nguy hiểm. Nếu chưa xác minh được ngưỡng theo ISO 13571 hoặc tài liệu chuyên ngành liên quan, nhãn chỉ được dùng như proxy nghiên cứu và phải được ghi rõ trong báo cáo kết quả.
+  \item \texttt{next\_affected\_node}: Dự đoán node bị ảnh hưởng tiếp theo (P1/P2).
 \end{itemize}
 
 % ---------------------------------------------------------------
@@ -238,16 +238,15 @@ Mô hình chính của đề tài sử dụng multi-task learning với nhiều 
 \begin{tabularx}{\textwidth}{l X}
 \toprule
 \textbf{Tài liệu} & \textbf{Vai trò} \\
-QCVN 06:2022/BXD      & Quy chuẩn an toàn cháy cho nhà và công trình tại Việt Nam \\
-TCVN báo cháy hiện hành & TCVN báo cháy hiện hành — cần kiểm tra phiên bản mới nhất trước khi trích dẫn; nếu TCVN 5738:2021 đã được thay thế thì dùng tiêu chuẩn thay thế tương ứng \\
-NFPA 92                & Kiểm soát khói, hút khói, tăng áp cầu thang \\
-ISO 13571              & Ngưỡng tenability (FED/FEC) \\
-SFPE Handbook          & Động lực học cháy, HRR, soot/CO yield \\
-NIST CFAST/FDS docs    & Cơ sở mô hình CFAST và FDS \\
+QCVN 06:2022/BXD và Sửa đổi 1:2023 & Bối cảnh quy chuẩn an toàn cháy tại Việt Nam; không dùng để chứng nhận prototype \cite{qcvn06_2022} \\
+NFPA 92                & Tham khảo nguyên lý kiểm soát khói \cite{nfpa92} \\
+ISO 13571              & Tham khảo tenability cho đầu ra P1 \cite{iso13571} \\
+SFPE Handbook          & Cơ sở về động lực học cháy, HRR và sản phẩm cháy \cite{sfpe_handbook} \\
+NIST CFAST/FDS docs    & Cơ sở mô hình, input/output và giới hạn của CFAST/FDS \cite{cfast_guide,cfast_tech,fds_guide,fds_tech} \\
 \bottomrule
 \end{tabularx}
 \end{table}
 
 \begin{warningbox}
-Prototype nghiên cứu này \textbf{không thay thế} CFD chuyên sâu, không thay thế thiết kế hoặc thẩm duyệt PCCC, không điều khiển hệ thống thật, và không đưa ra kết luận pháp lý. Các ngưỡng hazard sử dụng trong đề tài là proxy nghiên cứu, cần được ghi rõ trong báo cáo kết quả.
+Prototype nghiên cứu này \textbf{không thay thế} CFD chuyên sâu, không thay thế thiết kế hoặc thẩm duyệt PCCC, không điều khiển hệ thống thật, và không đưa ra kết luận pháp lý. Ngưỡng P0 là quy ước vận hành dữ liệu theo tài liệu CFAST; các ngưỡng hazard P1 chỉ là proxy nghiên cứu nếu chưa được xác minh theo tiêu chuẩn tenability.
 \end{warningbox}

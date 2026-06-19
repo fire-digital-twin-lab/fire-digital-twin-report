@@ -24,12 +24,12 @@ Báo cáo nghiên cứu & Có & Đầy đủ cấu trúc đề cương nghiên c
 Module BIM/IFC-to-Graph & Có & Trích xuất thành công node/edge từ file \texttt{.ifc} và xuất ra tệp tin graph JSON. \\
 Building graph tòa nhà & Có & Biểu diễn đúng topology phòng/hành lang/cầu thang dưới dạng NetworkX graph. \\
 Bộ kịch bản cháy CFAST & Có & Hàng trăm kịch bản cháy được sinh tự động bằng script Python. \\
-FDS validation cases & Có & Tối thiểu 3 case mô phỏng FDS được thiết lập và chạy thành công phục vụ đối sánh. \\
+FDS reference cases & Có & Tối thiểu 3 case FDS P0 được thiết lập, căn chỉnh sensor schema và chạy thành công để đối sánh với CFAST. \\
 Virtual IoT dataset & Có & Sinh được chuỗi thời gian dữ liệu cảm biến ảo 3 lớp (clean, noisy, faulty) từ mô phỏng. \\
-Baseline models & Có & Có ít nhất 2 mô hình baseline chạy được và có metric đánh giá cụ thể. \\
-Temporal GNN/BAT-GNN & Có & Có prototype mô hình được thiết lập và huấn luyện/suy luận thành công, có đối sánh với baseline. \\
-Dashboard prototype & Có & Replay được dữ liệu cảm biến từ pipeline và hiển thị dự đoán trực quan, không dùng số liệu hard-code. \\
-Evaluation report & Có & Báo cáo đầy đủ các bảng metrics đánh giá, scenario split, ablation study và phân tích giới hạn. \\
+Baseline models & Có & Có rule-based, ít nhất 1 baseline không graph và ít nhất 1 baseline graph, dùng cùng split và có metric P0. \\
+Temporal GNN/BAT-GNN & Có & Dự báo được \texttt{smoke\_label} tại $t+\Delta$ và \texttt{time\_to\_arrival}, có đối sánh với baseline mạnh nhất. \\
+Dashboard prototype & Có & Replay dữ liệu pipeline và hiển thị hai đầu ra P0, không dùng số liệu hard-code. \\
+Evaluation report & Có & Có scenario/fire-node/fire-floor split, FDS reference set, ablation, robustness, inference time và phân tích giới hạn. \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -54,17 +54,17 @@ Evaluation report & Có & Báo cáo đầy đủ các bảng metrics đánh giá
 3  & Parse room/door/window/floor/stair                  & Bảng dữ liệu thô \\
 4  & Xây dựng và trực quan hóa graph                    & Graph files \\
 5  & Tạo case CFAST debug (layout thấp tầng)             & Case CFAST đầu tiên \\
-6  & Schema kịch bản + batch runner                      & Scenario generator \\
-7  & Parse output CFAST                                  & Parsed outputs \\
-8  & Tạo \texttt{smoke\_label}, \texttt{arrival\_time}   & Labels \\
+6  & Chạy FDS pilot và chốt quy tắc căn chỉnh           & Báo cáo pilot CFAST--FDS \\
+7  & Schema kịch bản + batch runner                      & Scenario generator \\
+8  & Parse CFAST, tạo nhãn P0 và batch dataset           & Parsed outputs + labels \\
 9  & Tạo virtual sensor clean                            & Clean stream \\
 10 & Tạo noisy/faulty IoT presets                        & IoT streams \\
-11 & Rule + ML baselines                                 & Baseline metrics \\
-12 & MLP / LSTM / GCN baselines                          & Bảng so sánh \\
+11 & Rule-based + baseline không graph                   & Baseline metrics \\
+12 & Baseline graph                                      & Bảng so sánh \\
 13 & Temporal GNN / BAT-GNN v1                           & Trained model \\
-14 & Chuẩn bị FDS validation cases                       & FDS input \\
-15 & Chạy FDS P0/P1                                      & FDS raw output \\
-16 & Aggregate FDS node-level                            & So sánh CFAST vs FDS \\
+14 & Chuẩn bị các FDS reference case P0 còn lại          & FDS input \\
+15 & Chạy tối thiểu 3 FDS case P0                        & FDS raw output \\
+16 & Tạo sensor/label FDS và đối sánh                    & Báo cáo CFAST--FDS \\
 17 & Ablation + robustness study                         & Figures đánh giá \\
 18 & Dashboard replay + inference API                    & Demo \\
 19 & Viết báo cáo draft                                  & Bản thảo báo cáo \\
@@ -81,7 +81,7 @@ Evaluation report & Có & Báo cáo đầy đủ các bảng metrics đánh giá
   y unit title=0.45cm,
   y unit chart=0.35cm,
   hgrid,
-  vgrid={*{4}{draw=none}, dotted},
+  vgrid,
   title height=1,
   bar height=0.5,
   bar/.append style={fill=NavyBlue!60},
@@ -104,9 +104,9 @@ Evaluation report & Có & Báo cáo đầy đủ các bảng metrics đánh giá
   % Simulation
   \ganttgroup{Mô phỏng}{5}{8} \\
   \ganttbar{CFAST debug}{5}{5} \\
-  \ganttbar{Scenario batch}{6}{6} \\
-  \ganttbar{Parse output}{7}{7} \\
-  \ganttbar{Labels}{8}{8} \\
+  \ganttbar{FDS pilot}{6}{6} \\
+  \ganttbar{Scenario batch}{7}{7} \\
+  \ganttbar{Parse + labels}{8}{8} \\
 
   % IoT
   \ganttgroup{IoT}{9}{10} \\
@@ -119,9 +119,9 @@ Evaluation report & Có & Báo cáo đầy đủ các bảng metrics đánh giá
   \ganttbar{Temporal GNN}{13}{13} \\
 
   % FDS
-  \ganttgroup{FDS Validation}{14}{16} \\
+  \ganttgroup{FDS Reference}{14}{16} \\
   \ganttbar{Prep + Run FDS}{14}{15} \\
-  \ganttbar{Aggregate}{16}{16} \\
+  \ganttbar{Sensors + Compare}{16}{16} \\
 
   % Evaluation
   \ganttgroup{Đánh giá \& Demo}{17}{18} \\
@@ -132,13 +132,6 @@ Evaluation report & Có & Báo cáo đầy đủ các bảng metrics đánh giá
   \ganttgroup{Báo cáo}{19}{20} \\
   \ganttbar{Draft}{19}{19} \\
   \ganttbar{Submit}{20}{20} \\
-
-  % Dependencies
-  \ganttlink{elem3}{elem4}
-  \ganttlink{elem5}{elem6}
-  \ganttlink{elem8}{elem9}
-  \ganttlink{elem10}{elem11}
-  \ganttlink{elem12}{elem13}
 
 \end{ganttchart}
 }%
@@ -163,7 +156,7 @@ Evaluation report & Có & Báo cáo đầy đủ các bảng metrics đánh giá
 \svD & Mô phỏng CFAST, post-processing, labels          & 5--8 \\
 \svB & Virtual IoT, dataset builder                      & 9--10 \\
 \svC & AI models (baselines + Temporal GNN + BAT-GNN)    & 11--13, 17 \\
-\svE & FDS validation, dashboard prototype               & 14--16, 18 \\
+\svE & FDS pilot/đối sánh, dashboard prototype           & 6, 14--16, 18 \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -171,8 +164,6 @@ Evaluation report & Có & Báo cáo đầy đủ các bảng metrics đánh giá
 \begin{notebox}
 Tất cả thành viên đều tham gia viết báo cáo ở tuần 19--20. Phân công có thể được điều chỉnh trong quá trình thực hiện.
 \end{notebox}
-
-\clearpage
 
 % ---------------------------------------------------------------
 \section{Điều kiện thực hiện}
@@ -214,21 +205,42 @@ Tất cả thành viên đều tham gia viết báo cáo ở tuần 19--20. Phâ
 
 Trong quá trình thực hiện đề tài, nhóm xác định được 10 rủi ro kỹ thuật chính và đề xuất các phương án giảm thiểu tương ứng được trình bày trong Bảng~\ref{tab:ruiro}.
 
-\begin{table}[H]
+\begin{table}[htbp]
 \centering
 \caption{Bảng phân tích rủi ro và phương án giảm thiểu}
 \label{tab:ruiro}
-\begin{tabularx}{\textwidth}{c l X X}
+\footnotesize
+\begin{tabularx}{\textwidth}{
+  c
+  >{\raggedright\arraybackslash}p{0.18\textwidth}
+  >{\raggedright\arraybackslash}p{0.28\textwidth}
+  >{\raggedright\arraybackslash}X}
 \toprule
 \textbf{STT} & \textbf{Yếu tố rủi ro} & \textbf{Hệ quả tiềm ẩn} & \textbf{Phương án fallback / Giảm thiểu} \\
 \midrule
-1 & Tài liệu không xác minh được & Lỗi học thuật nghiêm trọng & Chỉ sử dụng tài liệu có DOI thật, kiểm tra chéo thông qua các thư viện uy tín (IEEE, Springer, Elsevier). \\
+1 & Tài liệu không xác minh được & Lỗi học thuật nghiêm trọng & Kiểm tra metadata theo DOI hoặc trang chính thức của nhà xuất bản/cơ quan phát hành trước khi trích dẫn. \\
 2 & Không có dữ liệu cháy thực tế & AI học mẫu giả lập, sai khác thực tế & Ghi rõ giới hạn; không tuyên bố thay thế CFD thật; chỉ dùng làm surrogate model nghiên cứu. \\
-3 & Ngưỡng hazard thiếu chuẩn hóa & Nhãn vùng nguy hiểm không đáng tin & Tham chiếu các ngưỡng độc tính và nhiệt độ từ tiêu chuẩn quốc tế ISO 13571 và NFPA 92. \\
+3 & Ngưỡng hazard thiếu chuẩn hóa & Nhãn vùng nguy hiểm không đáng tin & Giữ hazard ở mức P1; chỉ triển khai khi xác minh được ngưỡng và luôn ghi rõ đây không phải kết luận pháp lý. \\
 4 & File IFC bị lỗi khi export & Pipeline dữ liệu bị gián đoạn từ đầu & Sử dụng layout thấp tầng đơn giản để debug; vẽ lại thủ công kết nối thiếu trong NetworkX. \\
-5 & Mô phỏng FDS quá nặng & Trễ tiến độ kiểm chứng của đề tài & Giảm quy mô mesh; chỉ chạy các case P0 tối thiểu; tận dụng Google Colab hoặc Cloud. \\
+5 & Mô phỏng FDS quá nặng & Trễ tiến độ đối sánh của đề tài & Chạy pilot ở tuần 6, giảm quy mô mesh và chỉ cam kết tối thiểu 3 case P0. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption*{Bảng~\ref{tab:ruiro} (tiếp theo)}
+\footnotesize
+\begin{tabularx}{\textwidth}{
+  c
+  >{\raggedright\arraybackslash}p{0.18\textwidth}
+  >{\raggedright\arraybackslash}p{0.28\textwidth}
+  >{\raggedright\arraybackslash}X}
+\toprule
+\textbf{STT} & \textbf{Yếu tố rủi ro} & \textbf{Hệ quả tiềm ẩn} & \textbf{Phương án fallback / Giảm thiểu} \\
+\midrule
 6 & Rò rỉ dữ liệu (data leakage) & Đánh giá sai hiệu năng AI (metric ảo) & Áp dụng quy tắc split độc lập theo kịch bản cháy; không chia chéo dữ liệu chuỗi thời gian. \\
-7 & Mô hình AI bị overfit & Khả năng tổng quát hóa kém trên layout mới & Áp dụng dropout, weight decay, early stopping và thử nghiệm hold-out floor/hold-out layout. \\
+7 & Mô hình AI bị overfit & Khả năng tổng quát hóa kém trong case study & Áp dụng dropout, weight decay, early stopping, hold-out fire node và hold-out fire floor; không tuyên bố tổng quát hóa sang tòa nhà mới. \\
 8 & Luồng IoT giả lập quá sạch & AI không hoạt động được trong thực tế & Xây dựng lớp \texttt{iot\_noisy\_stream} bổ sung nhiễu Gauss, trễ cảm biến và lỗi mất dữ liệu ngẫu nhiên. \\
 9 & Dashboard bị hard-code & Demo rỗng, không chạy thực tế được & Kết nối API Backend FastAPI để replay dữ liệu động từ tệp mô phỏng và chạy inference trực tiếp. \\
 10 & Bùng nổ tổ hợp kịch bản cháy & Vượt quá khả năng tính toán & Áp dụng phương pháp scenario sampling có kiểm soát thay vì thử nghiệm toàn bộ Cartesian product. \\

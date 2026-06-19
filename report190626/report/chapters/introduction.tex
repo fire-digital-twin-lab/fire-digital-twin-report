@@ -4,13 +4,14 @@
 
 \chapter*{MỞ ĐẦU}
 \addcontentsline{toc}{chapter}{MỞ ĐẦU}
+\markboth{MỞ ĐẦU}{MỞ ĐẦU}
 
 % ---------------------------------------------------------------
 \section*{1. Lý do chọn đề tài}
 \addcontentsline{toc}{section}{1. Lý do chọn đề tài}
 % ---------------------------------------------------------------
 
-Trong những năm gần đây, các vụ cháy nổ tại các công trình cao tầng, chung cư và khu đô thị tại Việt Nam liên tục xảy ra với mức độ nghiêm trọng ngày càng tăng. Theo thống kê của Cục Cảnh sát Phòng cháy chữa cháy và Cứu nạn cứu hộ (C07) \cite{c07_report}, trung bình mỗi năm cả nước ghi nhận hàng nghìn vụ cháy, gây thiệt hại lớn về người và tài sản. Đặc biệt, trong các vụ cháy tại nhà cao tầng, \textbf{khói độc} — chứ không phải ngọn lửa trực tiếp — là nguyên nhân chính gây tử vong \cite{iso13571, sfpe_handbook}, khi nạn nhân bị ngạt khói trước khi lửa lan đến.
+Trong những năm gần đây, các vụ cháy nổ tại công trình cao tầng, chung cư và khu đô thị ở Việt Nam tiếp tục cho thấy nguy cơ thiệt hại nghiêm trọng về người và tài sản. Trong đám cháy công trình, khói và các sản phẩm cháy có thể làm suy giảm điều kiện sống được trước khi ngọn lửa trực tiếp lan tới \cite{iso13571,sfpe_handbook}.
 
 Quá trình lan truyền khói trong tòa nhà cao tầng phụ thuộc vào nhiều yếu tố phức tạp: cấu trúc kiến trúc, trạng thái cửa, hệ thống thông gió, cầu thang, trục kỹ thuật (shaft), và các hệ thống phòng cháy chữa cháy (PCCC) tự động. Hiện nay, việc dự đoán đường lan truyền khói chủ yếu dựa vào mô phỏng CFD (Computational Fluid Dynamics) với các phần mềm như FDS (Fire Dynamics Simulator), nhưng phương pháp này đòi hỏi thời gian tính toán lớn (hàng giờ đến hàng ngày cho một kịch bản), không phù hợp cho ứng dụng cảnh báo nhanh.
 
@@ -33,16 +34,27 @@ Xây dựng một prototype nghiên cứu end-to-end cho bài toán dự đoán 
   \item Xây dựng module chuyển đổi tự động từ mô hình BIM/IFC sang đồ thị tòa nhà (building graph).
   \item Thiết kế và thực hiện mô phỏng batch nhiều kịch bản cháy bằng CFAST, kiểm chứng chọn lọc bằng FDS.
   \item Xây dựng hệ thống IoT giả lập 3 lớp tạo dữ liệu cảm biến thực tế cho mô hình AI.
-  \item Phát triển và đánh giá mô hình AI surrogate dạng Temporal GNN/Boundary-Aware Temporal GNN.
+  \item Phát triển và đánh giá mô hình AI surrogate dạng Temporal GNN/Boundary-Aware Temporal GNN, sử dụng cấu hình kịch bản đã biết và lịch sử IoT để dự báo hai đầu ra P0.
   \item Xây dựng dashboard prototype cho phép trực quan hóa kết quả dự đoán và replay kịch bản.
 \end{enumerate}
 
 % ---------------------------------------------------------------
-\section*{3. Đối tượng và phạm vi nghiên cứu}
-\addcontentsline{toc}{section}{3. Đối tượng và phạm vi nghiên cứu}
+\section*{3. Câu hỏi nghiên cứu}
+\addcontentsline{toc}{section}{3. Câu hỏi nghiên cứu}
 % ---------------------------------------------------------------
 
-\subsection*{3.1. Đối tượng nghiên cứu}
+\begin{enumerate}
+  \item BAT-GNN có cải thiện F1/Recall của \texttt{smoke\_label} và duy trì hoặc giảm MAE của \texttt{time\_to\_arrival} so với baseline mạnh nhất không sử dụng graph hay không?
+  \item Cấu trúc building graph và lịch sử IoT trong cửa sổ $[t-k,t]$ đóng góp như thế nào vào chất lượng dự báo tại $t+\Delta$?
+  \item Hiệu năng mô hình suy giảm như thế nào khi dữ liệu IoT có nhiễu, trễ, mất dữ liệu hoặc lỗi cảm biến?
+\end{enumerate}
+
+% ---------------------------------------------------------------
+\section*{4. Đối tượng và phạm vi nghiên cứu}
+\addcontentsline{toc}{section}{4. Đối tượng và phạm vi nghiên cứu}
+% ---------------------------------------------------------------
+
+\subsection*{4.1. Đối tượng nghiên cứu}
 
 \begin{itemize}
   \item Quá trình lan truyền khói cấp phòng/khu vực (zone-level) trong tòa nhà cao tầng.
@@ -51,36 +63,36 @@ Xây dựng một prototype nghiên cứu end-to-end cho bài toán dự đoán 
   \item Mô hình học sâu dạng graph-time-series cho bài toán dự đoán.
 \end{itemize}
 
-\subsection*{3.2. Phạm vi nghiên cứu}
+\subsection*{4.2. Phạm vi nghiên cứu}
 
 \begin{itemize}
-  \item \textbf{Tòa nhà:} Sử dụng 1 file Revit thật của tòa nhà cao tầng/chung cư làm case study chính, kết hợp 1 layout thấp tầng đơn giản để debug và kiểm tra tính tổng quát.
+  \item \textbf{Tòa nhà:} Sử dụng 1 file Revit thật của tòa nhà cao tầng/chung cư làm case study chính, kết hợp 1 layout thấp tầng đơn giản để debug và kiểm tra khả năng chuyển giao kỹ thuật của pipeline. Phạm vi này không đủ để kết luận khả năng tổng quát hóa sang tòa nhà mới.
   \item \textbf{Quy mô mô phỏng:} Mô phỏng cụm 3–5 tầng xung quanh tầng xảy ra cháy (tầng cháy, 1–2 tầng trên, 1–2 tầng dưới, cầu thang/shaft nối).
-  \item \textbf{Mô phỏng:} CFAST là nguồn sinh dataset chính; FDS kiểm chứng chọn lọc (tối thiểu 3 case, mục tiêu 6 case).
+  \item \textbf{Mô phỏng:} CFAST là nguồn sinh dataset chính; FDS dùng để đối sánh chọn lọc (P0 tối thiểu 3 case, P1 mục tiêu 6 case).
   \item \textbf{IoT:} Hoàn toàn giả lập, không sử dụng phần cứng cảm biến thật.
-  \item \textbf{AI:} Surrogate model — không thay thế CFD, không đưa ra kết luận pháp lý.
+  \item \textbf{AI:} Mô hình dự báo có điều kiện, nhận building graph, cấu hình kịch bản đã biết và lịch sử IoT $[t-k,t]$ để dự báo tại $t+\Delta$. Mô hình không thay thế CFD và không đưa ra kết luận pháp lý.
   \item \textbf{Dashboard:} Chỉ phục vụ replay, inference, trực quan hóa; không điều khiển hệ thống PCCC thật.
 \end{itemize}
 
 % ---------------------------------------------------------------
-\section*{4. Phương pháp nghiên cứu}
-\addcontentsline{toc}{section}{4. Phương pháp nghiên cứu}
+\section*{5. Phương pháp nghiên cứu}
+\addcontentsline{toc}{section}{5. Phương pháp nghiên cứu}
 % ---------------------------------------------------------------
 
 \begin{enumerate}
   \item \textbf{Phương pháp mô hình hóa thông tin công trình (BIM):} Sử dụng chuẩn IFC để trích xuất tự động thông tin kiến trúc, chuyển đổi thành đồ thị tòa nhà phục vụ phân tích và mô phỏng.
   \item \textbf{Phương pháp mô phỏng số:} Sử dụng mô hình zone (CFAST) để sinh dataset quy mô lớn, kết hợp mô hình field (FDS) để kiểm chứng tính tin cậy trên các kịch bản chọn lọc.
   \item \textbf{Phương pháp mô phỏng IoT:} Xây dựng hệ thống cảm biến ảo 3 lớp, mô phỏng dữ liệu cảm biến trong điều kiện nhiễu, trễ, mất dữ liệu và lỗi.
-  \item \textbf{Phương pháp học sâu:} Áp dụng mạng nơ-ron đồ thị kết hợp mô hình chuỗi thời gian (Temporal GNN) và các encoder cho điều kiện biên để xây dựng surrogate model.
-  \item \textbf{Phương pháp đánh giá:} So sánh nhiều mức mô hình (rule-based → ML → GNN → Temporal GNN), đánh giá trên nhiều chế độ chia dữ liệu và điều kiện IoT, ablation study.
+  \item \textbf{Phương pháp học sâu:} Áp dụng mạng nơ-ron đồ thị kết hợp mô hình chuỗi thời gian để dự báo \texttt{smoke\_label} tại $t+\Delta$ và \texttt{time\_to\_arrival}.
+  \item \textbf{Phương pháp đánh giá:} So sánh các baseline với Temporal GNN/BAT-GNN, chia dữ liệu độc lập theo base scenario, đánh giá ablation và độ bền dưới các điều kiện IoT suy giảm.
 \end{enumerate}
 
 % ---------------------------------------------------------------
-\section*{5. Ý nghĩa khoa học và thực tiễn}
-\addcontentsline{toc}{section}{5. Ý nghĩa khoa học và thực tiễn}
+\section*{6. Ý nghĩa khoa học và thực tiễn}
+\addcontentsline{toc}{section}{6. Ý nghĩa khoa học và thực tiễn}
 % ---------------------------------------------------------------
 
-\subsection*{5.1. Ý nghĩa khoa học}
+\subsection*{6.1. Ý nghĩa khoa học}
 
 \begin{itemize}
   \item Đề xuất pipeline tích hợp BIM → mô phỏng → IoT ảo → AI cho bài toán dự đoán lan truyền khói — đây là hướng nghiên cứu còn ít được khai thác.
@@ -88,7 +100,7 @@ Xây dựng một prototype nghiên cứu end-to-end cho bài toán dự đoán 
   \item Đề xuất phương pháp tạo dataset huấn luyện AI từ mô phỏng cháy kết hợp IoT giả lập 3 lớp.
 \end{itemize}
 
-\subsection*{5.2. Ý nghĩa thực tiễn}
+\subsection*{6.2. Ý nghĩa thực tiễn}
 
 \begin{itemize}
   \item Kết quả nghiên cứu có thể phục vụ phát triển công cụ hỗ trợ cảnh báo sớm lan truyền khói.
@@ -100,5 +112,3 @@ Xây dựng một prototype nghiên cứu end-to-end cho bài toán dự đoán 
 \begin{notebox}
 \textbf{Lưu ý quan trọng:} Báo cáo này được trình bày dưới dạng \textbf{Đề cương nghiên cứu khoa học}, tập trung vào việc xác định bài toán, xây dựng cơ sở lý thuyết, thiết kế pipeline kỹ thuật và lập kế hoạch thực hiện. Các kết quả thực nghiệm chi tiết (tạo dataset thật, huấn luyện các mô hình học sâu, đánh giá độ bền vững và triển khai dashboard prototype) sẽ được tiến hành thực hiện và công bố đầy đủ trong báo cáo kết quả chính thức ở giai đoạn sau của đề tài.
 \end{notebox}
-
-

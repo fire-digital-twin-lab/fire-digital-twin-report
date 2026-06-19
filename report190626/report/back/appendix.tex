@@ -7,11 +7,11 @@
 \chapter{Ma trận yếu tố kịch bản chi tiết}
 \label{app:factormatrix}
 
-\section{Factor P1 (nên làm)}
+\section{Mở rộng P1 (tùy chọn)}
 
 \begin{table}[H]
 \centering
-\caption{Factor matrix P1}
+\caption{Các factor và đầu ra P1 tùy chọn}
 \label{tab:factorP1}
 \begin{tabularx}{\textwidth}{l l X}
 \toprule
@@ -30,11 +30,11 @@ Biên     & Ảnh hưởng gió lên facade & \texttt{wind\_effect} \\
 \end{tabularx}
 \end{table}
 
-\section{Factor P2 (để sau)}
+\section{Mở rộng P2 (ngoài cam kết bắt buộc)}
 
 \begin{table}[H]
 \centering
-\caption{Factor matrix P2}
+\caption{Các nội dung P2 ngoài cam kết bắt buộc}
 \label{tab:factorP2}
 \begin{tabularx}{\textwidth}{l l X}
 \toprule
@@ -89,9 +89,9 @@ GET  & \texttt{/scenarios}                & Danh sách kịch bản \\
 GET  & \texttt{/scenarios/\{id\}}         & Metadata kịch bản \\
 GET  & \texttt{/graph/\{scenario\_id\}}   & Đồ thị tòa nhà \\
 GET  & \texttt{/timeseries/\{scenario\_id\}} & Chuỗi thời gian cảm biến \\
-GET  & \texttt{/labels/\{scenario\_id\}}  & Labels \\
-POST & \texttt{/inference}                & Chạy AI inference \\
-GET  & \texttt{/comparison/\{scenario\_id\}} & So sánh CFAST/FDS/AI \\
+GET  & \texttt{/labels/\{scenario\_id\}}  & Nhãn P0 và mask \\
+POST & \texttt{/inference}                & Nhận scenario config + lịch sử $[t-k,t]$, trả dự báo P0 \\
+GET  & \texttt{/comparison/\{scenario\_id\}} & So sánh AI/CFAST và FDS nếu là case tham chiếu \\
 WS   & \texttt{/stream/\{scenario\_id\}}  & Virtual IoT stream \\
 \bottomrule
 \end{tabularx}

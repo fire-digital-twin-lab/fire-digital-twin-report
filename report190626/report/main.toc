@@ -1,94 +1,193 @@
 \xpg@aux {}{vietnamese}
 \contentsline {chapter}{TÓM TẮT ĐỀ TÀI}{i}{chapter*.1}%
 \contentsline {chapter}{DANH MỤC HÌNH VẼ}{v}{Item.5}%
-\contentsline {chapter}{DANH MỤC BẢNG BIỂU}{v}{Item.5}%
+\contentsline {chapter}{DANH MỤC BẢNG BIỂU}{vi}{Item.5}%
 \contentsline {chapter}{MỞ ĐẦU}{1}{chapter*.2}%
 \contentsline {section}{1. Lý do chọn đề tài}{1}{chapter*.2}%
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
 \contentsline {section}{2. Mục tiêu nghiên cứu}{1}{chapter*.2}%
-\contentsline {section}{3. Đối tượng và phạm vi nghiên cứu}{1}{Item.10}%
-\contentsline {section}{4. Phương pháp nghiên cứu}{2}{Item.10}%
-\contentsline {section}{5. Ý nghĩa khoa học và thực tiễn}{2}{Item.15}%
-\contentsline {chapter}{\numberline {1}TỔNG QUAN NGHIÊN CỨU}{4}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Tình hình cháy nổ tại các công trình cao tầng ở Việt Nam}{4}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Tổng quan về BIM trong phòng cháy chữa cháy}{4}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Mô phỏng lan truyền khói}{4}{section.1.3}%
-\contentsline {subsection}{\numberline {1.3.1}Zone model (mô hình vùng)}{5}{subsection.1.3.1}%
-\contentsline {subsection}{\numberline {1.3.2}Field model (mô hình trường)}{5}{subsection.1.3.2}%
-\contentsline {section}{\numberline {1.4}Ứng dụng AI và học sâu trong dự đoán cháy}{5}{section.1.4}%
-\contentsline {section}{\numberline {1.5}IoT trong giám sát cháy}{6}{section.1.5}%
-\contentsline {section}{\numberline {1.6}Khoảng trống nghiên cứu}{6}{section.1.6}%
-\contentsline {chapter}{\numberline {2}CƠ SỞ LÝ THUYẾT}{7}{chapter.2}%
-\contentsline {section}{\numberline {2.1}BIM và chuẩn IFC}{7}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Khái niệm BIM}{7}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}Chuẩn dữ liệu IFC}{7}{subsection.2.1.2}%
-\contentsline {section}{\numberline {2.2}Mô hình đồ thị tòa nhà (Building Graph)}{7}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Định nghĩa đồ thị}{7}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Phân loại node}{8}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}Phân loại edge}{8}{subsection.2.2.3}%
-\contentsline {section}{\numberline {2.3}Mô phỏng cháy zone-model — CFAST}{8}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Nguyên lý mô hình hai vùng (Two-Zone Model)}{8}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Đầu vào CFAST}{8}{subsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.3.3}Đầu ra CFAST}{9}{subsection.2.3.3}%
-\contentsline {section}{\numberline {2.4}Mô phỏng cháy field-model — FDS}{9}{section.2.4}%
-\contentsline {section}{\numberline {2.5}Cảm biến ảo và IoT giả lập}{9}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Mô hình 3 lớp dữ liệu}{9}{subsection.2.5.1}%
-\contentsline {subsection}{\numberline {2.5.2}Các loại cảm biến}{9}{subsection.2.5.2}%
-\contentsline {subsection}{\numberline {2.5.3}Các preset nhiễu}{10}{subsection.2.5.3}%
-\contentsline {section}{\numberline {2.6}Mạng nơ-ron đồ thị (Graph Neural Networks)}{10}{section.2.6}%
-\contentsline {subsection}{\numberline {2.6.1}Tổng quan GNN}{10}{subsection.2.6.1}%
-\contentsline {subsection}{\numberline {2.6.2}Temporal GNN}{10}{subsection.2.6.2}%
-\contentsline {subsection}{\numberline {2.6.3}Multi-task learning}{10}{subsection.2.6.3}%
-\contentsline {section}{\numberline {2.7}Quy chuẩn và tiêu chuẩn tham chiếu}{10}{section.2.7}%
-\contentsline {chapter}{\numberline {3}PHƯƠNG PHÁP NGHIÊN CỨU}{12}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Pipeline tổng thể}{12}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Module BIM/IFC-to-Graph}{13}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Quy trình xử lý}{13}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Output}{13}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}Fallback}{13}{subsection.3.2.3}%
-\contentsline {section}{\numberline {3.3}Thiết kế kịch bản cháy}{13}{section.3.3}%
-\contentsline {subsection}{\numberline {3.3.1}Factor matrix}{13}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Lấy mẫu kịch bản}{14}{subsection.3.3.2}%
-\contentsline {section}{\numberline {3.4}Mô phỏng CFAST}{14}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Thiết lập mô phỏng}{14}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Batch simulation}{14}{subsection.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.3}Post-processing}{14}{subsection.3.4.3}%
-\contentsline {section}{\numberline {3.5}Kiểm chứng FDS}{15}{section.3.5}%
-\contentsline {subsection}{\numberline {3.5.1}Cơ chế so sánh và Metrics kiểm chứng}{15}{subsection.3.5.1}%
-\contentsline {section}{\numberline {3.6}Mô phỏng IoT giả lập}{16}{section.3.6}%
-\contentsline {subsection}{\numberline {3.6.1}Quy trình tạo dữ liệu IoT}{16}{subsection.3.6.1}%
-\contentsline {subsection}{\numberline {3.6.2}Quy tắc chống label leakage}{16}{subsection.3.6.2}%
-\contentsline {section}{\numberline {3.7}Xây dựng dataset}{16}{section.3.7}%
-\contentsline {section}{\numberline {3.8}Mô hình AI}{17}{section.3.8}%
-\contentsline {subsection}{\numberline {3.8.1}Lộ trình phát triển mô hình}{17}{subsection.3.8.1}%
-\contentsline {subsection}{\numberline {3.8.2}Kiến trúc mô hình chính (BAT-GNN)}{17}{subsection.3.8.2}%
-\contentsline {subsection}{\numberline {3.8.3}Loss functions}{18}{subsection.3.8.3}%
-\contentsline {section}{\numberline {3.9}Đánh giá mô hình}{18}{section.3.9}%
-\contentsline {subsection}{\numberline {3.9.1}Metrics}{18}{subsection.3.9.1}%
-\contentsline {subsection}{\numberline {3.9.2}Phân chia dữ liệu}{18}{subsection.3.9.2}%
-\contentsline {subsection}{\numberline {3.9.3}Ablation study}{19}{subsection.3.9.3}%
-\contentsline {section}{\numberline {3.10}Dashboard prototype}{19}{section.3.10}%
-\contentsline {subsection}{\numberline {3.10.1}Chức năng}{19}{subsection.3.10.1}%
-\contentsline {subsection}{\numberline {3.10.2}Công nghệ}{19}{subsection.3.10.2}%
-\contentsline {chapter}{\numberline {4}KẾT QUẢ DỰ KIẾN VÀ KẾ HOẠCH THỰC HIỆN}{20}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Sản phẩm dự kiến}{20}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Kế hoạch thực hiện}{20}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Phân công nhiệm vụ}{22}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Điều kiện thực hiện}{23}{section.4.4}%
-\contentsline {subsection}{\numberline {4.4.1}Phần mềm}{23}{subsection.4.4.1}%
-\contentsline {subsection}{\numberline {4.4.2}Phần cứng}{23}{subsection.4.4.2}%
-\contentsline {subsection}{\numberline {4.4.3}Tài liệu và dữ liệu}{23}{subsection.4.4.3}%
-\contentsline {section}{\numberline {4.5}Rủi ro và phương án giảm thiểu rủi ro}{23}{section.4.5}%
-\contentsline {chapter}{\numberline {5}GIẢ ĐỊNH VÀ GIỚI HẠN NGHIÊN CỨU}{25}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Giả định nghiên cứu}{25}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Giới hạn nghiên cứu}{25}{section.5.2}%
-\contentsline {chapter}{KẾT LUẬN}{26}{chapter*.23}%
-\contentsline {section}{1. Tóm tắt}{26}{chapter*.23}%
-\contentsline {section}{2. Tính mới và đóng góp dự kiến}{26}{chapter*.23}%
-\contentsline {section}{3. Giới hạn nghiên cứu}{26}{Item.42}%
-\contentsline {section}{4. Hướng phát triển tương lai}{26}{Item.42}%
-\contentsline {chapter}{TÀI LIỆU THAM KHẢO}{27}{chapter*.24}%
-\contentsline {chapter}{\numberline {A}Ma trận yếu tố kịch bản chi tiết}{28}{appendix.1.A}%
-\contentsline {section}{\numberline {A.1}Factor P1 (nên làm)}{28}{section.1.A.1}%
-\contentsline {section}{\numberline {A.2}Factor P2 (để sau)}{28}{section.1.A.2}%
-\contentsline {chapter}{\numberline {B}Chi tiết IoT Presets}{29}{appendix.1.B}%
-\contentsline {chapter}{\numberline {C}API Endpoints Dashboard}{30}{appendix.1.C}%
+\contentsline {section}{3. Câu hỏi nghiên cứu}{2}{Item.10}%
+\contentsline {section}{4. Đối tượng và phạm vi nghiên cứu}{2}{Item.13}%
+\contentsline {section}{5. Phương pháp nghiên cứu}{3}{Item.13}%
+\contentsline {section}{6. Ý nghĩa khoa học và thực tiễn}{3}{Item.18}%
+\contentsline {chapter}{\numberline {1}TỔNG QUAN NGHIÊN CỨU}{5}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Tình hình cháy nổ tại các công trình cao tầng ở Việt Nam}{5}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Tổng quan về BIM trong phòng cháy chữa cháy}{5}{section.1.2}%
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\contentsline {section}{\numberline {1.3}Mô phỏng lan truyền khói}{6}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}Zone model (mô hình vùng)}{6}{subsection.1.3.1}%
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\contentsline {subsection}{\numberline {1.3.2}Field model (mô hình trường)}{6}{subsection.1.3.2}%
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\contentsline {section}{\numberline {1.4}Ứng dụng AI và học sâu trong dự đoán cháy}{7}{section.1.4}%
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\contentsline {section}{\numberline {1.5}IoT trong giám sát cháy}{7}{section.1.5}%
+\contentsline {section}{\numberline {1.6}Khoảng trống nghiên cứu}{7}{section.1.6}%
+\contentsline {chapter}{\numberline {2}CƠ SỞ LÝ THUYẾT}{9}{chapter.2}%
+\contentsline {section}{\numberline {2.1}BIM và chuẩn IFC}{9}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}Khái niệm BIM}{9}{subsection.2.1.1}%
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\contentsline {subsection}{\numberline {2.1.2}Chuẩn dữ liệu IFC}{9}{subsection.2.1.2}%
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\contentsline {section}{\numberline {2.2}Mô hình đồ thị tòa nhà (Building Graph)}{10}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Định nghĩa đồ thị}{10}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Phân loại node}{10}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Phân loại edge}{10}{subsection.2.2.3}%
+\contentsline {section}{\numberline {2.3}Mô phỏng cháy zone-model — CFAST}{11}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Nguyên lý mô hình hai vùng (Two-Zone Model)}{11}{subsection.2.3.1}%
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\contentsline {subsection}{\numberline {2.3.2}Đầu vào CFAST}{11}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Đầu ra CFAST}{11}{subsection.2.3.3}%
+\contentsline {section}{\numberline {2.4}Mô phỏng cháy field-model — FDS}{11}{section.2.4}%
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\contentsline {section}{\numberline {2.5}Cảm biến ảo và IoT giả lập}{12}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Mô hình 3 lớp dữ liệu}{12}{subsection.2.5.1}%
+\contentsline {subsection}{\numberline {2.5.2}Các loại cảm biến}{12}{subsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.5.3}Các preset nhiễu}{12}{subsection.2.5.3}%
+\contentsline {section}{\numberline {2.6}Mạng nơ-ron đồ thị (Graph Neural Networks)}{12}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}Tổng quan GNN}{12}{subsection.2.6.1}%
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\contentsline {subsection}{\numberline {2.6.2}Temporal GNN}{13}{subsection.2.6.2}%
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\contentsline {subsection}{\numberline {2.6.3}Multi-task learning}{13}{subsection.2.6.3}%
+\contentsline {section}{\numberline {2.7}Quy chuẩn và tiêu chuẩn tham chiếu}{13}{section.2.7}%
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\contentsline {chapter}{\numberline {3}PHƯƠNG PHÁP NGHIÊN CỨU}{15}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Pipeline tổng thể}{15}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Module BIM/IFC-to-Graph}{16}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Quy trình xử lý}{16}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Output}{16}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Fallback}{16}{subsection.3.2.3}%
+\contentsline {section}{\numberline {3.3}Thiết kế kịch bản cháy}{16}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Nhóm biến và cấu hình thí nghiệm}{16}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Lấy mẫu kịch bản}{18}{subsection.3.3.2}%
+\contentsline {section}{\numberline {3.4}Mô phỏng CFAST}{18}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Thiết lập mô phỏng}{18}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Batch simulation}{18}{subsection.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.3}Post-processing}{18}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.4}Quy tắc tạo nhãn P0}{19}{subsection.3.4.4}%
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\contentsline {section}{\numberline {3.5}Đối sánh CFAST--FDS}{19}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Cơ chế quy đổi và metrics đối sánh}{20}{subsection.3.5.1}%
+\contentsline {section}{\numberline {3.6}Mô phỏng IoT giả lập}{20}{section.3.6}%
+\contentsline {subsection}{\numberline {3.6.1}Quy trình tạo dữ liệu IoT}{20}{subsection.3.6.1}%
+\contentsline {subsection}{\numberline {3.6.2}Quy tắc chống label leakage}{21}{subsection.3.6.2}%
+\contentsline {section}{\numberline {3.7}Xây dựng dataset}{21}{section.3.7}%
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\contentsline {section}{\numberline {3.8}Mô hình AI}{21}{section.3.8}%
+\contentsline {subsection}{\numberline {3.8.1}Lộ trình phát triển mô hình}{21}{subsection.3.8.1}%
+\contentsline {subsection}{\numberline {3.8.2}Kiến trúc mô hình chính (BAT-GNN)}{22}{subsection.3.8.2}%
+\contentsline {subsection}{\numberline {3.8.3}Loss functions}{23}{subsection.3.8.3}%
+\contentsline {section}{\numberline {3.9}Đánh giá mô hình}{23}{section.3.9}%
+\contentsline {subsection}{\numberline {3.9.1}Metrics}{23}{subsection.3.9.1}%
+\contentsline {subsection}{\numberline {3.9.2}Tiêu chí thành công P0}{23}{subsection.3.9.2}%
+\contentsline {subsection}{\numberline {3.9.3}Phân chia dữ liệu}{24}{subsection.3.9.3}%
+\contentsline {subsection}{\numberline {3.9.4}Ablation study}{24}{subsection.3.9.4}%
+\contentsline {section}{\numberline {3.10}Dashboard prototype}{24}{section.3.10}%
+\contentsline {subsection}{\numberline {3.10.1}Chức năng}{24}{subsection.3.10.1}%
+\contentsline {subsection}{\numberline {3.10.2}Công nghệ}{25}{subsection.3.10.2}%
+\contentsline {chapter}{\numberline {4}KẾT QUẢ DỰ KIẾN VÀ KẾ HOẠCH THỰC HIỆN}{26}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Sản phẩm dự kiến}{26}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Kế hoạch thực hiện}{27}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Phân công nhiệm vụ}{28}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Điều kiện thực hiện}{29}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Phần mềm}{29}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Phần cứng}{29}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Tài liệu và dữ liệu}{29}{subsection.4.4.3}%
+\contentsline {section}{\numberline {4.5}Rủi ro và phương án giảm thiểu rủi ro}{29}{section.4.5}%
+\contentsline {chapter}{\numberline {5}GIẢ ĐỊNH VÀ GIỚI HẠN NGHIÊN CỨU}{31}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Giả định nghiên cứu}{31}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Giới hạn nghiên cứu}{31}{section.5.2}%
+\contentsline {chapter}{KẾT LUẬN}{33}{chapter*.27}%
+\contentsline {section}{1. Tóm tắt}{33}{chapter*.27}%
+\contentsline {section}{2. Tính mới và đóng góp dự kiến}{33}{chapter*.27}%
+\contentsline {section}{3. Giới hạn nghiên cứu}{33}{Item.51}%
+\contentsline {section}{4. Hướng phát triển tương lai}{34}{Item.51}%
+\contentsline {chapter}{TÀI LIỆU THAM KHẢO}{35}{chapter*.28}%
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\xpg@aux {}{english}
+\xpg@aux {}{vietnamese}
+\contentsline {chapter}{\numberline {A}Ma trận yếu tố kịch bản chi tiết}{37}{appendix.1.A}%
+\contentsline {section}{\numberline {A.1}Mở rộng P1 (tùy chọn)}{37}{section.1.A.1}%
+\contentsline {section}{\numberline {A.2}Mở rộng P2 (ngoài cam kết bắt buộc)}{37}{section.1.A.2}%
+\contentsline {chapter}{\numberline {B}Chi tiết IoT Presets}{38}{appendix.1.B}%
+\contentsline {chapter}{\numberline {C}API Endpoints Dashboard}{39}{appendix.1.C}%

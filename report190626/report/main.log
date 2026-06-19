@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.5.5)  19 JUN 2026 21:58
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.5.5)  19 JUN 2026 22:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -8,8 +8,8 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
 (D:\Apps\AppData\MikTex\tex/latex/extsizes\extreport.cls
 Document Class: extreport 1996/10/08 v1.0 Non Standard LaTeX document class
-(D:\Apps\AppData\MikTex\tex/latex/base\size10.clo
-File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+(D:\Apps\AppData\MikTex\tex/latex/base\size12.clo
+File: size12.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
 )
 (D:\Apps\AppData\MikTex\tex/latex/base\exscale.sty
 Package: exscale 2025/06/05 v2.1i Standard LaTeX package exscale
@@ -1370,12 +1370,7 @@ Package pdfcol Info: pdfTeX's color stacks are not available.
 ))
 \@quotelevel=\count540
 \@quotereset=\count541
-
-
-LaTeX Warning: Unused global option(s):
-    [13pt].
-
-(main.aux)
+ (main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 15.
@@ -1481,15 +1476,15 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 * \textheight=702.78308pt
 * \oddsidemargin=27.31465pt
 * \evensidemargin=27.31465pt
-* \topmargin=-40.1381pt
-* \headheight=14.0pt
+* \topmargin=-42.1381pt
+* \headheight=16.0pt
 * \headsep=25.0pt
-* \topskip=10.0pt
+* \topskip=12.0pt
 * \footskip=30.0pt
-* \marginparwidth=57.0pt
-* \marginparsep=11.0pt
+* \marginparwidth=35.0pt
+* \marginparsep=10.0pt
 * \columnsep=10.0pt
-* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -1520,13 +1515,12 @@ Package biblatex Info: ... file 'english.lbx' found.
 (D:\Apps\AppData\MikTex\tex/latex/biblatex/lbx\english.lbx
 File: english.lbx 2025/07/10 v3.21 biblatex localization (PK/MW)
 ))
-Package biblatex Info: Trying to load language 'vietnamese'...
-Package biblatex Info: ... file 'vietnamese.lbx' not found.
+Package biblatex Info: Trying to load language 'vietnamese' -> 'english'...
+Package biblatex Info: ... file 'english.lbx' found.
 
-
-Package biblatex Warning: Language 'vietnamese' not supported.
-(biblatex)                Using dummy definitions on input line 15.
-
+(D:\Apps\AppData\MikTex\tex/latex/biblatex/lbx\english.lbx
+File: english.lbx 2025/07/10 v3.21 biblatex localization (PK/MW)
+)
 Package biblatex Info: XeTeX detected.
 (biblatex)             Assuming input encoding 'utf8'.
 Package biblatex Info: Automatic encoding selection.
@@ -1535,11 +1529,12 @@ Package biblatex Info: Automatic encoding selection.
 
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
-(main.bbl)
+ (main.bbl)
 Package biblatex Info: Reference section=0 on input line 15.
 Package biblatex Info: Reference segment=0 on input line 15.
 Package hyperref Info: Link coloring ON on input line 15.
- (D:\Apps\AppData\MikTex\tex/latex/pdflscape\pdflscape.sty
+
+(D:\Apps\AppData\MikTex\tex/latex/pdflscape\pdflscape.sty
 Package: pdflscape 2022-10-27 v0.13 Display of landscape pages in PDF
 
 (D:\Apps\AppData\MikTex\tex/latex/pdflscape\pdflscape-nometadata.sty
@@ -1566,15 +1561,15 @@ Package pdflscape Info: Auto-detected driver: dvipdfm (xetex) on input line 98.
 * \textheight=731.23584pt
 * \oddsidemargin=13.08827pt
 * \evensidemargin=13.08827pt
-* \topmargin=-54.36449pt
-* \headheight=14.0pt
+* \topmargin=-56.36449pt
+* \headheight=16.0pt
 * \headsep=25.0pt
-* \topskip=10.0pt
+* \topskip=12.0pt
 * \footskip=30.0pt
-* \marginparwidth=57.0pt
-* \marginparsep=11.0pt
+* \marginparwidth=35.0pt
+* \marginparsep=10.0pt
 * \columnsep=10.0pt
-* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
 * \hoffset=0.0pt
 * \voffset=0.0pt
 * \mag=1000
@@ -1616,165 +1611,125 @@ File: se-ascii-print.def 2019/11/29 v1.12 stringenc: Printable ASCII characters
 \tf@lof=\write6
 \openout6 = `main.lof'.
 
- (main.lot)
+ (main.lot [5])
 \tf@lot=\write7
 \openout7 = `main.lot'.
 
- [5]
-(chapters/introduction.tex [1
 
-] [2]) (chapters/chapter1.tex [3]
+[6] (chapters/introduction.tex [1
+
+] [2] [3]) (chapters/chapter1.tex [4]
 Chương 1.
-[4
+[5
 
-] [5]) (chapters/chapter2.tex [6]
+] [6] [7]) (chapters/chapter2.tex [8]
 Chương 2.
-[7
+[9
 
-] [8] [9] [10]) (chapters/chapter3.tex [11]
+] [10] [11] [12] [13]) (chapters/chapter3.tex [14]
 Chương 3.
-
-Overfull \hbox (26.4075pt too wide) in paragraph at lines 108--109
- [][] 
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 136--136
-[]|\TU/CourierNew(0)/m/n/10 building_graph.json\TU/TimesNewRoman(0)/m/n/10 ,
- []
-
-[12
+[15
 
 ]
-Overfull \hbox (8.02786pt too wide) in paragraph at lines 150--151
-[]\TU/TimesNewRoman(0)/b/n/10 Parse IFC: \TU/TimesNewRoman(0)/m/n/10 Sử dụng th
-ư viện \TU/CourierNew(0)/m/n/10 IfcOpenShell \TU/TimesNewRoman(0)/m/n/10 để trí
-ch xuất các entity: \TU/CourierNew(0)/m/n/10 IfcSpace\TU/TimesNewRoman(0)/m/n/1
-0 , \TU/CourierNew(0)/m/n/10 IfcDoor\TU/TimesNewRoman(0)/m/n/10 , \TU/CourierNe
-w(0)/m/n/10 IfcWindow\TU/TimesNewRoman(0)/m/n/10 ,
+Underfull \hbox (badness 6428) in paragraph at lines 155--156
+[]\TU/TimesNewRoman(0)/b/n/12 Parse IFC: \TU/TimesNewRoman(0)/m/n/12 Sử dụng \T
+U/CourierNew(0)/m/n/12 IfcOpenShell \TU/TimesNewRoman(0)/m/n/12 để trích xuất \
+TU/CourierNew(0)/m/n/12 IfcSpace\TU/TimesNewRoman(0)/m/n/12 , \TU/CourierNew(0)
+/m/n/12 IfcDoor\TU/TimesNewRoman(0)/m/n/12 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 200--200
-[]|\TU/CourierNew(0)/m/n/10 room_area\TU/TimesNewRoman(0)/m/n/10 , \TU/CourierN
-ew(0)/m/n/10 room_volume\TU/TimesNewRoman(0)/m/n/10 ,
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
+[]|\TU/CourierNew(0)/m/n/12 room_area\TU/TimesNewRoman(0)/m/n/12 , \TU/CourierN
+ew(0)/m/n/12 room_volume\TU/TimesNewRoman(0)/m/n/12 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 200--200
-[]|\TU/CourierNew(0)/m/n/10 sensor_sampling_rate\TU/TimesNewRoman(0)/m/n/10 , \
-TU/CourierNew(0)/m/n/10 sensor_delay\TU/TimesNewRoman(0)/m/n/10 ,
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
+[]|\TU/CourierNew(0)/m/n/12 opening_area\TU/TimesNewRoman(0)/m/n/12 ,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 200--200
-[]|\TU/CourierNew(0)/m/n/10 smoke_label\TU/TimesNewRoman(0)/m/n/10 , \TU/Courie
-rNew(0)/m/n/10 arrival_time\TU/TimesNewRoman(0)/m/n/10 ,
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
+[]|\TU/CourierNew(0)/m/n/12 HRR(t)\TU/TimesNewRoman(0)/m/n/12 , \TU/CourierNew(
+0)/m/n/12 growth_class\TU/TimesNewRoman(0)/m/n/12 ,
  []
 
-[13]
-Overfull \hbox (4.22165pt too wide) in paragraph at lines 205--206
-\TU/CourierNew(0)/m/n/10 fire_floor\TU/TimesNewRoman(0)/m/n/10 , \TU/CourierNew
-(0)/m/n/10 HRR_config\TU/TimesNewRoman(0)/m/n/10 , \TU/CourierNew(0)/m/n/10 doo
-r_state_config\TU/TimesNewRoman(0)/m/n/10 , \TU/CourierNew(0)/m/n/10 system_sta
-te_config\TU/TimesNewRoman(0)/m/n/10 , \TU/CourierNew(0)/m/n/10 boundary_config
-\TU/TimesNewRoman(0)/m/n/10 . 
+
+Underfull \hbox (badness 10000) in paragraph at lines 201--201
+[]|\TU/CourierNew(0)/m/n/12 sprinkler_state\TU/TimesNewRoman(0)/m/n/12 ,
  []
 
-[14] [15] [16]
-Overfull \hbox (1.7306pt too wide) in paragraph at lines 381--382
-[]\TU/TimesNewRoman(0)/b/n/10 Mức P1/P2 (Mở rộng): \TU/CourierNew(0)/m/n/10 nex
-t_affected_node \TU/TimesNewRoman(0)/m/n/10 (node tiếp theo bị ảnh hưởng) và \T
-U/CourierNew(0)/m/n/10 smoke_path \TU/TimesNewRoman(0)/m/n/10 (đường
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 216--216
+[]|\TU/CourierNew(0)/m/n/12 noise_preset\TU/TimesNewRoman(0)/m/n/12 , \TU/Couri
+erNew(0)/m/n/12 missing_mask\TU/TimesNewRoman(0)/m/n/12 , \TU/CourierNew(0)/m/n
+/12 fault_type\TU/TimesNewRoman(0)/m/n/12 ,
  []
 
-[17] [18]) (chapters/chapter4.tex [19]
+
+Underfull \hbox (badness 10000) in paragraph at lines 231--231
+[]|\TU/CourierNew(0)/m/n/12 obscuration_threshold\TU/TimesNewRoman(0)/m/n/12 , 
+\TU/CourierNew(0)/m/n/12 persistence_steps\TU/TimesNewRoman(0)/m/n/12 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 231--231
+[]|\TU/CourierNew(0)/m/n/12 arrival_time_abs\TU/TimesNewRoman(0)/m/n/12 , \TU/C
+ourierNew(0)/m/n/12 time_to_arrival\TU/TimesNewRoman(0)/m/n/12 ,
+ []
+
+[17] [18] [19] [20] [21] [22]
+Underfull \hbox (badness 1033) in paragraph at lines 515--516
+[]\TU/TimesNewRoman(0)/m/n/12 MAE \TU/CourierNew(0)/m/n/12 time_to_arrival \TU/
+TimesNewRoman(0)/m/n/12 không lớn hơn baseline không graph mạnh nhất; nếu
+ []
+
+[23] [24]) (chapters/chapter4.tex [25]
 Chương 4.
-[20
 
-]
-Missing character: There is no , in font nullfont!
-[21] [22]
-Underfull \hbox (badness 2735) in paragraph at lines 236--236
-\TU/TimesNewRoman(0)/m/n/10 các thư viện uy tín (IEEE,
+Underfull \hbox (badness 10000) in paragraph at lines 34--34
+[]|\TU/TimesNewRoman(0)/m/n/12 Có scenario/fire-node/fire-floor split, FDS
  []
 
 
-Underfull \hbox (badness 2662) in paragraph at lines 236--236
-\TU/TimesNewRoman(0)/m/n/10 làm surrogate model nghiên
+Underfull \hbox (badness 1297) in paragraph at lines 34--34
+\TU/TimesNewRoman(0)/m/n/12 reference set, ablation, robustness, inference
  []
 
+[26
 
-Underfull \hbox (badness 2556) in paragraph at lines 236--236
-[]|\TU/TimesNewRoman(0)/m/n/10 Đánh giá sai hiệu năng AI
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 236--236
-[]|\TU/TimesNewRoman(0)/m/n/10 Áp dụng dropout, weight
- []
-
-
-Underfull \hbox (badness 1028) in paragraph at lines 236--236
-\TU/TimesNewRoman(0)/m/n/10 decay, early stopping và thử
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 236--236
-\TU/TimesNewRoman(0)/m/n/10 nghiệm hold-out floor/hold-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 236--236
-[]|\TU/TimesNewRoman(0)/m/n/10 Xây dựng lớp
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 236--236
-\TU/CourierNew(0)/m/n/10 iot_noisy_stream
- []
-
-) [23
-
-] (chapters/assumptions_limitations.tex [24]
+] [27] [28]) (chapters/assumptions_limitations.tex [29] [30]
 Chương 5.
+[31
 
-Overfull \hbox (9.43246pt too wide) in paragraph at lines 16--17
-[]\TU/TimesNewRoman(0)/b/n/10 Hệ thống cảm biến ảo đại diện: \TU/TimesNewRoman(
-0)/m/n/10 Giả định dữ liệu thu thập từ các cảm biến ảo ở lớp \TU/CourierNew(0)/
-m/n/10 virtual_sensor_clean
- []
+]) (chapters/conclusion.tex [32] [33
 
-) (chapters/conclusion.tex [25
-
-]) [26
+]) [34] [35
 
 ]
-Overfull \hbox (16.27202pt too wide) in paragraph at lines 66--66
-[]\TU/TimesNewRoman(0)/m/n/10 J. C. P. Cheng, Y. Tan, and Y. Song, “Integrating
- BIM and fire simulation for building emergency management,”
+Underfull \hbox (badness 1755) in paragraph at lines 66--66
+\TU/TimesNewRoman(0)/m/n/12 Attention Networks,” in \TU/TimesNewRoman(0)/m/it/1
+2 International Conference on Learning Representations
  []
 
-
-Overfull \hbox (8.23288pt too wide) in paragraph at lines 66--66
-[]\TU/TimesNewRoman(0)/m/n/10 International Organization for Standardization, \
-TU/TimesNewRoman(0)/m/it/10 ISO 13571 – Life-threatening components of fire – G
-uidelines
- []
-
-(back/appendix.tex [27
-
-]
+(back/appendix.tex [36]
 Phụ lục A.
-[28
+
+Underfull \hbox (badness 10000) in paragraph at lines 30--30
+[]|\TU/CourierNew(0)/m/n/12 wind_speed\TU/TimesNewRoman(0)/m/n/12 , \TU/Courier
+New(0)/m/n/12 wind_dir_sin\TU/TimesNewRoman(0)/m/n/12 ,
+ []
+
+[37
 
 ]
 Phụ lục B.
-[29
+[38
 
 ]
 Phụ lục C.
-) [30
+) [39
 
 ] (main.aux)
  ***********
@@ -1786,12 +1741,12 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 43782 strings out of 402987
- 905139 string characters out of 5453079
- 1860656 words of memory out of 5000000
- 71847 multiletter control sequences out of 15000+600000
- 630180 words of font info for 99 fonts, out of 8000000 for 9000
+ 43886 strings out of 402987
+ 908029 string characters out of 5453079
+ 1878392 words of memory out of 5000000
+ 71935 multiletter control sequences out of 15000+600000
+ 634865 words of font info for 122 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 89i,12n,97p,1199b,4973s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 89i,12n,97p,1199b,6985s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (36 pages).
+Output written on main.pdf (46 pages).

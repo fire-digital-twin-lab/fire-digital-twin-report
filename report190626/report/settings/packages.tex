@@ -27,7 +27,7 @@
   bottom=2.5cm,
   left=3.5cm,
   right=2.0cm,
-  headheight=14pt
+  headheight=16pt
 ]{geometry}
 \usepackage{setspace}
 \onehalfspacing
@@ -36,6 +36,7 @@
 \usepackage{indentfirst}     % Thụt đầu dòng đoạn đầu tiên
 \setlength{\parindent}{1.27cm}
 \setlength{\parskip}{6pt}
+\setlength{\emergencystretch}{3em}
 
 % --- Tiêu đề chương/mục ---
 \usepackage{titlesec}
@@ -103,9 +104,12 @@
 \usepackage[
   backend=biber,
   style=ieee,
-  sorting=nyt,
+    sorting=none,
   maxbibnames=99,
+  language=english,
+  autolang=other,
 ]{biblatex}
+\DeclareLanguageMapping{vietnamese}{english}
 \addbibresource{references.bib}
 
 % --- Hyperlink ---
