@@ -1,0 +1,33 @@
+% ============================================================
+% assumptions_limitations.tex — Giả định và giới hạn nghiên cứu
+% ============================================================
+
+\chapter{GIẢ ĐỊNH VÀ GIỚI HẠN NGHIÊN CỨU}
+\label{chap:assumptions}
+
+Để đảm bảo tính khả thi và tập trung vào mục tiêu khoa học cốt lõi của đề tài trong giai đoạn đề cương này, nhóm đề xuất các giả định và xác định rõ các giới hạn nghiên cứu chính.
+
+\section{Giả định nghiên cứu}
+\label{sec:giadinh}
+
+\begin{itemize}
+  \item \textbf{Tính chính xác của mô hình hình học BIM:} Giả định mô hình BIM trích xuất từ Revit qua tệp IFC phản ánh đúng các kích thước thực tế của tòa nhà mà không bị sai sót về mặt dựng hình kiến trúc.
+  \item \textbf{Cơ chế động lực học khói trong CFAST:} Giả định mô hình 2 vùng (zone model) của CFAST đủ tin cậy để mô tả phân lớp nhiệt độ và chiều cao khói ở quy mô phòng đơn thông thường, làm cơ sở dữ liệu huấn luyện sơ bộ cho AI.
+  \item \textbf{Hệ thống cảm biến ảo đại diện:} Giả định dữ liệu thu thập từ các cảm biến ảo ở lớp \texttt{virtual\_sensor\_clean} tương đồng về mặt nguyên lý vật lý đối với việc ghi nhận trạng thái khói và nhiệt độ của cảm biến phần cứng thật.
+\end{itemize}
+
+\section{Giới hạn nghiên cứu}
+\label{sec:gioihan}
+
+Nghiên cứu này là một prototype thử nghiệm học thuật và có các giới hạn bắt buộc sau:
+
+\begin{enumerate}
+  \item \textbf{Chưa có dữ liệu cháy thực tế:} Do điều kiện phòng thí nghiệm và chi phí, đề tài hoàn toàn dựa vào dữ liệu sinh ra từ mô phỏng số (CFAST/FDS), không có dữ liệu thực nghiệm từ các đám cháy thật.
+  \item \textbf{Chưa có thiết bị cảm biến IoT thật:} Hệ thống cảm biến hoàn toàn là giả lập phần mềm (Virtual IoT), chưa tích hợp phần cứng cảm biến và đường truyền vật lý thực tế.
+  \item \textbf{Độ chính xác mô phỏng:} CFAST sử dụng mô hình vùng đơn giản nên kết quả có sai số ở các hành lang dài hoặc không gian mở lớn (atrium) so với mô phỏng CFD 3D.
+  \item \textbf{Kiểm chứng chọn lọc với FDS:} FDS đòi hỏi thời gian tính toán quá lớn nên nhóm chỉ sử dụng để kiểm chứng chọn lọc cho tối thiểu 3 kịch bản P0, không thể chạy kiểm chứng cho toàn bộ tập dữ liệu cháy.
+  \item \textbf{Ngưỡng nguy hiểm (Hazard labels):} Các ngưỡng kích hoạt cảnh báo khói, nhiệt độ và nồng độ CO sử dụng để tạo nhãn là các giá trị proxy nghiên cứu (dựa trên tham chiếu ISO 13571), chưa được thẩm định pháp lý bởi cơ quan PCCC có thẩm quyền.
+  \item \textbf{Bản chất mô hình AI:} Mô hình deep learning đóng vai trò là một surrogate model (mô hình thay thế tính toán nhanh), không thay thế cho các phần mềm mô phỏng CFD chuyên sâu trong khâu thiết kế chi tiết.
+  \item \textbf{Dashboard giám sát:} Giao diện dashboard chỉ phục vụ mục đích trình diễn khả năng replay kịch bản và suy luận dự đoán của AI, hoàn toàn không kết nối điều khiển hay can thiệp vào hệ thống PCCC thực tế của tòa nhà.
+  \item \textbf{Giá trị pháp lý:} Đề tài này không đưa ra kết luận pháp lý, không phục vụ trực tiếp cho công tác thẩm duyệt phòng cháy chữa cháy của các công trình thực tế.
+\end{enumerate}

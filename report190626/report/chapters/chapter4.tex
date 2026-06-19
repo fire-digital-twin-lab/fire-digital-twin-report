@@ -10,29 +10,26 @@
 \label{sec:sanpham}
 % ---------------------------------------------------------------
 
-Bảng~\ref{tab:deliverables} liệt kê các sản phẩm dự kiến của đề tài.
+Bảng~\ref{tab:deliverables} liệt kê các sản phẩm dự kiến cùng tiêu chí nghiệm thu của đề tài.
 
 \begin{table}[H]
 \centering
-\caption{Danh sách sản phẩm dự kiến}
+\caption{Danh sách sản phẩm dự kiến và tiêu chí nghiệm thu}
 \label{tab:deliverables}
-\begin{tabularx}{\textwidth}{X c}
+\begin{tabularx}{\textwidth}{l c X}
 \toprule
-\textbf{Sản phẩm} & \textbf{Bắt buộc} \\
+\textbf{Sản phẩm} & \textbf{Bắt buộc} & \textbf{Tiêu chí nghiệm thu / Đạt} \\
 \midrule
-Báo cáo nghiên cứu                                     & Có \\
-Module BIM/IFC-to-Graph                                 & Có \\
-Building graph của tòa thực tế hoặc cụm tầng           & Có \\
-Layout thấp tầng debug                                  & Có \\
-Bộ kịch bản cháy P0/P1                                 & Có \\
-Dataset từ CFAST                                        & Có \\
-FDS validation P0/P1                                    & Có (tối thiểu P0) \\
-Virtual IoT dataset (clean/noisy/faulty)                & Có \\
-AI dataset graph + time-series                          & Có \\
-Baseline models (rule-based, ML/MLP)                    & Có \\
-Temporal GNN / BAT-GNN prototype                       & Có \\
-Dashboard prototype (replay + inference)                & Có \\
-Evaluation report (metrics, ablation, comparison)       & Có \\
+Báo cáo nghiên cứu & Có & Đầy đủ cấu trúc đề cương nghiên cứu khoa học, trích dẫn chuẩn hóa. \\
+Module BIM/IFC-to-Graph & Có & Trích xuất thành công node/edge từ file \texttt{.ifc} và xuất ra tệp tin graph JSON. \\
+Building graph tòa nhà & Có & Biểu diễn đúng topology phòng/hành lang/cầu thang dưới dạng NetworkX graph. \\
+Bộ kịch bản cháy CFAST & Có & Hàng trăm kịch bản cháy được sinh tự động bằng script Python. \\
+FDS validation cases & Có & Tối thiểu 3 case mô phỏng FDS được thiết lập và chạy thành công phục vụ đối sánh. \\
+Virtual IoT dataset & Có & Sinh được chuỗi thời gian dữ liệu cảm biến ảo 3 lớp (clean, noisy, faulty) từ mô phỏng. \\
+Baseline models & Có & Có ít nhất 2 mô hình baseline chạy được và có metric đánh giá cụ thể. \\
+Temporal GNN/BAT-GNN & Có & Có prototype mô hình được thiết lập và huấn luyện/suy luận thành công, có đối sánh với baseline. \\
+Dashboard prototype & Có & Replay được dữ liệu cảm biến từ pipeline và hiển thị dự đoán trực quan, không dùng số liệu hard-code. \\
+Evaluation report & Có & Báo cáo đầy đủ các bảng metrics đánh giá, scenario split, ablation study và phân tích giới hạn. \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -209,3 +206,32 @@ Tất cả thành viên đều tham gia viết báo cáo ở tuần 19--20. Phâ
   \item Quy chuẩn QCVN 06:2022/BXD và các tiêu chuẩn liên quan.
   \item Các bài báo khoa học liên quan về GNN, fire prediction, BIM-to-simulation.
 \end{itemize}
+
+% ---------------------------------------------------------------
+\section{Rủi ro và phương án giảm thiểu rủi ro}
+\label{sec:ruiro}
+% ---------------------------------------------------------------
+
+Trong quá trình thực hiện đề tài, nhóm xác định được 10 rủi ro kỹ thuật chính và đề xuất các phương án giảm thiểu tương ứng được trình bày trong Bảng~\ref{tab:ruiro}.
+
+\begin{table}[H]
+\centering
+\caption{Bảng phân tích rủi ro và phương án giảm thiểu}
+\label{tab:ruiro}
+\begin{tabularx}{\textwidth}{c l X X}
+\toprule
+\textbf{STT} & \textbf{Yếu tố rủi ro} & \textbf{Hệ quả tiềm ẩn} & \textbf{Phương án fallback / Giảm thiểu} \\
+\midrule
+1 & Tài liệu không xác minh được & Lỗi học thuật nghiêm trọng & Chỉ sử dụng tài liệu có DOI thật, kiểm tra chéo thông qua các thư viện uy tín (IEEE, Springer, Elsevier). \\
+2 & Không có dữ liệu cháy thực tế & AI học mẫu giả lập, sai khác thực tế & Ghi rõ giới hạn; không tuyên bố thay thế CFD thật; chỉ dùng làm surrogate model nghiên cứu. \\
+3 & Ngưỡng hazard thiếu chuẩn hóa & Nhãn vùng nguy hiểm không đáng tin & Tham chiếu các ngưỡng độc tính và nhiệt độ từ tiêu chuẩn quốc tế ISO 13571 và NFPA 92. \\
+4 & File IFC bị lỗi khi export & Pipeline dữ liệu bị gián đoạn từ đầu & Sử dụng layout thấp tầng đơn giản để debug; vẽ lại thủ công kết nối thiếu trong NetworkX. \\
+5 & Mô phỏng FDS quá nặng & Trễ tiến độ kiểm chứng của đề tài & Giảm quy mô mesh; chỉ chạy các case P0 tối thiểu; tận dụng Google Colab hoặc Cloud. \\
+6 & Rò rỉ dữ liệu (data leakage) & Đánh giá sai hiệu năng AI (metric ảo) & Áp dụng quy tắc split độc lập theo kịch bản cháy; không chia chéo dữ liệu chuỗi thời gian. \\
+7 & Mô hình AI bị overfit & Khả năng tổng quát hóa kém trên layout mới & Áp dụng dropout, weight decay, early stopping và thử nghiệm hold-out floor/hold-out layout. \\
+8 & Luồng IoT giả lập quá sạch & AI không hoạt động được trong thực tế & Xây dựng lớp \texttt{iot\_noisy\_stream} bổ sung nhiễu Gauss, trễ cảm biến và lỗi mất dữ liệu ngẫu nhiên. \\
+9 & Dashboard bị hard-code & Demo rỗng, không chạy thực tế được & Kết nối API Backend FastAPI để replay dữ liệu động từ tệp mô phỏng và chạy inference trực tiếp. \\
+10 & Bùng nổ tổ hợp kịch bản cháy & Vượt quá khả năng tính toán & Áp dụng phương pháp scenario sampling có kiểm soát thay vì thử nghiệm toàn bộ Cartesian product. \\
+\bottomrule
+\end{tabularx}
+\end{table}

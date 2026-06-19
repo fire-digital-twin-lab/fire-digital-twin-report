@@ -10,7 +10,7 @@
 \addcontentsline{toc}{section}{1. Lý do chọn đề tài}
 % ---------------------------------------------------------------
 
-Trong những năm gần đây, các vụ cháy nổ tại các công trình cao tầng, chung cư và khu đô thị tại Việt Nam liên tục xảy ra với mức độ nghiêm trọng ngày càng tăng. Theo thống kê của Cục Cảnh sát Phòng cháy chữa cháy và Cứu nạn cứu hộ (C07), trung bình mỗi năm cả nước ghi nhận hàng nghìn vụ cháy, gây thiệt hại lớn về người và tài sản. Đặc biệt, trong các vụ cháy tại nhà cao tầng, \textbf{khói độc} — chứ không phải ngọn lửa trực tiếp — là nguyên nhân chính gây tử vong, khi nạn nhân bị ngạt khói trước khi lửa lan đến.
+Trong những năm gần đây, các vụ cháy nổ tại các công trình cao tầng, chung cư và khu đô thị tại Việt Nam liên tục xảy ra với mức độ nghiêm trọng ngày càng tăng. Theo thống kê của Cục Cảnh sát Phòng cháy chữa cháy và Cứu nạn cứu hộ (C07) \cite{c07_report}, trung bình mỗi năm cả nước ghi nhận hàng nghìn vụ cháy, gây thiệt hại lớn về người và tài sản. Đặc biệt, trong các vụ cháy tại nhà cao tầng, \textbf{khói độc} — chứ không phải ngọn lửa trực tiếp — là nguyên nhân chính gây tử vong \cite{iso13571, sfpe_handbook}, khi nạn nhân bị ngạt khói trước khi lửa lan đến.
 
 Quá trình lan truyền khói trong tòa nhà cao tầng phụ thuộc vào nhiều yếu tố phức tạp: cấu trúc kiến trúc, trạng thái cửa, hệ thống thông gió, cầu thang, trục kỹ thuật (shaft), và các hệ thống phòng cháy chữa cháy (PCCC) tự động. Hiện nay, việc dự đoán đường lan truyền khói chủ yếu dựa vào mô phỏng CFD (Computational Fluid Dynamics) với các phần mềm như FDS (Fire Dynamics Simulator), nhưng phương pháp này đòi hỏi thời gian tính toán lớn (hàng giờ đến hàng ngày cho một kịch bản), không phù hợp cho ứng dụng cảnh báo nhanh.
 
@@ -95,5 +95,10 @@ Xây dựng một prototype nghiên cứu end-to-end cho bài toán dự đoán 
   \item Pipeline có thể mở rộng và tùy biến cho các tòa nhà khác nhau thông qua mô hình BIM.
   \item Đóng góp cơ sở khoa học cho các nghiên cứu tiếp theo về ứng dụng AI trong lĩnh vực PCCC tại Việt Nam.
 \end{itemize}
+
+\vspace{12pt}
+\begin{notebox}
+\textbf{Lưu ý quan trọng:} Báo cáo này được trình bày dưới dạng \textbf{Đề cương nghiên cứu khoa học}, tập trung vào việc xác định bài toán, xây dựng cơ sở lý thuyết, thiết kế pipeline kỹ thuật và lập kế hoạch thực hiện. Các kết quả thực nghiệm chi tiết (tạo dataset thật, huấn luyện các mô hình học sâu, đánh giá độ bền vững và triển khai dashboard prototype) sẽ được tiến hành thực hiện và công bố đầy đủ trong báo cáo kết quả chính thức ở giai đoạn sau của đề tài.
+\end{notebox}
 
 

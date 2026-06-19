@@ -16,5 +16,203 @@
   {}
 \endgroup
 
+
+\refsection{0}
+  \datalist[entry]{nyt/global//global/global/global}
+    \entry{chen2023bimfire}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=39fcd302aa8b83c8a8a9a2481f9b1c7d}{%
+           family={Cheng},
+           familyi={C\bibinitperiod},
+           given={Jack\bibnamedelimb C.\bibnamedelimi P.},
+           giveni={J\bibinitperiod\bibinitdelim C\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=86c9ad54b8fd15fedc780dc646760060}{%
+           family={Tan},
+           familyi={T\bibinitperiod},
+           given={Yihai},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=7dacbb5a6e92ab16944d46ba03705563}{%
+           family={Song},
+           familyi={S\bibinitperiod},
+           given={Yang},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{62f3efce3e1e6984528d5a2a3efee2cf}
+      \strng{fullhash}{cf344cedf3c3622b107c1146b2a093be}
+      \strng{fullhashraw}{cf344cedf3c3622b107c1146b2a093be}
+      \strng{bibnamehash}{cf344cedf3c3622b107c1146b2a093be}
+      \strng{authorbibnamehash}{cf344cedf3c3622b107c1146b2a093be}
+      \strng{authornamehash}{62f3efce3e1e6984528d5a2a3efee2cf}
+      \strng{authorfullhash}{cf344cedf3c3622b107c1146b2a093be}
+      \strng{authorfullhashraw}{cf344cedf3c3622b107c1146b2a093be}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Automation in Construction}
+      \field{title}{{Integrating BIM and fire simulation for building emergency management}}
+      \field{volume}{125}
+      \field{year}{2021}
+      \field{pages}{103619}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.autcon.2021.103619
+      \endverb
+    \endentry
+    \entry{c07_report}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=04eab05d14f803c38af15272126d4723}{%
+           family={{Cục Cảnh sát PCCC và CNCH}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{04eab05d14f803c38af15272126d4723}
+      \strng{fullhash}{04eab05d14f803c38af15272126d4723}
+      \strng{fullhashraw}{04eab05d14f803c38af15272126d4723}
+      \strng{bibnamehash}{04eab05d14f803c38af15272126d4723}
+      \strng{authorbibnamehash}{04eab05d14f803c38af15272126d4723}
+      \strng{authornamehash}{04eab05d14f803c38af15272126d4723}
+      \strng{authorfullhash}{04eab05d14f803c38af15272126d4723}
+      \strng{authorfullhashraw}{04eab05d14f803c38af15272126d4723}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Bộ Công an, Việt Nam}
+      \field{title}{{Báo cáo tình hình cháy, nổ và công tác phòng cháy, chữa cháy, cứu nạn, cứu hộ định kỳ}}
+      \field{year}{2023}
+    \endentry
+    \entry{sfpe_handbook}{book}{}{}
+      \name{editor}{8}{}{%
+        {{hash=f04cd28eaf25fceb624d36ec4681e14e}{%
+           family={Hurley},
+           familyi={H\bibinitperiod},
+           given={Morgan\bibnamedelima J.},
+           giveni={M\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=1267a3d2e361d34cc8b54f1043d79dbc}{%
+           family={Gottuk},
+           familyi={G\bibinitperiod},
+           given={Daniel\bibnamedelima T.},
+           giveni={D\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=fbe3786a78d2efe1438ac551b34113a5}{%
+           family={Hall},
+           familyi={H\bibinitperiod},
+           given={John\bibnamedelima R.},
+           giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=64fe4235646b33c93d2de178fc0cae10}{%
+           family={Harada},
+           familyi={H\bibinitperiod},
+           given={Kazunori},
+           giveni={K\bibinitperiod}}}%
+        {{hash=ba56aa6937d8e62e8805ebe3f87c0850}{%
+           family={Kuligowski},
+           familyi={K\bibinitperiod},
+           given={Erica\bibnamedelima D.},
+           giveni={E\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=aa8f3ee51d80cca8782fd08a1b525503}{%
+           family={Puchovsky},
+           familyi={P\bibinitperiod},
+           given={Milosh},
+           giveni={M\bibinitperiod}}}%
+        {{hash=dbab2ef838fccd75be6c293c98d5e07a}{%
+           family={Watts},
+           familyi={W\bibinitperiod},
+           given={John\bibnamedelima M.},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=bfedd3deed61f0337a4cf4bc3457bc89}{%
+           family={Wieczorek},
+           familyi={W\bibinitperiod},
+           given={Christopher\bibnamedelima J.},
+           giveni={C\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{149c346e0b075634dcd4895e83c858e6}
+      \strng{fullhash}{70e78ce144e781a6b7032ded9745f14e}
+      \strng{fullhashraw}{70e78ce144e781a6b7032ded9745f14e}
+      \strng{bibnamehash}{70e78ce144e781a6b7032ded9745f14e}
+      \strng{editorbibnamehash}{70e78ce144e781a6b7032ded9745f14e}
+      \strng{editornamehash}{149c346e0b075634dcd4895e83c858e6}
+      \strng{editorfullhash}{70e78ce144e781a6b7032ded9745f14e}
+      \strng{editorfullhashraw}{70e78ce144e781a6b7032ded9745f14e}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{editor}
+      \field{labeltitlesource}{title}
+      \field{edition}{5th}
+      \field{title}{{SFPE Handbook of Fire Protection Engineering}}
+      \field{year}{2016}
+    \endentry
+    \entry{iso13571}{book}{}{}
+      \name{author}{1}{}{%
+        {{hash=7058e4bd76f877c52b621c942b30613c}{%
+           family={{International Organization for Standardization}},
+           familyi={I\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {ISO}%
+      }
+      \strng{namehash}{7058e4bd76f877c52b621c942b30613c}
+      \strng{fullhash}{7058e4bd76f877c52b621c942b30613c}
+      \strng{fullhashraw}{7058e4bd76f877c52b621c942b30613c}
+      \strng{bibnamehash}{7058e4bd76f877c52b621c942b30613c}
+      \strng{authorbibnamehash}{7058e4bd76f877c52b621c942b30613c}
+      \strng{authornamehash}{7058e4bd76f877c52b621c942b30613c}
+      \strng{authorfullhash}{7058e4bd76f877c52b621c942b30613c}
+      \strng{authorfullhashraw}{7058e4bd76f877c52b621c942b30613c}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{ISO 13571 -- Life-threatening components of fire -- Guidelines for the estimation of time to compromised tenability in fires}}
+      \field{year}{2012}
+    \endentry
+    \entry{wu2024fireai}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=307e04b4ad93ae76a6f0d70ae1a1a4ea}{%
+           family={Wu},
+           familyi={W\bibinitperiod},
+           given={Shichao},
+           giveni={S\bibinitperiod}}}%
+        {{hash=edfe43614e02d3d6f8f6b89b183b241f}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Lihua},
+           giveni={L\bibinitperiod}}}%
+        {{hash=b04f01043e46307098bc0f52b4a35e1d}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Yanhua},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=430f336ab8e23d0674f493a32ec8b841}{%
+           family={Lu},
+           familyi={L\bibinitperiod},
+           given={Jiping},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{436273a1372f1cf1ab8b044e0a155ccb}
+      \strng{fullhash}{2fb9aa939e11e9e4081319373676b3a3}
+      \strng{fullhashraw}{2fb9aa939e11e9e4081319373676b3a3}
+      \strng{bibnamehash}{2fb9aa939e11e9e4081319373676b3a3}
+      \strng{authorbibnamehash}{2fb9aa939e11e9e4081319373676b3a3}
+      \strng{authornamehash}{436273a1372f1cf1ab8b044e0a155ccb}
+      \strng{authorfullhash}{2fb9aa939e11e9e4081319373676b3a3}
+      \strng{authorfullhashraw}{2fb9aa939e11e9e4081319373676b3a3}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Fire Safety Journal}
+      \field{title}{{Real-time prediction of fire smoke propagation in buildings using graph neural networks}}
+      \field{volume}{140}
+      \field{year}{2023}
+      \field{pages}{103857}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.firesaf.2023.103857
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
 \endinput
 

@@ -71,7 +71,7 @@ Pipeline nghiên cứu bao gồm các bước chính được minh họa trong H
   \node[block] (dataset) at (12.8, 1.8) {Graph-Time-Series\\Dataset};
 
   % === HÀNG 3: AI & Dashboard ===
-  \node[block] (ai) at (0, -0.2) {AI Models (GNN)};
+  \node[block] (ai) at (0, -0.2) {AI Models:\\Baseline $\rightarrow$ GNN};
   \node[block] (api) at (3.2, -0.2) {Inference API};
   \node[block] (dash) at (6.4, -0.2) {Dashboard\\Prototype};
 
@@ -177,17 +177,20 @@ Các yếu tố (factor) ảnh hưởng đến kịch bản cháy được phân
 \label{tab:factorP0}
 \begin{tabularx}{\textwidth}{l l X}
 \toprule
-\textbf{Nhóm} & \textbf{Yếu tố} & \textbf{Biến} \\
+\textbf{Nhóm} & \textbf{Yếu tố} & \textbf{Biến / Tham số} \\
 \midrule
 Hình học  & Diện tích, thể tích, chiều cao phòng & \texttt{room\_area}, \texttt{room\_volume}, \texttt{ceiling\_height} \\
 Hình học  & Kết nối corridor/stair/shaft          & \texttt{adjacency}, \texttt{is\_vertical} \\
-Lỗ mở    & Diện tích, chiều cao cửa              & \texttt{opening\_area}, \texttt{opening\_height} \\
-Lỗ mở    & Trạng thái cửa                        & \texttt{door\_state} \\
+Lỗ mở     & Diện tích, chiều cao cửa              & \texttt{opening\_area}, \texttt{opening\_height} \\
+Lỗ mở     & Trạng thái cửa                        & \texttt{door\_state} \\
 Cháy      & Vị trí cháy                           & \texttt{fire\_node}, \texttt{fire\_floor} \\
 Cháy      & HRR, nhiên liệu, soot                 & \texttt{HRR(t)}, \texttt{growth\_class}, \texttt{soot\_yield} \\
 Biên      & Nhiệt độ ban đầu / ngoài trời         & \texttt{T\_initial}, \texttt{T\_out} \\
-Hệ thống & Sprinkler/hút khói/tăng áp             & \texttt{sprinkler\_state}, \texttt{exhaust\_state} \\
-Label     & Nhãn khói và thời gian đến             & \texttt{smoke\_label}, \texttt{arrival\_time} \\
+Hệ thống  & Sprinkler/hút khói/tăng áp             & \texttt{sprinkler\_state}, \texttt{exhaust\_state} \\
+Mô phỏng  & Thời gian mô phỏng, bước kết xuất     & \texttt{t\_end}, \texttt{dt\_out}, \texttt{scenario\_id} \\
+IoT       & Tần suất lấy mẫu, trễ, mất dữ liệu    & \texttt{sensor\_sampling\_rate}, \texttt{sensor\_delay}, \texttt{missing\_mask} \\
+Dataset   & Phân chia tập dữ liệu, quy tắc xử lý  & \texttt{split\_id}, \texttt{post\_processing\_rule} \\
+Label     & Nhãn khói, thời điểm khói đến, ngưỡng  & \texttt{smoke\_label}, \texttt{arrival\_time}, \texttt{label\_threshold\_source} \\
 \bottomrule
 \end{tabularx}
 \end{table}

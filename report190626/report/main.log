@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.5.5)  19 JUN 2026 21:05
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.5.5)  19 JUN 2026 21:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1623,18 +1623,15 @@ File: se-ascii-print.def 2019/11/29 v1.12 stringenc: Printable ASCII characters
  [5]
 (chapters/introduction.tex [1
 
-]) (chapters/chapter1.tex [2]
+] [2]) (chapters/chapter1.tex [3]
 Chương 1.
+[4
 
-LaTeX Warning: Citation '' on page 3 undefined on input line 35.
-
-[3
-
-] [4]) (chapters/chapter2.tex [5]
+] [5]) (chapters/chapter2.tex [6]
 Chương 2.
-[6
+[7
 
-] [7] [8] [9]) (chapters/chapter3.tex [10]
+] [8] [9] [10]) (chapters/chapter3.tex [11]
 Chương 3.
 
 Overfull \hbox (26.4075pt too wide) in paragraph at lines 106--107
@@ -1647,7 +1644,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 131--131
 U/CourierNew(0)/m/n/10 node_map.csv\TU/TimesNewRoman(0)/m/n/10 ,
  []
 
-[11
+[12
 
 ]
 Overfull \hbox (8.02786pt too wide) in paragraph at lines 145--146
@@ -1659,7 +1656,25 @@ w(0)/m/n/10 IfcWindow\TU/TimesNewRoman(0)/m/n/10 ,
  []
 
 
-Overfull \hbox (4.22165pt too wide) in paragraph at lines 197--198
+Underfull \hbox (badness 10000) in paragraph at lines 195--195
+[]|\TU/CourierNew(0)/m/n/10 room_area\TU/TimesNewRoman(0)/m/n/10 , \TU/CourierN
+ew(0)/m/n/10 room_volume\TU/TimesNewRoman(0)/m/n/10 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 195--195
+[]|\TU/CourierNew(0)/m/n/10 sensor_sampling_rate\TU/TimesNewRoman(0)/m/n/10 , \
+TU/CourierNew(0)/m/n/10 sensor_delay\TU/TimesNewRoman(0)/m/n/10 ,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 195--195
+[]|\TU/CourierNew(0)/m/n/10 smoke_label\TU/TimesNewRoman(0)/m/n/10 , \TU/Courie
+rNew(0)/m/n/10 arrival_time\TU/TimesNewRoman(0)/m/n/10 ,
+ []
+
+
+Overfull \hbox (4.22165pt too wide) in paragraph at lines 200--201
 \TU/CourierNew(0)/m/n/10 fire_floor\TU/TimesNewRoman(0)/m/n/10 , \TU/CourierNew
 (0)/m/n/10 HRR_config\TU/TimesNewRoman(0)/m/n/10 , \TU/CourierNew(0)/m/n/10 doo
 r_state_config\TU/TimesNewRoman(0)/m/n/10 , \TU/CourierNew(0)/m/n/10 system_sta
@@ -1667,8 +1682,8 @@ te_config\TU/TimesNewRoman(0)/m/n/10 , \TU/CourierNew(0)/m/n/10 boundary_config
 \TU/TimesNewRoman(0)/m/n/10 . 
  []
 
-[12] [13] [14]
-Overfull \hbox (48.27043pt too wide) in paragraph at lines 346--347
+[13] [14] [15]
+Overfull \hbox (48.27043pt too wide) in paragraph at lines 349--350
 []\TU/TimesNewRoman(0)/b/n/10 Decoders: \TU/TimesNewRoman(0)/m/n/10 Nhiều đầu r
 a (multi-task): \TU/CourierNew(0)/m/n/10 smoke_label\TU/TimesNewRoman(0)/m/n/10
  , \TU/CourierNew(0)/m/n/10 hazard_label\TU/TimesNewRoman(0)/m/n/10 , \TU/Couri
@@ -1676,31 +1691,93 @@ erNew(0)/m/n/10 arrival_time\TU/TimesNewRoman(0)/m/n/10 , \TU/CourierNew(0)/m/n
 /10 next_affected_node\TU/TimesNewRoman(0)/m/n/10 . 
  []
 
-[15] [16]) (chapters/chapter4.tex [17]
+[16] [17]) (chapters/chapter4.tex [18]
 Chương 4.
-[18
+[19
 
 ]
 Missing character: There is no , in font nullfont!
-[19] [20]) (chapters/conclusion.tex [21
+[20] [21]
+Underfull \hbox (badness 2735) in paragraph at lines 236--236
+\TU/TimesNewRoman(0)/m/n/10 các thư viện uy tín (IEEE,
+ []
 
-] [22
 
-])
+Underfull \hbox (badness 2662) in paragraph at lines 236--236
+\TU/TimesNewRoman(0)/m/n/10 làm surrogate model nghiên
+ []
 
-LaTeX Warning: Empty bibliography on input line 63.
 
-(back/appendix.tex [23]
+Underfull \hbox (badness 2556) in paragraph at lines 236--236
+[]|\TU/TimesNewRoman(0)/m/n/10 Đánh giá sai hiệu năng AI
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 236--236
+[]|\TU/TimesNewRoman(0)/m/n/10 Áp dụng dropout, weight
+ []
+
+
+Underfull \hbox (badness 1028) in paragraph at lines 236--236
+\TU/TimesNewRoman(0)/m/n/10 decay, early stopping và thử
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 236--236
+\TU/TimesNewRoman(0)/m/n/10 nghiệm hold-out floor/hold-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 236--236
+[]|\TU/TimesNewRoman(0)/m/n/10 Xây dựng lớp
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 236--236
+\TU/CourierNew(0)/m/n/10 iot_noisy_stream
+ []
+
+) [22
+
+] (chapters/assumptions_limitations.tex [23]
+Chương 5.
+
+Overfull \hbox (9.43246pt too wide) in paragraph at lines 16--17
+[]\TU/TimesNewRoman(0)/b/n/10 Hệ thống cảm biến ảo đại diện: \TU/TimesNewRoman(
+0)/m/n/10 Giả định dữ liệu thu thập từ các cảm biến ảo ở lớp \TU/CourierNew(0)/
+m/n/10 virtual_sensor_clean
+ []
+
+) (chapters/conclusion.tex [24
+
+] [25
+
+]) [26]
+Overfull \hbox (16.27202pt too wide) in paragraph at lines 66--66
+[]\TU/TimesNewRoman(0)/m/n/10 J. C. P. Cheng, Y. Tan, and Y. Song, “Integrating
+ BIM and fire simulation for building emergency management,”
+ []
+
+
+Overfull \hbox (8.23288pt too wide) in paragraph at lines 66--66
+[]\TU/TimesNewRoman(0)/m/n/10 International Organization for Standardization, \
+TU/TimesNewRoman(0)/m/it/10 ISO 13571 – Life-threatening components of fire – G
+uidelines
+ []
+
+(back/appendix.tex [27
+
+]
 Phụ lục A.
-[24
+[28
 
 ]
 Phụ lục B.
-[25
+[29
 
 ]
 Phụ lục C.
-) [26
+) [30
 
 ] (main.aux)
  ***********
@@ -1712,12 +1789,12 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 43697 strings out of 402987
- 902891 string characters out of 5453079
- 1859891 words of memory out of 5000000
- 71767 multiletter control sequences out of 15000+600000
- 630172 words of font info for 98 fonts, out of 8000000 for 9000
+ 43772 strings out of 402987
+ 904986 string characters out of 5453079
+ 1860521 words of memory out of 5000000
+ 71837 multiletter control sequences out of 15000+600000
+ 630180 words of font info for 99 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 89i,12n,97p,1199b,4589s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 89i,12n,97p,1199b,4973s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.pdf (32 pages).
+Output written on main.pdf (36 pages).
